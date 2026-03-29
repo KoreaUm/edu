@@ -7,71 +7,145 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Inter:wght@400;700&display=swap');
-        body { font-family: 'Inter', 'Noto Sans KR', sans-serif; background-color: #030712; }
+        body { font-family: 'Inter', 'Noto Sans KR', sans-serif; background-color: #030712; scroll-behavior: smooth; }
         .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
         .ai-gradient { background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #d946ef 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        input, select, textarea { background: rgba(255, 255, 255, 0.05) !important; border: 1px solid rgba(255, 255, 255, 0.1) !important; color: white !important; }
     </style>
 </head>
 <body class="text-slate-200">
 
-    <!-- 상단 네비게이션 -->
     <nav class="sticky top-0 z-50 glass border-b border-white/5 px-6 py-4 flex justify-between items-center">
         <div class="text-xl font-bold tracking-tight ai-gradient">CJCH AI EDU</div>
         <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-400">
             <a href="#" class="hover:text-white transition">학교소개</a>
-            <a href="#" class="hover:text-white transition">학습자료</a>
+            <a href="#generator" class="hover:text-white transition">프롬프트 생성기</a>
             <a href="#" class="hover:text-white transition">공지사항</a>
         </div>
         <button class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold transition">학생 로그인</button>
     </nav>
 
-    <!-- 메인 히어로 섹션 -->
     <main class="max-w-6xl mx-auto px-6 pt-20 pb-32">
-        <div class="text-center">
+        <!-- 히어로 섹션 -->
+        <div class="text-center mb-32">
             <span class="inline-block px-4 py-1.5 rounded-full glass text-xs font-semibold text-blue-400 mb-6 border border-blue-500/20">충주상업고등학교 지능형 교육 플랫폼</span>
             <h1 class="text-5xl md:text-7xl font-extrabold mb-8 tracking-tight">
                 내일을 준비하는 <br><span class="ai-gradient">충주상업고 AI 캠퍼스</span>
             </h1>
             <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-                디지털 대전환 시대를 선도하는 충주상업고등학교의 AI 교육 저장소입니다. <br>창의적인 기술과 실무 중심의 데이터를 이곳에서 확인하세요.
+                디지털 대전환 시대를 선도하는 충주상업고등학교의 AI 교육 저장소입니다.
             </p>
             <div class="flex flex-col md:flex-row justify-center items-center gap-4">
-                <a href="#" class="w-full md:w-auto bg-white text-black px-8 py-4 rounded-xl font-bold hover:bg-slate-200 transition">강의 목록보기</a>
-                <a href="#" class="w-full md:w-auto glass px-8 py-4 rounded-xl font-bold hover:bg-white/5 transition border border-white/10 text-white">학교 홈페이지 바로가기</a>
+                <a href="#generator" class="w-full md:w-auto bg-white text-black px-8 py-4 rounded-xl font-bold hover:bg-slate-200 transition">프롬프트 생성기 사용하기</a>
             </div>
         </div>
 
-        <!-- 카드 섹션 -->
-        <div class="grid md:grid-cols-3 gap-6 mt-32">
-            <div class="glass p-8 rounded-3xl hover:border-blue-500/50 transition group">
-                <div class="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition text-blue-500">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                </div>
-                <h3 class="text-xl font-bold mb-3">맞춤형 학습</h3>
-                <p class="text-slate-400 leading-relaxed">충주상업고 학생들을 위한 수준별 맞춤형 AI 학습 커리큘럼을 제공합니다.</p>
-            </div>
-            
-            <div class="glass p-8 rounded-3xl hover:border-blue-500/50 transition group">
-                <div class="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition text-blue-500">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                </div>
-                <h3 class="text-xl font-bold mb-3">실무 프로젝트</h3>
-                <p class="text-slate-400 leading-relaxed">현장 중심의 코딩 및 데이터 분석 프로젝트를 통해 실무 역량을 강화합니다.</p>
+        <!-- 프롬프트 생성기 섹션 -->
+        <section id="generator" class="mt-32">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold ai-gradient mb-4">AI 학습자료 프롬프트 생성기</h2>
+                <p class="text-slate-400">과목과 주제를 입력하면 최적의 AI 프롬프트를 만들어 드립니다.</p>
             </div>
 
-            <div class="glass p-8 rounded-3xl hover:border-blue-500/50 transition group">
-                <div class="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition text-blue-500">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            <div class="glass p-8 md:p-12 rounded-[2rem] max-w-4xl mx-auto border border-white/10">
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <label class="block text-sm font-medium mb-2 text-slate-300">대상 과목</label>
+                        <select id="subject" class="w-full p-3 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 transition">
+                            <option value="회계원리">회계원리</option>
+                            <option value="경영정보">경영정보</option>
+                            <option value="상업경제">상업경제</option>
+                            <option value="사무관리">사무관리</option>
+                            <option value="컴퓨터 일반">컴퓨터 일반</option>
+                            <option value="AI 기초">AI 기초</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2 text-slate-300">대상 학년</label>
+                        <select id="grade" class="w-full p-3 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 transition">
+                            <option value="고등학교 1학년">1학년</option>
+                            <option value="고등학교 2학년">2학년</option>
+                            <option value="고등학교 3학년">3학년</option>
+                        </select>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium mb-2 text-slate-300">학습 주제</label>
+                        <input type="text" id="topic" placeholder="예: 재무제표의 이해, 파이썬 조건문 등" class="w-full p-3 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 transition">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium mb-2 text-slate-300">자료 유형</label>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <button onclick="setType('수업 지도안')" class="type-btn glass p-3 rounded-xl hover:bg-blue-600/20 transition border-white/10">수업 지도안</button>
+                            <button onclick="setType('활동지 문제')" class="type-btn glass p-3 rounded-xl hover:bg-blue-600/20 transition border-white/10">활동지 문제</button>
+                            <button onclick="setType('개념 요약본')" class="type-btn glass p-3 rounded-xl hover:bg-blue-600/20 transition border-white/10">개념 요약본</button>
+                            <button onclick="setType('수행평가 양식')" class="type-btn glass p-3 rounded-xl hover:bg-blue-600/20 transition border-white/10">수행평가 양식</button>
+                        </div>
+                    </div>
                 </div>
-                <h3 class="text-xl font-bold mb-3">취업 및 진로</h3>
-                <p class="text-slate-400 leading-relaxed">IT 특성화고의 강점을 살린 AI 분야 취업 가이드와 포트폴리오를 관리합니다.</p>
+
+                <button onclick="generatePrompt()" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-xl font-bold hover:opacity-90 transition shadow-lg shadow-blue-500/20">프롬프트 생성하기 ✨</button>
+
+                <div id="resultArea" class="hidden mt-10">
+                    <label class="block text-sm font-medium mb-2 text-blue-400">완성된 AI 프롬프트 (복사해서 GPT에 붙여넣으세요)</label>
+                    <textarea id="finalPrompt" rows="8" class="w-full p-4 rounded-xl text-sm leading-relaxed mb-4" readonly></textarea>
+                    <button onclick="copyPrompt()" class="bg-white/10 hover:bg-white/20 text-white px-6 py-2 rounded-lg text-sm transition border border-white/10">복사하기 📋</button>
+                </div>
             </div>
-        </div>
+        </section>
     </main>
 
     <footer class="border-t border-white/5 py-12 text-center text-slate-500 text-sm">
         © 2024 충주상업고등학교 (CJCH). All Rights Reserved.
     </footer>
 
+    <script>
+        let selectedType = "수업 지도안";
+
+        function setType(type) {
+            selectedType = type;
+            // 버튼 스타일 초기화 및 선택된 것 표시
+            document.querySelectorAll('.type-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600/40', 'border-blue-500');
+            });
+            event.target.classList.add('bg-blue-600/40', 'border-blue-500');
+        }
+
+        function generatePrompt() {
+            const subject = document.getElementById('subject').value;
+            const grade = document.getElementById('grade').value;
+            const topic = document.getElementById('topic').value;
+
+            if(!topic) {
+                alert("주제를 입력해주세요!");
+                return;
+            }
+
+            const prompt = `당신은 특성화고등학교 베테랑 교사입니다. 
+다음 조건에 맞춰서 전문적인 교육 자료를 만들어주세요.
+
+1. 대상: ${grade} (${subject} 과목)
+2. 주제: ${topic}
+3. 요청 자료: ${selectedType}
+
+[상세 지침]
+- 학생들의 눈높이에 맞는 쉬운 용어를 사용하되 전문적인 개념은 명확히 설명해주세요.
+- 상업계열 특성화고등학교의 특성을 살려 실무 중심의 사례를 포함해주세요.
+- ${selectedType} 형식에 맞춰 구조화된 답변을 제공해주세요.
+- 학습 목표와 도입, 전개, 정리 단계가 잘 드러나게 해주세요.`;
+
+            document.getElementById('finalPrompt').value = prompt;
+            document.getElementById('resultArea').classList.remove('hidden');
+            
+            // 결과창으로 스크롤 이동
+            document.getElementById('resultArea').scrollIntoView({behavior: 'smooth'});
+        }
+
+        function copyPrompt() {
+            const textArea = document.getElementById('finalPrompt');
+            textArea.select();
+            document.execCommand('copy');
+            alert('프롬프트가 복사되었습니다! 이제 GPT나 제미나이에 붙여넣으세요.');
+        }
+    </script>
 </body>
 </html>
