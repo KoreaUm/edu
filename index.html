@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CJCH AI Studio — 교사용 수업 프롬프트 생성기</title>
+<title>CJCH AI Studio — 수업용 PPT 콘텐츠 생성기</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
@@ -22,7 +22,6 @@
     --text-sub:       #4a5270;
     --muted:          #7a84a8;
     --danger:         #c0392b;
-    --success:        #1a7a4a;
     --tag-bg:         #eef0fb;
     --tag-border:     #c0c8ea;
     --tag-text:       #2d3a9a;
@@ -37,14 +36,12 @@
     --preview-muted:  #5a6290;
     --shadow-sm:      0 1px 4px rgba(0,0,0,0.08);
     --shadow-md:      0 4px 16px rgba(0,0,0,0.12);
-    --shadow-lg:      0 8px 32px rgba(0,0,0,0.16);
     --radius:         12px;
     --radius-sm:      8px;
     --radius-lg:      16px;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { font-size: 16px; }
 
   body {
@@ -57,7 +54,7 @@
     line-height: 1.6;
   }
 
-  /* ==================== HEADER ==================== */
+  /* ── HEADER ── */
   header {
     display: flex;
     align-items: center;
@@ -72,83 +69,35 @@
     z-index: 200;
     flex-shrink: 0;
   }
-
-  .logo-wrap {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
+  .logo-wrap { display: flex; align-items: center; gap: 0.75rem; }
   .logo-icon {
-    width: 40px;
-    height: 40px;
+    width: 40px; height: 40px;
     background: linear-gradient(135deg, var(--accent), var(--accent2));
     border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.1rem;
-    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 1.1rem;
     box-shadow: 0 2px 8px rgba(59,80,200,0.35);
   }
-
-  .logo-text {
-    font-size: 1.2rem;
-    font-weight: 900;
-    color: var(--accent);
-    letter-spacing: -0.02em;
-  }
-
-  .logo-sub {
-    font-size: 0.75rem;
-    color: var(--muted);
-    font-weight: 500;
-    letter-spacing: 0.01em;
-    display: block;
-    margin-top: -2px;
-  }
-
-  .header-right {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
+  .logo-text { font-size: 1.2rem; font-weight: 900; color: var(--accent); letter-spacing: -0.02em; }
+  .logo-sub  { font-size: 0.73rem; color: var(--muted); font-weight: 500; display: block; margin-top: -2px; }
+  .header-right { display: flex; align-items: center; gap: 0.75rem; }
   .version-badge {
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 5px 12px;
-    border-radius: 100px;
-    background: var(--accent-light);
-    color: var(--accent);
+    font-size: 0.72rem; font-weight: 700;
+    padding: 5px 12px; border-radius: 100px;
+    background: var(--accent-light); color: var(--accent);
     border: 1px solid var(--tag-border);
-    letter-spacing: 0.05em;
   }
-
   .reset-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 8px 16px;
-    background: none;
-    border: 2px solid var(--border);
-    border-radius: var(--radius-sm);
-    color: var(--text-sub);
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 600;
-    cursor: pointer;
+    display: flex; align-items: center; gap: 0.4rem;
+    padding: 8px 16px; background: none;
+    border: 2px solid var(--border); border-radius: var(--radius-sm);
+    color: var(--text-sub); font-family: 'Noto Sans KR', sans-serif;
+    font-size: 0.85rem; font-weight: 600; cursor: pointer;
     transition: all 0.18s ease;
   }
+  .reset-btn:hover { border-color: var(--danger); color: var(--danger); background: #fdf0ef; }
 
-  .reset-btn:hover {
-    border-color: var(--danger);
-    color: var(--danger);
-    background: #fdf0ef;
-  }
-
-  /* ==================== WORKSPACE ==================== */
+  /* ── WORKSPACE ── */
   .workspace {
     display: grid;
     grid-template-columns: 1fr 480px;
@@ -157,7 +106,7 @@
     overflow: hidden;
   }
 
-  /* ==================== LEFT BUILDER ==================== */
+  /* ── LEFT BUILDER ── */
   .builder {
     overflow-y: auto;
     padding: 2rem 2.5rem 3rem;
@@ -165,14 +114,20 @@
     scrollbar-color: var(--border) transparent;
     background: var(--bg);
   }
-
   .builder::-webkit-scrollbar { width: 5px; }
-  .builder::-webkit-scrollbar-thumb {
-    background: var(--border);
-    border-radius: 3px;
-  }
+  .builder::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
-  /* ==================== STEP BLOCKS ==================== */
+  .builder-hint {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.85rem; color: var(--text-sub);
+    margin-bottom: 1.5rem;
+    padding: 0.85rem 1.1rem;
+    background: var(--surface); border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+  }
+  .builder-hint i { color: var(--accent); font-size: 1rem; }
+
+  /* ── STEP BLOCKS ── */
   .step-block {
     background: var(--surface);
     border: 1.5px solid var(--border);
@@ -182,527 +137,258 @@
     box-shadow: var(--shadow-sm);
     transition: border-color 0.2s, box-shadow 0.2s;
   }
-
-  .step-block:hover {
-    border-color: #bcc5e8;
-    box-shadow: var(--shadow-md);
-  }
-
-  .step-block.has-selection {
-    border-color: var(--accent);
-    border-left: 4px solid var(--accent);
-  }
+  .step-block:hover { border-color: #bcc5e8; box-shadow: var(--shadow-md); }
+  .step-block.has-selection { border-color: var(--accent); border-left: 4px solid var(--accent); }
 
   .step-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.6rem;
+    display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.6rem;
   }
-
   .step-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    font-weight: 500;
-    color: white;
-    background: var(--accent);
-    padding: 3px 10px;
-    border-radius: 100px;
-    flex-shrink: 0;
-    letter-spacing: 0.05em;
+    font-family: 'DM Mono', monospace; font-size: 0.72rem; font-weight: 500;
+    color: white; background: var(--accent);
+    padding: 3px 10px; border-radius: 100px; flex-shrink: 0; letter-spacing: 0.05em;
   }
-
-  .step-title {
-    font-size: 1.05rem;
-    font-weight: 800;
-    color: var(--text);
-    letter-spacing: -0.01em;
-  }
-
+  .step-title { font-size: 1.05rem; font-weight: 800; color: var(--text); }
   .step-required {
-    font-size: 0.7rem;
-    color: var(--danger);
-    font-weight: 700;
-    background: #fdf0ef;
-    border: 1px solid #f5c6c2;
-    padding: 2px 8px;
-    border-radius: 100px;
-    margin-left: auto;
+    font-size: 0.7rem; color: var(--danger); font-weight: 700;
+    background: #fdf0ef; border: 1px solid #f5c6c2;
+    padding: 2px 8px; border-radius: 100px; margin-left: auto;
+  }
+  .selection-count {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 22px; height: 22px; padding: 0 6px;
+    background: var(--accent); color: white;
+    border-radius: 100px; font-size: 0.7rem; font-weight: 700;
+    margin-left: auto; font-family: 'DM Mono', monospace;
   }
 
   .step-desc {
-    font-size: 0.9rem;
-    color: var(--text-sub);
-    margin-bottom: 1.25rem;
-    line-height: 1.65;
-    font-weight: 400;
-    background: var(--surface3);
-    padding: 0.75rem 1rem;
-    border-radius: var(--radius-sm);
-    border-left: 3px solid var(--accent-light);
+    font-size: 0.9rem; color: var(--text-sub); margin-bottom: 1.25rem;
+    line-height: 1.65; font-weight: 400;
+    background: var(--surface3); padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm); border-left: 3px solid var(--accent-light);
   }
 
-  /* ==================== SUB CATEGORIES ==================== */
-  .sub-cat {
-    margin-bottom: 1.1rem;
-  }
-
+  /* ── SUB CATEGORIES ── */
+  .sub-cat { margin-bottom: 1.1rem; }
   .sub-cat:last-child { margin-bottom: 0; }
-
   .sub-cat-label {
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+    font-size: 0.78rem; font-weight: 700; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.08em;
     margin-bottom: 0.6rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    display: flex; align-items: center; gap: 8px;
   }
+  .sub-cat-label::after { content: ''; flex: 1; height: 1.5px; background: var(--border); border-radius: 1px; }
 
-  .sub-cat-label::after {
-    content: '';
-    flex: 1;
-    height: 1.5px;
-    background: var(--border);
-    border-radius: 1px;
-  }
-
-  /* ==================== TAGS ==================== */
+  /* ── TAGS ── */
   .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-
   .tag {
-    cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: 600;
-    padding: 8px 16px;
-    border-radius: var(--radius-sm);
+    cursor: pointer; font-size: 0.9rem; font-weight: 600;
+    padding: 8px 16px; border-radius: var(--radius-sm);
     border: 1.5px solid var(--tag-border);
-    background: var(--tag-bg);
-    color: var(--tag-text);
-    transition: all 0.16s ease;
-    user-select: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    line-height: 1.3;
+    background: var(--tag-bg); color: var(--tag-text);
+    transition: all 0.16s ease; user-select: none;
+    display: inline-flex; align-items: center; gap: 6px;
     font-family: 'Noto Sans KR', sans-serif;
   }
-
-  .tag:hover {
-    background: #dce0f7;
-    border-color: var(--accent);
-    color: var(--accent-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 3px 8px rgba(59,80,200,0.15);
-  }
-
-  .tag.on {
-    background: var(--tag-on-bg);
-    border-color: var(--tag-on-border);
-    color: var(--tag-on-text);
-    box-shadow: 0 3px 10px rgba(59,80,200,0.3);
-  }
-
-  .tag.on:hover {
-    background: var(--accent-hover);
-    transform: translateY(-1px);
-  }
-
-  .tag-check {
-    display: none;
-    font-size: 0.75rem;
-  }
-
+  .tag:hover { background: #dce0f7; border-color: var(--accent); color: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 3px 8px rgba(59,80,200,0.15); }
+  .tag.on { background: var(--tag-on-bg); border-color: var(--tag-on-border); color: var(--tag-on-text); box-shadow: 0 3px 10px rgba(59,80,200,0.3); }
+  .tag.on:hover { background: var(--accent-hover); transform: translateY(-1px); }
+  .tag-check { display: none; font-size: 0.75rem; }
   .tag.on .tag-check { display: inline; }
 
-  /* ==================== RIGHT EDITOR ==================== */
+  /* ── YOUTUBE INPUT ── */
+  .yt-input-wrap {
+    display: flex; gap: 0.5rem; margin-top: 0.75rem;
+  }
+  .yt-input {
+    flex: 1; padding: 9px 13px;
+    background: var(--surface2); border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm); font-family: 'Noto Sans KR', sans-serif;
+    font-size: 0.88rem; color: var(--text); outline: none;
+    transition: border-color 0.2s;
+  }
+  .yt-input:focus { border-color: var(--border-active); }
+  .yt-input::placeholder { color: var(--muted); font-size: 0.82rem; }
+  .yt-add-btn {
+    padding: 9px 18px; background: var(--accent); color: white;
+    border: none; border-radius: var(--radius-sm);
+    font-family: 'Noto Sans KR', sans-serif; font-size: 0.88rem;
+    font-weight: 700; cursor: pointer; transition: all 0.16s ease;
+    white-space: nowrap;
+  }
+  .yt-add-btn:hover { background: var(--accent-hover); }
+
+  .yt-list { margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .yt-item {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 8px 12px; background: var(--surface3);
+    border: 1px solid var(--border); border-radius: var(--radius-sm);
+  }
+  .yt-item-icon { color: #ff0000; font-size: 1.1rem; flex-shrink: 0; }
+  .yt-item-label {
+    font-size: 0.82rem; color: var(--text-sub); flex: 1;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    font-family: 'DM Mono', monospace;
+  }
+  .yt-item-slide {
+    font-size: 0.75rem; color: var(--muted); white-space: nowrap;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 2px 8px;
+  }
+  .yt-del-btn {
+    background: none; border: none; color: var(--muted);
+    cursor: pointer; font-size: 0.9rem; flex-shrink: 0;
+    padding: 2px 4px; transition: color 0.15s;
+  }
+  .yt-del-btn:hover { color: var(--danger); }
+
+  .slide-pos-select {
+    padding: 7px 10px; background: var(--surface); border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm); font-family: 'Noto Sans KR', sans-serif;
+    font-size: 0.82rem; color: var(--text-sub); cursor: pointer; outline: none;
+  }
+  .slide-pos-select:focus { border-color: var(--border-active); }
+
+  /* ── RIGHT EDITOR ── */
   .editor {
     border-left: 2px solid var(--border);
     background: var(--preview-bg);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+    display: flex; flex-direction: column; overflow: hidden;
   }
-
   .editor-header {
-    padding: 1.25rem 1.5rem 1rem;
-    border-bottom: 1px solid var(--preview-border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-shrink: 0;
-    background: var(--preview-surf);
+    padding: 1.25rem 1.5rem 1rem; border-bottom: 1px solid var(--preview-border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-shrink: 0; background: var(--preview-surf);
   }
-
-  .editor-title-group {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-  }
-
-  .editor-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    color: var(--preview-muted);
-    text-transform: uppercase;
-  }
-
-  .editor-subtitle {
-    font-size: 0.82rem;
-    color: var(--preview-text);
-    font-weight: 500;
-  }
-
+  .editor-title-group { display: flex; flex-direction: column; gap: 3px; }
+  .editor-title { font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 0.1em; color: var(--preview-muted); text-transform: uppercase; }
+  .editor-subtitle { font-size: 0.82rem; color: var(--preview-text); font-weight: 500; }
   .live-badge {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    color: #4ade80;
-    letter-spacing: 0.08em;
-    background: rgba(74,222,128,0.1);
-    padding: 5px 12px;
-    border-radius: 100px;
-    border: 1px solid rgba(74,222,128,0.25);
+    display: flex; align-items: center; gap: 6px;
+    font-family: 'DM Mono', monospace; font-size: 0.72rem; color: #4ade80;
+    background: rgba(74,222,128,0.1); padding: 5px 12px;
+    border-radius: 100px; border: 1px solid rgba(74,222,128,0.25);
   }
+  .live-dot { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.85)} }
 
-  .live-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #4ade80;
-    animation: pulse 2s infinite;
-  }
+  /* ── PROGRESS ── */
+  .progress-area { padding: 1rem 1.5rem; border-bottom: 1px solid var(--preview-border); flex-shrink: 0; background: var(--preview-surf); }
+  .progress-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
+  .progress-text { font-size: 0.82rem; color: var(--preview-text); font-weight: 600; }
+  .progress-pct { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: #4ade80; }
+  .progress-bar { height: 6px; background: var(--preview-border); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #7c63f5); border-radius: 3px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); width: 0%; }
 
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.85); }
-  }
-
-  /* ==================== PROGRESS ==================== */
-  .progress-area {
-    padding: 1rem 1.5rem;
-    border-bottom: 1px solid var(--preview-border);
-    flex-shrink: 0;
-    background: var(--preview-surf);
-  }
-
-  .progress-label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.6rem;
-  }
-
-  .progress-text {
-    font-size: 0.82rem;
-    color: var(--preview-text);
-    font-weight: 600;
-  }
-
-  .progress-pct {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: #4ade80;
-    font-weight: 500;
-  }
-
-  .progress-bar {
-    height: 6px;
-    background: var(--preview-border);
-    border-radius: 3px;
-    overflow: hidden;
-  }
-
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent), #7c63f5);
-    border-radius: 3px;
-    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    width: 0%;
-  }
-
-  /* ==================== PROMPT PREVIEW ==================== */
+  /* ── PROMPT PREVIEW ── */
   .prompt-preview {
-    flex: 1;
-    overflow-y: auto;
-    padding: 1.25rem 1.5rem;
-    scrollbar-width: thin;
-    scrollbar-color: var(--preview-border) transparent;
+    flex: 1; overflow-y: auto; padding: 1.25rem 1.5rem;
+    scrollbar-width: thin; scrollbar-color: var(--preview-border) transparent;
   }
-
   .prompt-preview::-webkit-scrollbar { width: 4px; }
-  .prompt-preview::-webkit-scrollbar-thumb {
-    background: var(--preview-border);
-    border-radius: 2px;
-  }
+  .prompt-preview::-webkit-scrollbar-thumb { background: var(--preview-border); border-radius: 2px; }
 
   .prompt-section {
-    margin-bottom: 1rem;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--preview-border);
-    overflow: hidden;
+    margin-bottom: 1rem; border-radius: var(--radius-sm);
+    border: 1px solid var(--preview-border); overflow: hidden;
     transition: border-color 0.3s, box-shadow 0.3s;
   }
-
-  .prompt-section.filled {
-    border-color: rgba(126,184,255,0.4);
-    box-shadow: 0 0 0 1px rgba(126,184,255,0.15);
-  }
-
+  .prompt-section.filled { border-color: rgba(126,184,255,0.4); box-shadow: 0 0 0 1px rgba(126,184,255,0.15); }
   .prompt-sec-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    padding: 7px 12px;
-    background: rgba(255,255,255,0.04);
-    color: var(--preview-muted);
-    text-transform: uppercase;
+    font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em;
+    padding: 7px 12px; background: rgba(255,255,255,0.04);
+    color: var(--preview-muted); text-transform: uppercase;
     border-bottom: 1px solid var(--preview-border);
   }
-
   .prompt-sec-content {
-    padding: 10px 12px;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    line-height: 1.75;
-    color: var(--preview-muted);
-    min-height: 36px;
-    white-space: pre-wrap;
-    word-break: break-all;
+    padding: 10px 12px; font-family: 'DM Mono', monospace;
+    font-size: 0.75rem; line-height: 1.75;
+    color: var(--preview-muted); min-height: 36px;
+    white-space: pre-wrap; word-break: break-all;
   }
-
   .prompt-sec-content.has-value { color: var(--preview-hi); }
+  .placeholder-text { color: var(--preview-muted); font-style: italic; font-size: 0.72rem; opacity: 0.7; }
 
-  .placeholder-text {
-    color: var(--preview-muted);
-    font-style: italic;
-    font-size: 0.72rem;
-    opacity: 0.7;
-  }
-
-  /* ==================== TOPIC INPUT ==================== */
+  /* ── TOPIC INPUT ── */
   .topic-area {
-    padding: 0 1.5rem 1rem;
-    flex-shrink: 0;
+    padding: 0 1.5rem 1rem; flex-shrink: 0;
     border-top: 1px solid var(--preview-border);
     background: var(--preview-surf);
   }
-
   .topic-label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: #f0c060;
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.85rem; font-weight: 700; color: #f0c060;
     margin: 1rem 0 0.5rem;
-    letter-spacing: 0.01em;
   }
-
-  .topic-label i { font-size: 0.85rem; }
-
   textarea.topic-input {
-    width: 100%;
-    background: var(--preview-bg);
-    border: 2px solid var(--preview-border);
-    border-radius: var(--radius-sm);
-    padding: 0.9rem 1rem;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 0.9rem;
-    color: var(--preview-text);
-    resize: vertical;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    line-height: 1.65;
-    min-height: 90px;
+    width: 100%; background: var(--preview-bg);
+    border: 2px solid var(--preview-border); border-radius: var(--radius-sm);
+    padding: 0.9rem 1rem; font-family: 'Noto Sans KR', sans-serif;
+    font-size: 0.9rem; color: var(--preview-text); resize: vertical;
+    outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+    line-height: 1.65; min-height: 90px;
   }
+  textarea.topic-input:focus { border-color: #7eb8ff; box-shadow: 0 0 0 3px rgba(126,184,255,0.12); }
+  textarea.topic-input::placeholder { color: var(--preview-muted); font-size: 0.83rem; opacity: 0.8; }
 
-  textarea.topic-input:focus {
-    border-color: #7eb8ff;
-    box-shadow: 0 0 0 3px rgba(126,184,255,0.12);
-  }
-
-  textarea.topic-input::placeholder {
-    color: var(--preview-muted);
-    font-size: 0.83rem;
-    line-height: 1.6;
-    opacity: 0.8;
-  }
-
-  /* ==================== GENERATE BUTTON ==================== */
-  .gen-area {
-    padding: 1rem 1.5rem 1.5rem;
-    flex-shrink: 0;
-    background: var(--preview-surf);
-  }
-
+  /* ── GENERATE BUTTON ── */
+  .gen-area { padding: 1rem 1.5rem 1.5rem; flex-shrink: 0; background: var(--preview-surf); }
   .gen-btn {
-    width: 100%;
-    padding: 1.1rem 1.5rem;
-    border-radius: var(--radius);
-    border: none;
-    background: linear-gradient(135deg, #3b50c8, #6c40c9);
-    color: white;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 800;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    position: relative;
-    overflow: hidden;
+    width: 100%; padding: 1.1rem 1.5rem; border-radius: var(--radius);
+    border: none; background: linear-gradient(135deg, #3b50c8, #6c40c9);
+    color: white; font-family: 'Noto Sans KR', sans-serif; font-weight: 800;
+    font-size: 1rem; cursor: pointer; transition: all 0.2s ease;
     box-shadow: 0 4px 16px rgba(59,80,200,0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
+    display: flex; align-items: center; justify-content: center; gap: 0.6rem;
   }
-
-  .gen-btn:hover {
-    background: linear-gradient(135deg, #2d3ea0, #5830a8);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(59,80,200,0.5);
-  }
-
+  .gen-btn:hover { background: linear-gradient(135deg, #2d3ea0, #5830a8); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(59,80,200,0.5); }
   .gen-btn:active { transform: scale(0.98) translateY(0); }
-
-  .gen-btn-icon { font-size: 1.1rem; }
-
-  .gen-btn-text {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    line-height: 1.2;
-  }
-
+  .gen-btn-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2; }
   .gen-btn-main { font-size: 1rem; font-weight: 800; }
+  .gen-btn-sub { font-size: 0.72rem; font-weight: 400; opacity: 0.78; margin-top: 2px; font-family: 'DM Mono', monospace; }
 
-  .gen-btn-sub {
-    font-size: 0.72rem;
-    font-weight: 400;
-    opacity: 0.78;
-    margin-top: 2px;
-    font-family: 'DM Mono', monospace;
-    letter-spacing: 0.02em;
-  }
-
-  /* ==================== VALIDATION MESSAGE ==================== */
+  /* ── VALIDATION ── */
   .validation-msg {
-    display: none;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 0.75rem;
-    padding: 0.75rem 1rem;
-    background: rgba(192,57,43,0.15);
-    border: 1px solid rgba(192,57,43,0.4);
-    border-radius: var(--radius-sm);
-    color: #ff8a7a;
-    font-size: 0.85rem;
-    font-weight: 600;
+    display: none; align-items: center; gap: 0.5rem;
+    margin-top: 0.75rem; padding: 0.75rem 1rem;
+    background: rgba(192,57,43,0.15); border: 1px solid rgba(192,57,43,0.4);
+    border-radius: var(--radius-sm); color: #ff8a7a;
+    font-size: 0.85rem; font-weight: 600;
     animation: shake 0.35s ease;
   }
-
   .validation-msg.show { display: flex; }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-4px)} 40%,80%{transform:translateX(4px)} }
 
-  @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    20%, 60% { transform: translateX(-4px); }
-    40%, 80% { transform: translateX(4px); }
-  }
-
-  /* ==================== TOAST ==================== */
+  /* ── TOAST ── */
   .toast {
-    position: fixed;
-    bottom: 2.5rem;
-    left: 50%;
+    position: fixed; bottom: 2.5rem; left: 50%;
     transform: translateX(-50%) translateY(120px);
-    background: #1a2340;
-    border: 1.5px solid rgba(126,184,255,0.4);
-    border-radius: var(--radius-lg);
-    padding: 1.1rem 2rem;
-    display: flex;
-    align-items: center;
-    gap: 0.9rem;
-    z-index: 9999;
-    transition: transform 0.4s cubic-bezier(0.34,1.4,0.64,1);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-    min-width: 320px;
-    justify-content: center;
+    background: #1a2340; border: 1.5px solid rgba(126,184,255,0.4);
+    border-radius: var(--radius-lg); padding: 1.1rem 2rem;
+    display: flex; align-items: center; gap: 0.9rem;
+    z-index: 9999; transition: transform 0.4s cubic-bezier(0.34,1.4,0.64,1);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5); min-width: 340px; justify-content: center;
   }
-
   .toast.show { transform: translateX(-50%) translateY(0); }
-
   .toast-icon { font-size: 1.5rem; }
-
-  .toast-body {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .toast-title {
-    font-size: 0.95rem;
-    font-weight: 800;
-    color: #c8d8ff;
-  }
-
-  .toast-sub {
-    font-size: 0.78rem;
-    color: var(--preview-muted);
-    font-family: 'DM Mono', monospace;
-  }
-
-  /* ==================== SELECTION COUNT CHIP ==================== */
-  .selection-count {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 22px;
-    height: 22px;
-    padding: 0 6px;
-    background: var(--accent);
-    color: white;
-    border-radius: 100px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    margin-left: auto;
-    font-family: 'DM Mono', monospace;
-  }
-
-  /* ==================== SCROLLBAR HINT ==================== */
-  .builder-hint {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.78rem;
-    color: var(--muted);
-    margin-bottom: 1.5rem;
-    padding: 0.75rem 1rem;
-    background: var(--surface);
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border);
-  }
-
-  .builder-hint i { color: var(--accent); }
+  .toast-body { display: flex; flex-direction: column; gap: 2px; }
+  .toast-title { font-size: 0.95rem; font-weight: 800; color: #c8d8ff; }
+  .toast-sub { font-size: 0.78rem; color: var(--preview-muted); font-family: 'DM Mono', monospace; }
 </style>
 </head>
 <body>
 
-<!-- ==================== HEADER ==================== -->
 <header>
   <div class="logo-wrap">
     <div class="logo-icon"><i class="fas fa-chalkboard-teacher"></i></div>
     <div>
       <div class="logo-text">CJCH AI Studio</div>
-      <span class="logo-sub">교사용 수업 프롬프트 생성기</span>
+      <span class="logo-sub">수업용 PPT 콘텐츠 생성기</span>
     </div>
   </div>
   <div class="header-right">
-    <span class="version-badge">V3.0</span>
+    <span class="version-badge">V4.0</span>
     <button class="reset-btn" onclick="resetAll()">
       <i class="fas fa-rotate-right"></i> 초기화
     </button>
@@ -711,26 +397,23 @@
 
 <div class="workspace">
 
-  <!-- ============ LEFT: Builder ============ -->
+  <!-- ============ LEFT ============ -->
   <section class="builder">
 
     <div class="builder-hint">
       <i class="fas fa-circle-info"></i>
-      아래 항목들을 클릭하여 선택하세요. 오른쪽 패널에서 프롬프트가 실시간으로 구성됩니다.
+      항목을 클릭해 선택하세요. AI가 실제 수업에 바로 쓸 수 있는 슬라이드 내용을 완성해서 만들어 줍니다.
     </div>
 
     <!-- STEP 1: 과목 -->
     <div class="step-block" id="block-subject">
       <div class="step-header">
         <span class="step-num">STEP 1</span>
-        <span class="step-title">교과 과목 선택</span>
+        <span class="step-title">교과 과목</span>
         <span class="step-required">필수</span>
         <span class="selection-count" id="cnt-subject" style="display:none">0</span>
       </div>
-      <p class="step-desc">
-        <i class="fas fa-lightbulb" style="color:var(--accent);margin-right:4px"></i>
-        수업을 진행할 교과 과목을 하나 선택하세요. AI가 해당 교과의 교육과정과 성취기준을 자동으로 반영합니다.
-      </p>
+      <p class="step-desc"><i class="fas fa-book" style="color:var(--accent);margin-right:5px"></i>어떤 교과 수업인지 선택하세요.</p>
 
       <div class="sub-cat">
         <div class="sub-cat-label">보통 교과</div>
@@ -744,7 +427,6 @@
           <span class="tag" data-group="subject" data-key="도덕">⚖️ 도덕 <i class="fas fa-check tag-check"></i></span>
         </div>
       </div>
-
       <div class="sub-cat">
         <div class="sub-cat-label">예체능 / 교양</div>
         <div class="tags">
@@ -755,7 +437,6 @@
           <span class="tag" data-group="subject" data-key="진로와 직업">🛣️ 진로와 직업 <i class="fas fa-check tag-check"></i></span>
         </div>
       </div>
-
       <div class="sub-cat">
         <div class="sub-cat-label">전공실무 — 경영·금융</div>
         <div class="tags">
@@ -766,7 +447,6 @@
           <span class="tag" data-group="subject" data-key="마케팅">📣 마케팅 <i class="fas fa-check tag-check"></i></span>
         </div>
       </div>
-
       <div class="sub-cat">
         <div class="sub-cat-label">전공실무 — IT·디지털</div>
         <div class="tags">
@@ -777,7 +457,6 @@
           <span class="tag" data-group="subject" data-key="정보처리">⚙️ 정보처리 <i class="fas fa-check tag-check"></i></span>
         </div>
       </div>
-
       <div class="sub-cat">
         <div class="sub-cat-label">전공실무 — 조리·서비스</div>
         <div class="tags">
@@ -794,16 +473,13 @@
     <div class="step-block" id="block-target">
       <div class="step-header">
         <span class="step-num">STEP 2</span>
-        <span class="step-title">학습 대상 설정</span>
+        <span class="step-title">학습 대상</span>
         <span class="selection-count" id="cnt-target" style="display:none">0</span>
       </div>
-      <p class="step-desc">
-        <i class="fas fa-users" style="color:var(--accent);margin-right:4px"></i>
-        학생의 학교급, 학년, 수준을 지정합니다. 선택한 정보에 따라 언어 수준과 예시 복잡도가 자동 조정됩니다.
-      </p>
+      <p class="step-desc"><i class="fas fa-users" style="color:var(--accent);margin-right:5px"></i>학생 학교급·학년·수준을 선택하면 설명 수준이 자동 맞춤됩니다.</p>
 
       <div class="sub-cat">
-        <div class="sub-cat-label">학교급 (1개 선택)</div>
+        <div class="sub-cat-label">학교급</div>
         <div class="tags">
           <span class="tag" data-group="school" data-key="중학교">중학교 <i class="fas fa-check tag-check"></i></span>
           <span class="tag" data-group="school" data-key="일반고">일반고 <i class="fas fa-check tag-check"></i></span>
@@ -811,199 +487,132 @@
           <span class="tag" data-group="school" data-key="직업계고">직업계고 <i class="fas fa-check tag-check"></i></span>
         </div>
       </div>
-
       <div class="sub-cat">
-        <div class="sub-cat-label">학년 (1개 선택)</div>
+        <div class="sub-cat-label">학년</div>
         <div class="tags">
           <span class="tag" data-group="grade" data-key="1학년">1학년 <i class="fas fa-check tag-check"></i></span>
           <span class="tag" data-group="grade" data-key="2학년">2학년 <i class="fas fa-check tag-check"></i></span>
           <span class="tag" data-group="grade" data-key="3학년">3학년 <i class="fas fa-check tag-check"></i></span>
         </div>
       </div>
-
       <div class="sub-cat">
-        <div class="sub-cat-label">학습 수준 (1개 선택)</div>
+        <div class="sub-cat-label">학습 수준</div>
         <div class="tags">
           <span class="tag" data-group="level" data-key="기초·보충">🌱 기초·보충 <i class="fas fa-check tag-check"></i></span>
           <span class="tag" data-group="level" data-key="일반">🌿 일반 <i class="fas fa-check tag-check"></i></span>
           <span class="tag" data-group="level" data-key="심화·발전">🌳 심화·발전 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="level" data-key="혼합(수준별 내용 포함)">🌐 혼합(수준별) <i class="fas fa-check tag-check"></i></span>
+          <span class="tag" data-group="level" data-key="혼합(수준별)">🌐 혼합(수준별) <i class="fas fa-check tag-check"></i></span>
         </div>
       </div>
     </div>
 
-    <!-- STEP 3: 수업 모델 -->
-    <div class="step-block" id="block-model">
+    <!-- STEP 3: 슬라이드 구성 -->
+    <div class="step-block" id="block-slides">
       <div class="step-header">
         <span class="step-num">STEP 3</span>
-        <span class="step-title">수업 모델 · 전략</span>
-        <span class="selection-count" id="cnt-model" style="display:none">0</span>
+        <span class="step-title">슬라이드 구성</span>
+        <span class="step-required">필수</span>
+        <span class="selection-count" id="cnt-slides" style="display:none">0</span>
       </div>
-      <p class="step-desc">
-        <i class="fas fa-diagram-project" style="color:var(--accent);margin-right:4px"></i>
-        수업의 흐름과 교수·학습 전략을 선택합니다. 여러 개를 고르면 AI가 유기적으로 결합하여 설계합니다.
-      </p>
+      <p class="step-desc"><i class="fas fa-layer-group" style="color:var(--accent);margin-right:5px"></i>PPT에 넣을 슬라이드 종류를 선택하세요. 여러 개 선택 가능합니다. AI가 각 슬라이드의 실제 내용을 직접 작성합니다.</p>
 
       <div class="sub-cat">
-        <div class="sub-cat-label">수업 모형 (복수 선택 가능)</div>
+        <div class="sub-cat-label">기본 슬라이드</div>
         <div class="tags">
-          <span class="tag" data-group="model" data-key="강의식(직접교수)">👨‍🏫 강의식 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="model" data-key="PBL(문제기반학습)">🏗️ PBL <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="model" data-key="하브루타(질문·토론)">💬 하브루타 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="model" data-key="플립러닝(거꾸로수업)">🔄 플립러닝 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="model" data-key="협동학습(모둠활동)">🤝 협동학습 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="model" data-key="게이미피케이션">🎮 게이미피케이션 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="model" data-key="스캐폴딩(단계별 지원)">🪜 스캐폴딩 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="model" data-key="탐구·실험학습">🔬 탐구·실험 <i class="fas fa-check tag-check"></i></span>
+          <span class="tag" data-group="slides" data-key="cover">🏷️ 표지 슬라이드 <i class="fas fa-check tag-check"></i></span>
+          <span class="tag" data-group="slides" data-key="goal">🎯 학습 목표 <i class="fas fa-check tag-check"></i></span>
+          <span class="tag" data-group="slides" data-key="concept">📘 핵심 개념 설명 <i class="fas fa-check tag-check"></i></span>
+          <span class="tag" data-group="slides" data-key="example">💡 예시·사례 <i class="fas fa-check tag-check"></i></span>
+          <span class="tag" data-group="slides" data-key="summary">📌 핵심 정리 <i class="fas fa-check tag-check"></i></span>
         </div>
       </div>
-
       <div class="sub-cat">
-        <div class="sub-cat-label">수업 흐름 구조 (1개 선택)</div>
+        <div class="sub-cat-label">활동·평가 슬라이드</div>
         <div class="tags">
-          <span class="tag" data-group="flow" data-key="도입-전개-정리(3단계)">3단계 (도입-전개-정리) <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="flow" data-key="5E 모형(참여-탐색-설명-심화-평가)">5E 모형 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="flow" data-key="도입-개념-적용-평가-마무리(5단계)">5단계 완성형 <i class="fas fa-check tag-check"></i></span>
+          <span class="tag" data-group="slides" data-key="quiz">❓ 형성평가 퀴즈 <i class="fas fa-check tag-check"></i></span>
+          <span class="tag" data-group="slides" data-key="activity">✏️ 학생 활동지 <i class="fas fa-check tag-check"></i></span>
+          <span class="tag" data-group="slides" data-key="discussion">💬 토론·발표 과제 <i class="fas fa-check tag-check"></i></span>
+          <span class="tag" data-group="slides" data-key="practice">🔧 실습 문제 <i class="fas fa-check tag-check"></i></span>
+        </div>
+      </div>
+      <div class="sub-cat">
+        <div class="sub-cat-label">보조 슬라이드</div>
+        <div class="tags">
+          <span class="tag" data-group="slides" data-key="motivation">🔥 동기유발 자료 <i class="fas fa-check tag-check"></i></span>
+          <span class="tag" data-group="slides" data-key="realworld">🌏 실생활·실무 사례 <i class="fas fa-check tag-check"></i></span>
+          <span class="tag" data-group="slides" data-key="career">💼 진로·취업 연계 <i class="fas fa-check tag-check"></i></span>
+          <span class="tag" data-group="slides" data-key="closing">👋 마무리·과제 안내 <i class="fas fa-check tag-check"></i></span>
         </div>
       </div>
     </div>
 
-    <!-- STEP 4: 결과물 형태 -->
-    <div class="step-block" id="block-output">
+    <!-- STEP 4: 유튜브 영상 삽입 -->
+    <div class="step-block" id="block-yt">
       <div class="step-header">
         <span class="step-num">STEP 4</span>
-        <span class="step-title">결과물 형태</span>
-        <span class="step-required">필수</span>
-        <span class="selection-count" id="cnt-output" style="display:none">0</span>
+        <span class="step-title">유튜브 영상 삽입</span>
+        <span class="selection-count" id="cnt-yt" style="display:none">0</span>
       </div>
-      <p class="step-desc">
-        <i class="fas fa-file-circle-check" style="color:var(--accent);margin-right:4px"></i>
-        AI가 만들어 줄 결과물 종류를 선택합니다. 여러 개 선택 가능합니다. 선택한 형태에 맞는 상세 지침이 자동으로 추가됩니다.
-      </p>
+      <p class="step-desc"><i class="fab fa-youtube" style="color:#ff0000;margin-right:5px"></i>슬라이드 안에 바로 재생되는 유튜브 영상을 넣을 수 있습니다. 링크를 붙여넣고 어느 슬라이드에 넣을지 선택하세요.</p>
 
-      <div class="sub-cat">
-        <div class="sub-cat-label">디지털 콘텐츠</div>
-        <div class="tags">
-          <span class="tag" data-group="output" data-key="web_slide">🖥️ 웹 슬라이드 (HTML) <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="output" data-key="mindmap">🧠 마인드맵 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="output" data-key="infographic">📊 인포그래픽 <i class="fas fa-check tag-check"></i></span>
-        </div>
+      <div class="yt-input-wrap">
+        <input class="yt-input" id="ytUrlInput" type="text"
+          placeholder="유튜브 주소 붙여넣기 (예: https://youtu.be/xxxx 또는 https://www.youtube.com/watch?v=xxxx)">
+        <select class="slide-pos-select" id="ytSlidePos">
+          <option value="동기유발 슬라이드">동기유발 슬라이드</option>
+          <option value="개념 설명 슬라이드">개념 설명 슬라이드</option>
+          <option value="예시·사례 슬라이드">예시·사례 슬라이드</option>
+          <option value="실습 슬라이드">실습 슬라이드</option>
+          <option value="마무리 슬라이드">마무리 슬라이드</option>
+        </select>
+        <button class="yt-add-btn" onclick="addYoutube()">
+          <i class="fab fa-youtube"></i> 추가
+        </button>
       </div>
-
-      <div class="sub-cat">
-        <div class="sub-cat-label">교안·지도안</div>
-        <div class="tags">
-          <span class="tag" data-group="output" data-key="lesson_plan">📋 교수·학습 지도안 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="output" data-key="lecture_script">🎙️ 강의 대본 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="output" data-key="session_plan">📅 차시 계획서 <i class="fas fa-check tag-check"></i></span>
-        </div>
-      </div>
-
-      <div class="sub-cat">
-        <div class="sub-cat-label">학생용 자료</div>
-        <div class="tags">
-          <span class="tag" data-group="output" data-key="worksheet">📝 학생 활동지 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="output" data-key="summary_note">📌 개념 요약 노트 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="output" data-key="formative_test">❓ 형성평가 문제지 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="output" data-key="rubric">📏 수행평가 루브릭 <i class="fas fa-check tag-check"></i></span>
-        </div>
-      </div>
+      <div class="yt-list" id="ytList"></div>
     </div>
 
-    <!-- STEP 5: 포함 요소 -->
-    <div class="step-block" id="block-extra">
-      <div class="step-header">
-        <span class="step-num">STEP 5</span>
-        <span class="step-title">포함 요소 · 특수 조건</span>
-        <span class="selection-count" id="cnt-extra" style="display:none">0</span>
-      </div>
-      <p class="step-desc">
-        <i class="fas fa-sliders" style="color:var(--accent);margin-right:4px"></i>
-        결과물에 반드시 포함할 특별 요소를 선택합니다. 선택하지 않아도 됩니다.
-      </p>
-
-      <div class="sub-cat">
-        <div class="sub-cat-label">교육과정 연계</div>
-        <div class="tags">
-          <span class="tag" data-group="extra" data-key="achievement_standard">📌 2022 개정 성취기준 명시 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="extra" data-key="core_competency">🎯 핵심역량 연계 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="extra" data-key="ncs">🏭 NCS 직무능력 반영 <i class="fas fa-check tag-check"></i></span>
-        </div>
-      </div>
-
-      <div class="sub-cat">
-        <div class="sub-cat-label">차별화 전략</div>
-        <div class="tags">
-          <span class="tag" data-group="extra" data-key="slow_learner">🌱 부진학생 보충 지원 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="extra" data-key="advanced">🔥 심화 확장과제 포함 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="extra" data-key="multicultural">🌍 다문화·포용 사례 반영 <i class="fas fa-check tag-check"></i></span>
-        </div>
-      </div>
-
-      <div class="sub-cat">
-        <div class="sub-cat-label">실무·현장 연결</div>
-        <div class="tags">
-          <span class="tag" data-group="extra" data-key="current_events">📰 시사·뉴스 연계 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="extra" data-key="career">💼 취업·진로 연계 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="extra" data-key="edutech">📱 에듀테크 도구 활용 계획 <i class="fas fa-check tag-check"></i></span>
-        </div>
-      </div>
-
-      <div class="sub-cat">
-        <div class="sub-cat-label">형식·표현</div>
-        <div class="tags">
-          <span class="tag" data-group="extra" data-key="visual_data">📊 시각 자료(표·그래프) 강화 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="extra" data-key="markdown">📄 Markdown 형식 출력 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="extra" data-key="bilingual">🔤 한국어+영어 병기 <i class="fas fa-check tag-check"></i></span>
-        </div>
-      </div>
-    </div>
-
-    <!-- STEP 6: 디자인 -->
+    <!-- STEP 5: 디자인 테마 -->
     <div class="step-block" id="block-design">
       <div class="step-header">
-        <span class="step-num">STEP 6</span>
-        <span class="step-title">디자인 · 어조</span>
+        <span class="step-num">STEP 5</span>
+        <span class="step-title">디자인 테마</span>
         <span class="selection-count" id="cnt-design" style="display:none">0</span>
       </div>
-      <p class="step-desc">
-        <i class="fas fa-palette" style="color:var(--accent);margin-right:4px"></i>
-        웹 슬라이드나 시각 콘텐츠에 적용할 디자인 테마와 교사의 어조를 선택합니다.
-      </p>
+      <p class="step-desc"><i class="fas fa-palette" style="color:var(--accent);margin-right:5px"></i>완성된 HTML 슬라이드에 적용할 전체 디자인 분위기를 선택하세요.</p>
 
       <div class="sub-cat">
-        <div class="sub-cat-label">비주얼 테마</div>
+        <div class="sub-cat-label">비주얼 테마 (1개 선택)</div>
         <div class="tags">
-          <span class="tag" data-group="design" data-key="chalkboard">🏫 칠판 (초록 배경, 손글씨 감성) <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="design" data-key="dark_premium">🌑 다크 프리미엄 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="design" data-key="clean_white">⬜ 클린 화이트 (밝고 깔끔) <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="design" data-key="colorful_pop">🎨 컬러풀 팝 (Z세대 감성) <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="design" data-key="newsroom">📰 뉴스룸 (매거진 레이아웃) <i class="fas fa-check tag-check"></i></span>
+          <span class="tag" data-group="design" data-key="chalkboard">🏫 칠판 (손글씨 감성) <i class="fas fa-check tag-check"></i></span>
+          <span class="tag" data-group="design" data-key="dark_modern">🌑 다크 모던 <i class="fas fa-check tag-check"></i></span>
+          <span class="tag" data-group="design" data-key="clean_white">⬜ 깔끔한 화이트 <i class="fas fa-check tag-check"></i></span>
+          <span class="tag" data-group="design" data-key="colorful">🎨 컬러풀 (학생 친화) <i class="fas fa-check tag-check"></i></span>
+          <span class="tag" data-group="design" data-key="gradient_blue">🔵 그라데이션 블루 <i class="fas fa-check tag-check"></i></span>
         </div>
       </div>
-
       <div class="sub-cat">
-        <div class="sub-cat-label">교사 어조</div>
+        <div class="sub-cat-label">강조 포인트</div>
         <div class="tags">
-          <span class="tag" data-group="tone" data-key="friendly">😊 친근·격려형 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="tone" data-key="professional">🧐 전문·논리형 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="tone" data-key="storytelling">📖 스토리텔링형 <i class="fas fa-check tag-check"></i></span>
-          <span class="tag" data-group="tone" data-key="socratic">🤔 소크라테스식 질문 유도형 <i class="fas fa-check tag-check"></i></span>
+          <span class="tag" data-group="emphasis" data-key="large_text">🔡 글자 크게 (시인성 우선) <i class="fas fa-check tag-check"></i></span>
+          <span class="tag" data-group="emphasis" data-key="icon_heavy">🎯 아이콘 풍부하게 <i class="fas fa-check tag-check"></i></span>
+          <span class="tag" data-group="emphasis" data-key="table_chart">📊 표·그래프 중심 <i class="fas fa-check tag-check"></i></span>
+          <span class="tag" data-group="emphasis" data-key="animation">✨ 슬라이드 전환 애니메이션 <i class="fas fa-check tag-check"></i></span>
         </div>
       </div>
     </div>
 
   </section>
 
-  <!-- ============ RIGHT: Preview + Generate ============ -->
+  <!-- ============ RIGHT: Preview ============ -->
   <section class="editor">
 
     <div class="editor-header">
       <div class="editor-title-group">
         <span class="editor-title">Prompt Preview</span>
-        <span class="editor-subtitle">프롬프트 미리보기</span>
+        <span class="editor-subtitle">생성될 프롬프트 미리보기</span>
       </div>
-      <div class="live-badge"><div class="live-dot"></div> 실시간 반영 중</div>
+      <div class="live-badge"><div class="live-dot"></div> 실시간 반영</div>
     </div>
 
     <div class="progress-area">
@@ -1011,60 +620,39 @@
         <span class="progress-text" id="progressText">필수 항목을 선택해 주세요</span>
         <span class="progress-pct" id="progressPct">0%</span>
       </div>
-      <div class="progress-bar">
-        <div class="progress-fill" id="progressFill"></div>
-      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
     </div>
 
     <div class="prompt-preview" id="promptPreview">
 
       <div class="prompt-section" id="sec-subject">
         <div class="prompt-sec-label">01 · 교과 과목</div>
-        <div class="prompt-sec-content" id="pv-subject">
-          <span class="placeholder-text">교과 과목을 선택하면 표시됩니다.</span>
-        </div>
+        <div class="prompt-sec-content" id="pv-subject"><span class="placeholder-text">교과 과목을 선택하면 표시됩니다.</span></div>
       </div>
 
       <div class="prompt-section" id="sec-target">
         <div class="prompt-sec-label">02 · 학습 대상</div>
-        <div class="prompt-sec-content" id="pv-target">
-          <span class="placeholder-text">학교급, 학년, 수준을 선택하면 표시됩니다.</span>
-        </div>
+        <div class="prompt-sec-content" id="pv-target"><span class="placeholder-text">학교급·학년·수준을 선택하면 표시됩니다.</span></div>
       </div>
 
-      <div class="prompt-section" id="sec-model">
-        <div class="prompt-sec-label">03 · 수업 모델 · 흐름</div>
-        <div class="prompt-sec-content" id="pv-model">
-          <span class="placeholder-text">수업 모형과 흐름 구조를 선택하면 표시됩니다.</span>
-        </div>
+      <div class="prompt-section" id="sec-slides">
+        <div class="prompt-sec-label">03 · 슬라이드 구성</div>
+        <div class="prompt-sec-content" id="pv-slides"><span class="placeholder-text">슬라이드 종류를 선택하면 표시됩니다.</span></div>
       </div>
 
-      <div class="prompt-section" id="sec-output">
-        <div class="prompt-sec-label">04 · 결과물 형태</div>
-        <div class="prompt-sec-content" id="pv-output">
-          <span class="placeholder-text">결과물 형태를 선택하면 표시됩니다.</span>
-        </div>
-      </div>
-
-      <div class="prompt-section" id="sec-extra">
-        <div class="prompt-sec-label">05 · 포함 요소</div>
-        <div class="prompt-sec-content" id="pv-extra">
-          <span class="placeholder-text">특수 조건을 선택하면 표시됩니다.</span>
-        </div>
+      <div class="prompt-section" id="sec-yt">
+        <div class="prompt-sec-label">04 · 유튜브 영상</div>
+        <div class="prompt-sec-content" id="pv-yt"><span class="placeholder-text">유튜브 링크를 추가하면 표시됩니다.</span></div>
       </div>
 
       <div class="prompt-section" id="sec-design">
-        <div class="prompt-sec-label">06 · 디자인 · 어조</div>
-        <div class="prompt-sec-content" id="pv-design">
-          <span class="placeholder-text">디자인 테마와 어조를 선택하면 표시됩니다.</span>
-        </div>
+        <div class="prompt-sec-label">05 · 디자인 테마</div>
+        <div class="prompt-sec-content" id="pv-design"><span class="placeholder-text">테마를 선택하면 표시됩니다.</span></div>
       </div>
 
       <div class="prompt-section" id="sec-topic">
-        <div class="prompt-sec-label">07 · 수업 주제 (직접 입력)</div>
-        <div class="prompt-sec-content" id="pv-topic">
-          <span class="placeholder-text">아래 입력란에 수업 주제를 입력하세요.</span>
-        </div>
+        <div class="prompt-sec-label">06 · 수업 주제 (직접 입력)</div>
+        <div class="prompt-sec-content" id="pv-topic"><span class="placeholder-text">아래 입력란에 수업 주제를 입력하세요.</span></div>
       </div>
 
     </div>
@@ -1075,15 +663,15 @@
         수업 주제 직접 입력 <span style="color:#ff8a7a;font-size:0.78rem;font-weight:700;">(필수)</span>
       </div>
       <textarea class="topic-input" id="topicInput" rows="4"
-        placeholder="예) 재무상태표의 구조와 계정과목 분류 실습&#10;예) 파이썬 조건문(if/elif/else) 개념과 응용&#10;예) 탄수화물의 종류와 소화 과정"></textarea>
+        placeholder="예) 재무상태표의 구조와 계정과목 분류&#10;예) 파이썬 조건문(if/elif/else) 개념과 실습&#10;예) 광합성의 원리와 실생활 연결"></textarea>
     </div>
 
     <div class="gen-area">
       <button class="gen-btn" onclick="generateAndCopy()">
-        <span class="gen-btn-icon"><i class="fas fa-copy"></i></span>
+        <span style="font-size:1.2rem"><i class="fas fa-copy"></i></span>
         <span class="gen-btn-text">
           <span class="gen-btn-main">프롬프트 생성 & 복사</span>
-          <span class="gen-btn-sub">클릭 후 AI에 붙여넣기 (Ctrl+V)</span>
+          <span class="gen-btn-sub">복사 후 Claude에 붙여넣기 (Ctrl+V)</span>
         </span>
       </button>
       <div class="validation-msg" id="validationMsg">
@@ -1095,91 +683,86 @@
   </section>
 </div>
 
-<!-- Toast -->
 <div class="toast" id="toast">
   <div class="toast-icon">✅</div>
   <div class="toast-body">
     <div class="toast-title">프롬프트가 복사되었습니다!</div>
-    <div class="toast-sub">AI 채팅창에 Ctrl+V (또는 붙여넣기)로 바로 사용하세요.</div>
+    <div class="toast-sub">Claude 채팅창에 Ctrl+V로 바로 붙여넣으세요.</div>
   </div>
 </div>
 
 <script>
 // ============================================================
-// 데이터 정의 — key(코드) → label(한글 표시) 분리
+// 라벨 맵
 // ============================================================
-
-// 선택 결과물 라벨 매핑 (key → 사람이 읽을 수 있는 텍스트)
-const OUTPUT_LABELS = {
-  web_slide:       '인터랙티브 웹 슬라이드 (HTML/CSS/JS)',
-  mindmap:         '마인드맵 시각화 (HTML/SVG)',
-  infographic:     '인포그래픽 (HTML/CSS)',
-  lesson_plan:     '교수·학습 지도안',
-  lecture_script:  '강의 대본 (교사 스크립트)',
-  session_plan:    '차시 계획서',
-  worksheet:       '학생 활동지',
-  summary_note:    '핵심 개념 요약 노트',
-  formative_test:  '형성평가 문제지',
-  rubric:          '수행평가 루브릭',
-};
-
-const EXTRA_LABELS = {
-  achievement_standard: '2022 개정 교육과정 성취기준 코드 명시',
-  core_competency:      '핵심역량(자기관리·지식정보처리·창의적사고·심미적감성·협력적소통·공동체) 연계',
-  ncs:                  'NCS 직무능력 기준 반영',
-  slow_learner:         '학습 부진 학생을 위한 추가 힌트 및 보충 자료 포함',
-  advanced:             '심화 학습을 위한 확장 활동 및 도전 과제 포함',
-  multicultural:        '다문화 및 다양성 관련 포용적 사례 반영',
-  current_events:       '최신 뉴스·시사 사례를 도입부 동기유발 자료로 활용',
-  career:               '취업·진로 연계 실무 사례 및 직업 현장 적용 예시 삽입',
-  edutech:              '디지털 도구(패들렛·카훗·멘티미터 등) 활용 계획 포함',
-  visual_data:          '표·그래프·다이어그램 등 시각 자료 풍부하게 삽입',
-  markdown:             'Markdown 형식으로 구조화하여 출력',
-  bilingual:            '한국어+영어 병기 (전문용어 이중언어 표기)',
+const SLIDE_LABELS = {
+  cover:      '표지 슬라이드',
+  goal:       '학습 목표 슬라이드',
+  concept:    '핵심 개념 설명 슬라이드',
+  example:    '예시·사례 슬라이드',
+  summary:    '핵심 정리 슬라이드',
+  quiz:       '형성평가 퀴즈 슬라이드',
+  activity:   '학생 활동지 슬라이드',
+  discussion: '토론·발표 과제 슬라이드',
+  practice:   '실습 문제 슬라이드',
+  motivation: '동기유발 자료 슬라이드',
+  realworld:  '실생활·실무 사례 슬라이드',
+  career:     '진로·취업 연계 슬라이드',
+  closing:    '마무리·과제 안내 슬라이드',
 };
 
 const DESIGN_LABELS = {
-  chalkboard:    '칠판 테마 (초록 배경, 분필 질감, 손글씨 감성)',
-  dark_premium:  '다크 프리미엄 (블랙 배경, 형광 포인트, 모던 레이아웃)',
-  clean_white:   '클린 화이트 (밝고 깨끗한 미니멀 디자인)',
-  colorful_pop:  '컬러풀 팝 (밝은 원색, Z세대 감성)',
-  newsroom:      '뉴스룸 (신문·매거진 레이아웃)',
+  chalkboard:    '칠판 테마 — 짙은 초록 배경, 흰색 분필 느낌 폰트, 손그림 스타일 장식',
+  dark_modern:   '다크 모던 — 검정 배경, 밝은 강조색(네온 계열), 세련된 레이아웃',
+  clean_white:   '클린 화이트 — 흰 배경, 회색·파랑 포인트, 깔끔하고 읽기 편한 디자인',
+  colorful:      '컬러풀 — 원색 배경 블록, 큰 이모지, 밝고 에너지 넘치는 Z세대 감성',
+  gradient_blue: '그라데이션 블루 — 파랑→보라 그라데이션 배경, 고급스러운 기업 발표 스타일',
 };
 
-const TONE_LABELS = {
-  friendly:        '친근하고 위트 있는 격려형 (학생 친화적, 쉬운 비유)',
-  professional:    '전문적이고 논리적인 전문가형 (정확한 용어, 체계적 설명)',
-  storytelling:    '스토리텔링형 (서사·에피소드 중심, 감성적 연결)',
-  socratic:        '소크라테스식 질문형 (끊임없는 질문으로 사고 유도)',
+const EMPHASIS_LABELS = {
+  large_text:  '본문 글자를 크고 굵게 작성하여 뒤에서도 잘 보이도록 할 것',
+  icon_heavy:  '각 항목 앞에 이모지·아이콘을 풍부하게 사용할 것',
+  table_chart: '표·리스트·다이어그램 형태로 정보를 정리하여 시각화할 것',
+  animation:   '슬라이드 전환 시 CSS 애니메이션(페이드·슬라이드 효과)을 적용할 것',
 };
+
+// ============================================================
+// 유튜브 ID 추출
+// ============================================================
+function extractYouTubeId(url) {
+  url = url.trim();
+  // youtu.be/xxxx
+  let m = url.match(/youtu\.be\/([A-Za-z0-9_-]{11})/);
+  if (m) return m[1];
+  // youtube.com/watch?v=xxxx  또는  /embed/xxxx
+  m = url.match(/[?&v=|\/embed\/]([A-Za-z0-9_-]{11})/);
+  if (m) return m[1];
+  // 11자리 ID 그대로 입력한 경우
+  if (/^[A-Za-z0-9_-]{11}$/.test(url)) return url;
+  return null;
+}
 
 // ============================================================
 // STATE
 // ============================================================
 const state = {
-  subject: [],
-  school:  [],
-  grade:   [],
-  level:   [],
-  model:   [],
-  flow:    [],
-  output:  [],
-  extra:   [],
-  design:  [],
-  tone:    [],
+  subject:  [],
+  school:   [],
+  grade:    [],
+  level:    [],
+  slides:   [],
+  design:   [],
+  emphasis: [],
+  youtubes: [], // [{id, url, slidePos}]
 };
 
-// 단일 선택 그룹
-const SINGLE_SELECT = new Set(['subject', 'school', 'grade', 'level', 'flow', 'design', 'tone']);
+const SINGLE_SELECT = new Set(['subject', 'school', 'grade', 'level', 'design']);
 
-// 각 step-block에 연결된 state 키들
 const BLOCK_GROUPS = {
   'block-subject': ['subject'],
   'block-target':  ['school', 'grade', 'level'],
-  'block-model':   ['model', 'flow'],
-  'block-output':  ['output'],
-  'block-extra':   ['extra'],
-  'block-design':  ['design', 'tone'],
+  'block-slides':  ['slides'],
+  'block-design':  ['design', 'emphasis'],
 };
 
 // ============================================================
@@ -1191,7 +774,6 @@ document.querySelectorAll('.tag').forEach(tag => {
     const key   = this.dataset.key;
 
     if (SINGLE_SELECT.has(group)) {
-      // 같은 그룹 모두 해제
       document.querySelectorAll(`.tag[data-group="${group}"]`).forEach(t => t.classList.remove('on'));
       if (!state[group].includes(key)) {
         state[group] = [key];
@@ -1216,19 +798,70 @@ document.querySelectorAll('.tag').forEach(tag => {
   });
 });
 
-// Topic input
 document.getElementById('topicInput').addEventListener('input', () => {
   updatePreview();
   updateProgress();
 });
 
 // ============================================================
-// BLOCK HIGHLIGHT (선택 완료 시 왼쪽 보더 강조)
+// 유튜브 추가
+// ============================================================
+function addYoutube() {
+  const urlInput = document.getElementById('ytUrlInput');
+  const slidePos = document.getElementById('ytSlidePos').value;
+  const raw      = urlInput.value.trim();
+
+  if (!raw) { showValidation('유튜브 링크를 입력해 주세요.'); return; }
+
+  const id = extractYouTubeId(raw);
+  if (!id) { showValidation('올바른 유튜브 링크가 아닙니다. 다시 확인해 주세요.'); return; }
+
+  if (state.youtubes.find(y => y.id === id)) {
+    showValidation('이미 추가된 영상입니다.'); return;
+  }
+
+  state.youtubes.push({ id, url: raw, slidePos });
+  urlInput.value = '';
+  renderYoutubeList();
+  updateCountChips();
+  updatePreview();
+  updateProgress();
+}
+
+function removeYoutube(id) {
+  state.youtubes = state.youtubes.filter(y => y.id !== id);
+  renderYoutubeList();
+  updateCountChips();
+  updatePreview();
+  updateProgress();
+}
+
+function renderYoutubeList() {
+  const list = document.getElementById('ytList');
+  if (state.youtubes.length === 0) { list.innerHTML = ''; return; }
+  list.innerHTML = state.youtubes.map(y => `
+    <div class="yt-item">
+      <i class="fab fa-youtube yt-item-icon"></i>
+      <span class="yt-item-label">youtu.be/${y.id}</span>
+      <span class="yt-item-slide">${y.slidePos}</span>
+      <button class="yt-del-btn" onclick="removeYoutube('${y.id}')" title="삭제">
+        <i class="fas fa-xmark"></i>
+      </button>
+    </div>
+  `).join('');
+
+  const block = document.getElementById('block-yt');
+  block.classList.toggle('has-selection', state.youtubes.length > 0);
+}
+
+// ============================================================
+// BLOCK HIGHLIGHT
 // ============================================================
 function updateBlockHighlight() {
   Object.entries(BLOCK_GROUPS).forEach(([blockId, groups]) => {
     const block = document.getElementById(blockId);
-    const hasAny = groups.some(g => state[g].length > 0);
+    if (!block) return;
+    const hasAny = groups.some(g => state[g] && state[g].length > 0);
     block.classList.toggle('has-selection', hasAny);
   });
 }
@@ -1237,23 +870,18 @@ function updateBlockHighlight() {
 // COUNT CHIPS
 // ============================================================
 function updateCountChips() {
-  const chips = {
+  const map = {
     'cnt-subject': state.subject.length,
     'cnt-target':  state.school.length + state.grade.length + state.level.length,
-    'cnt-model':   state.model.length + state.flow.length,
-    'cnt-output':  state.output.length,
-    'cnt-extra':   state.extra.length,
-    'cnt-design':  state.design.length + state.tone.length,
+    'cnt-slides':  state.slides.length,
+    'cnt-yt':      state.youtubes.length,
+    'cnt-design':  state.design.length + state.emphasis.length,
   };
-  Object.entries(chips).forEach(([id, n]) => {
+  Object.entries(map).forEach(([id, n]) => {
     const el = document.getElementById(id);
     if (!el) return;
-    if (n > 0) {
-      el.textContent = n;
-      el.style.display = 'inline-flex';
-    } else {
-      el.style.display = 'none';
-    }
+    el.textContent = n;
+    el.style.display = n > 0 ? 'inline-flex' : 'none';
   });
 }
 
@@ -1261,64 +889,44 @@ function updateCountChips() {
 // PREVIEW UPDATE
 // ============================================================
 function updatePreview() {
-  // Subject
   setSection('pv-subject', 'sec-subject',
-    state.subject.length
-      ? `교과: ${state.subject[0]}`
-      : null,
+    state.subject.length ? `교과: ${state.subject[0]}` : null,
     '교과 과목을 선택하면 표시됩니다.'
   );
 
-  // Target
-  const tParts = [];
-  if (state.school.length) tParts.push(state.school[0]);
-  if (state.grade.length)  tParts.push(state.grade[0]);
-  if (state.level.length)  tParts.push(`학습 수준: ${state.level[0]}`);
+  const tp = [];
+  if (state.school.length) tp.push(state.school[0]);
+  if (state.grade.length)  tp.push(state.grade[0]);
+  if (state.level.length)  tp.push(`수준: ${state.level[0]}`);
   setSection('pv-target', 'sec-target',
-    tParts.length ? tParts.join(' · ') : null,
-    '학교급, 학년, 수준을 선택하면 표시됩니다.'
+    tp.length ? tp.join(' · ') : null,
+    '학교급·학년·수준을 선택하면 표시됩니다.'
   );
 
-  // Model
-  const mParts = [];
-  if (state.model.length) mParts.push(`수업 모형: ${state.model.join(', ')}`);
-  if (state.flow.length)  mParts.push(`흐름 구조: ${state.flow[0]}`);
-  setSection('pv-model', 'sec-model',
-    mParts.length ? mParts.join('\n') : null,
-    '수업 모형과 흐름 구조를 선택하면 표시됩니다.'
-  );
-
-  // Output
-  setSection('pv-output', 'sec-output',
-    state.output.length
-      ? state.output.map(k => `• ${OUTPUT_LABELS[k] || k}`).join('\n')
+  setSection('pv-slides', 'sec-slides',
+    state.slides.length
+      ? state.slides.map((k,i) => `${i+1}. ${SLIDE_LABELS[k]||k}`).join('\n')
       : null,
-    '결과물 형태를 선택하면 표시됩니다.'
+    '슬라이드 종류를 선택하면 표시됩니다.'
   );
 
-  // Extra
-  setSection('pv-extra', 'sec-extra',
-    state.extra.length
-      ? state.extra.map(k => `✓ ${EXTRA_LABELS[k] || k}`).join('\n')
+  setSection('pv-yt', 'sec-yt',
+    state.youtubes.length
+      ? state.youtubes.map(y => `▶ youtu.be/${y.id}  →  [${y.slidePos}]에 삽입`).join('\n')
       : null,
-    '특수 조건을 선택하면 표시됩니다. (선택 안 해도 됩니다)'
+    '유튜브 링크를 추가하면 표시됩니다.'
   );
 
-  // Design + Tone
-  const dParts = [];
-  if (state.design.length) dParts.push(`비주얼 테마: ${DESIGN_LABELS[state.design[0]] || state.design[0]}`);
-  if (state.tone.length)   dParts.push(`교사 어조: ${TONE_LABELS[state.tone[0]] || state.tone[0]}`);
+  const dp = [];
+  if (state.design.length)   dp.push(`테마: ${DESIGN_LABELS[state.design[0]]||state.design[0]}`);
+  if (state.emphasis.length) dp.push(state.emphasis.map(k => `• ${EMPHASIS_LABELS[k]||k}`).join('\n'));
   setSection('pv-design', 'sec-design',
-    dParts.length ? dParts.join('\n') : null,
-    '디자인 테마와 어조를 선택하면 표시됩니다. (선택 안 해도 됩니다)'
+    dp.length ? dp.join('\n') : null,
+    '테마를 선택하면 표시됩니다.'
   );
 
-  // Topic
   const topic = document.getElementById('topicInput').value.trim();
-  setSection('pv-topic', 'sec-topic',
-    topic || null,
-    '아래 입력란에 수업 주제를 입력하세요.'
-  );
+  setSection('pv-topic', 'sec-topic', topic || null, '아래 입력란에 수업 주제를 입력하세요.');
 }
 
 function setSection(contentId, sectionId, val, placeholder) {
@@ -1342,28 +950,16 @@ function updateProgress() {
   let done = 0;
   if (state.subject.length) done++;
   if (state.school.length || state.grade.length || state.level.length) done++;
-  if (state.model.length || state.flow.length) done++;
-  if (state.output.length) done++;
+  if (state.slides.length)  done++;
   if (document.getElementById('topicInput').value.trim()) done++;
 
-  const total = 5;
+  const total = 4;
   const pct   = Math.round((done / total) * 100);
   document.getElementById('progressFill').style.width = pct + '%';
   document.getElementById('progressPct').textContent  = pct + '%';
 
-  const labels = ['필수 항목을 선택해 주세요', '조금 더 선택해 주세요', '절반 왔어요!', '거의 다 왔어요!', '마지막 하나만 더!', '✅ 프롬프트 생성 준비 완료!'];
-  const labelIdx = Math.min(done, labels.length - 1);
-  document.getElementById('progressText').textContent = done === total ? labels[5] : labels[done];
-}
-
-// ============================================================
-// VALIDATION MESSAGE
-// ============================================================
-function showValidation(msg) {
-  const el = document.getElementById('validationMsg');
-  document.getElementById('validationText').textContent = msg;
-  el.classList.add('show');
-  setTimeout(() => el.classList.remove('show'), 3500);
+  const msgs = ['필수 항목을 선택해 주세요', '조금 더 선택해 주세요', '절반 완료!', '거의 다 됐어요!', '✅ 생성 준비 완료!'];
+  document.getElementById('progressText').textContent = msgs[done] || msgs[total];
 }
 
 // ============================================================
@@ -1371,103 +967,81 @@ function showValidation(msg) {
 // ============================================================
 function generateAndCopy() {
   const topic = document.getElementById('topicInput').value.trim();
-
   if (!state.subject.length) { showValidation('교과 과목(STEP 1)을 선택해 주세요.'); return; }
-  if (!state.output.length)  { showValidation('결과물 형태(STEP 4)를 선택해 주세요.'); return; }
+  if (!state.slides.length)  { showValidation('슬라이드 구성(STEP 3)을 선택해 주세요.'); return; }
   if (!topic)                 { showValidation('수업 주제를 입력해 주세요.'); return; }
 
-  // 청중
-  const audienceParts = [];
-  if (state.school.length) audienceParts.push(state.school[0]);
-  if (state.grade.length)  audienceParts.push(state.grade[0]);
-  if (state.level.length)  audienceParts.push(`학습 수준 [${state.level[0]}]`);
-  const audience = audienceParts.length
-    ? audienceParts.join(' ')
-    : '(미지정 — 일반 고등학생 기준으로 작성)';
+  const school   = state.school[0]  || '고등학교';
+  const grade    = state.grade[0]   || '';
+  const level    = state.level[0]   || '일반';
+  const audience = [school, grade, level ? `학습 수준 [${level}]` : ''].filter(Boolean).join(' ');
 
-  // 수업 전략
-  const pedParts = [];
-  if (state.model.length) pedParts.push(`수업 모형: ${state.model.join(' + ')}`);
-  if (state.flow.length)  pedParts.push(`수업 흐름 구조: ${state.flow[0]}`);
-  const pedagogy = pedParts.length
-    ? pedParts.join('\n')
-    : '(미지정 — 핵심 개념 전달 중심의 기본 수업 구성)';
+  // 슬라이드 목록
+  const slideList = state.slides.map((k, i) => `  슬라이드 ${i+1}: ${SLIDE_LABELS[k]||k}`).join('\n');
 
-  // 결과물 지침
-  const outputBlock = buildOutputInstructions(state.output);
+  // 유튜브 삽입 지침
+  const ytSection = state.youtubes.length
+    ? `\n\n## 📺 유튜브 영상 임베드 (슬라이드 내 직접 재생)
+아래 영상을 지정된 슬라이드에 <iframe> 태그로 직접 삽입하세요.
+각 영상은 슬라이드 안에서 클릭하면 바로 재생되어야 합니다.
 
-  // 특수 조건
-  const extraBlock = state.extra.length
-    ? state.extra.map(k => `  - ${EXTRA_LABELS[k] || k}`).join('\n')
-    : '  (추가 조건 없음)';
+${state.youtubes.map(y =>
+  `- URL: https://www.youtube.com/embed/${y.id}?rel=0\n  삽입 위치: ${y.slidePos}\n  코드: <iframe width="100%" height="380" src="https://www.youtube.com/embed/${y.id}?rel=0" frameborder="0" allowfullscreen style="border-radius:12px;margin-top:1rem;"></iframe>`
+).join('\n\n')}`
+    : '';
 
-  // 디자인/어조
-  const designParts = [];
-  if (state.design.length) designParts.push(`비주얼 테마: ${DESIGN_LABELS[state.design[0]] || state.design[0]}`);
-  if (state.tone.length)   designParts.push(`교사 어조: ${TONE_LABELS[state.tone[0]] || state.tone[0]}`);
-  const designBlock = designParts.length ? designParts.join('\n') : '(미지정)';
+  // 디자인
+  const designDesc = state.design.length
+    ? DESIGN_LABELS[state.design[0]] || state.design[0]
+    : '클린 화이트 — 흰 배경, 회색·파랑 포인트, 읽기 편한 디자인';
 
-  // HTML 포함 여부
-  const hasHTML = state.output.some(k => ['web_slide', 'mindmap', 'infographic'].includes(k));
+  const emphasisDesc = state.emphasis.length
+    ? state.emphasis.map(k => `  - ${EMPHASIS_LABELS[k]||k}`).join('\n')
+    : '  (강조 스타일 기본값 적용)';
+
+  // 슬라이드별 내용 생성 지침
+  const slideInstructions = buildSlideInstructions(state.slides, topic, school, level);
 
   const prompt =
-`# 수업 자료 생성 요청
+`# ${state.subject[0]} 수업 HTML 슬라이드 생성
 
-## 📌 역할 지시
-당신은 대한민국 ${state.school.length ? state.school[0] : '고등학교'} 교과 교육 전문가이자 교육 콘텐츠 디자이너입니다.
-아래 교과 정보, 학습 대상, 수업 전략, 출력 형식 지침을 정확히 따라 전문적이고 즉시 사용 가능한 수업 자료를 생성하세요.
-어떤 항목도 "(내용을 입력하세요)"와 같이 비워 두거나 플레이스홀더로 대체하지 마세요.
-
----
-
-## 🎓 교과 및 수업 주제
-- 교과: ${state.subject[0]}
-- 수업 주제: ${topic}
-
----
+## 🎯 요청 사항
+${state.subject[0]} 교과의 "${topic}" 수업에서 실제로 사용할 HTML 인터랙티브 슬라이드를 만들어 주세요.
+지침이나 설명이 아니라, **슬라이드 안에 들어갈 실제 수업 내용을 직접 작성**하여 완성된 HTML 파일 하나로 출력해 주세요.
 
 ## 👨‍🎓 학습 대상
-- ${audience}
+${audience}
 
----
+## 📑 슬라이드 구성 (순서대로 제작)
+${slideList}
 
-## 📚 교수·학습 전략
-${pedagogy}
+## ✍️ 각 슬라이드 작성 규칙
+- 플레이스홀더(예: "여기에 내용을 입력하세요") 절대 사용 금지
+- 모든 슬라이드의 제목·본문·예시·문제·선택지·해설을 직접 완성하여 작성
+- ${state.subject[0]} 교과의 실제 교육과정 내용을 반영한 정확하고 구체적인 내용
+- ${school} ${grade} ${level} 수준에 맞는 언어와 예시 사용
+- 퀴즈 슬라이드: 정답 버튼 클릭 시 즉시 정오 피드백 표시 (JavaScript)
+- 활동지 슬라이드: 빈칸·체크박스·입력란 등 실제로 작동하는 인터랙티브 요소 포함
+${slideInstructions}${ytSection}
 
----
+## 🎨 디자인 스타일
+- 테마: ${designDesc}
+${emphasisDesc}
 
-## 📄 생성할 결과물 (형식·구성 요건)
-${outputBlock}
+## ⚙️ 기술 요건
+- 단일 HTML 파일 (<!DOCTYPE html> ~ </html>) 하나로 완성
+- 키보드 방향키(← →) 또는 화면 하단 버튼으로 슬라이드 전환
+- 슬라이드 번호 표시 (예: 3 / 7)
+- 모바일·프로젝터 환경 모두에서 잘 보이는 반응형 레이아웃
+- 외부 CDN 최소화, 인터넷 없이도 동작 가능하도록 구성
+- Claude Artifact 기능으로 즉시 렌더링하여 확인할 것`;
 
----
-
-## ✅ 필수 포함 조건
-${extraBlock}
-
----
-
-## 🎨 디자인 및 표현 스타일
-${designBlock}
-
----
-
-## ⚙️ 최종 작업 지침
-1. 위에서 지정한 결과물 형식의 모든 항목을 빠짐없이 채워 완성된 형태로 출력하세요.
-2. 학생의 수준(${state.level.length ? state.level[0] : '일반'})에 맞게 언어 난이도, 예시 복잡도, 배경지식 가정 범위를 조절하세요.
-3. ${state.subject[0]} 교과의 실제 교육과정(2022 개정)과 현장 사례를 반영하여 현실적으로 작성하세요.
-4. 수업 주제에 직접 연결된 구체적인 예시, 데이터, 사례를 사용하고 추상적 설명을 최소화하세요.
-5. 결과물은 교사가 별도 수정 없이 바로 수업에 투입할 수 있는 완성도로 작성하세요.
-${hasHTML ? '6. HTML/CSS/JS 코드 작성 시: 단일 파일(<!DOCTYPE html>부터 </html>까지), 외부 CDN 의존 최소화, 반응형 레이아웃, 인터랙티브 요소(버튼·애니메이션·퀴즈 등) 포함.\n7. Claude를 사용 중이라면 Artifact 기능으로 HTML을 즉시 렌더링하세요.' : ''}`;
-
-  // 클립보드 복사
   navigator.clipboard.writeText(prompt).then(() => {
     showToast();
   }).catch(() => {
-    // 폴백
     const ta = document.createElement('textarea');
     ta.value = prompt;
-    ta.style.position = 'fixed';
-    ta.style.opacity = '0';
+    ta.style.cssText = 'position:fixed;opacity:0;';
     document.body.appendChild(ta);
     ta.select();
     document.execCommand('copy');
@@ -1477,145 +1051,115 @@ ${hasHTML ? '6. HTML/CSS/JS 코드 작성 시: 단일 파일(<!DOCTYPE html>부�
 }
 
 // ============================================================
-// OUTPUT INSTRUCTIONS — key 기반 (버그 수정: 긴 문자열 비교 제거)
+// 슬라이드별 추가 지침 (핵심: 실제 내용 작성 강제)
 // ============================================================
-function buildOutputInstructions(outputKeys) {
-  const parts = [];
+function buildSlideInstructions(slideKeys, topic, school, level) {
+  const lines = [];
 
-  if (outputKeys.includes('web_slide')) {
-    parts.push(`### 🖥️ 인터랙티브 웹 슬라이드 (HTML/CSS/JS)
-- 단일 HTML 파일로 완전히 작성된 프레젠테이션 슬라이드를 생성하세요.
-- 슬라이드 구성: [표지] → [학습 목표] → [핵심 개념 설명 (2~4장)] → [예시·사례] → [핵심 정리] → [형성 퀴즈] → [마무리]
-- 각 슬라이드에 고유한 시각 요소(아이콘, 색상 강조, 다이어그램)를 포함하세요.
-- 키보드 방향키 또는 버튼으로 슬라이드 전환 구현, 하단에 페이지 번호 표시.`);
+  if (slideKeys.includes('cover')) {
+    lines.push(`\n### 표지 슬라이드
+수업 제목("${topic}"), 교과명, 학교급(${school}), 날짜 자리(슬라이드 상단 오른쪽), 간단한 도입 이미지(CSS/이모지로 구현)를 포함해 완성할 것.`);
+  }
+  if (slideKeys.includes('goal')) {
+    lines.push(`\n### 학습 목표 슬라이드
+"${topic}"에 맞는 학습 목표 3개를 직접 작성할 것.
+형식: "~를 설명할 수 있다", "~를 계산할 수 있다", "~의 차이를 비교할 수 있다" 등 행동 동사 사용.`);
+  }
+  if (slideKeys.includes('concept')) {
+    lines.push(`\n### 핵심 개념 설명 슬라이드
+"${topic}"의 핵심 개념 3~5개를 각각 제목+설명+예시 구조로 작성할 것.
+개념당 1장씩 슬라이드를 나누어 구성하고, 개념 간 관계를 시각적으로 표현할 것.`);
+  }
+  if (slideKeys.includes('example')) {
+    lines.push(`\n### 예시·사례 슬라이드
+"${topic}"에 직접 관련된 실제 사례나 예시를 2~3개 제시할 것.
+추상적 서술 금지 — 구체적인 수치·이름·상황을 포함할 것.`);
+  }
+  if (slideKeys.includes('quiz')) {
+    lines.push(`\n### 형성평가 퀴즈 슬라이드
+"${topic}" 관련 4지선다 문제 3문항을 직접 출제하여 완성할 것.
+- 문제, 선택지 ①②③④를 모두 작성
+- 정답 버튼 클릭 시 초록색 "정답입니다! + 해설", 오답 클릭 시 빨간색 "다시 생각해보세요!" 표시
+- 해설도 구체적으로 작성할 것`);
+  }
+  if (slideKeys.includes('activity')) {
+    lines.push(`\n### 학생 활동지 슬라이드
+"${topic}" 관련 탐구 활동을 구성할 것.
+- 빈칸 완성(input 태그) 3~5문항
+- 학생이 타이핑하여 입력 가능한 텍스트 상자 포함
+- "확인하기" 버튼으로 정답 확인 가능하게 구현`);
+  }
+  if (slideKeys.includes('discussion')) {
+    lines.push(`\n### 토론·발표 과제 슬라이드
+"${topic}" 관련 토론 주제 1~2개를 제시할 것.
+모둠 역할 배분 안내(사회자·기록자·발표자 등)와 토론 시간 안내 타이머(CSS/JS)를 포함할 것.`);
+  }
+  if (slideKeys.includes('practice')) {
+    lines.push(`\n### 실습 문제 슬라이드
+"${topic}" 관련 단계별 실습 문제 3~5단계를 직접 작성할 것.
+각 단계에 힌트 버튼("💡 힌트 보기")과 정답 버튼("✅ 정답 확인")을 구현할 것.`);
+  }
+  if (slideKeys.includes('motivation')) {
+    lines.push(`\n### 동기유발 슬라이드
+"${topic}"과 연결되는 흥미로운 질문, 통계, 뉴스, 또는 실생활 상황을 1~2가지 직접 작성하여 제시할 것.
+"여러분은 이런 경험 있나요?" 형식의 공감형 도입 질문 포함.`);
+  }
+  if (slideKeys.includes('realworld')) {
+    lines.push(`\n### 실생활·실무 사례 슬라이드
+"${topic}"이 실제 직업 현장이나 일상생활에서 어떻게 쓰이는지 구체적인 사례 2~3가지를 직접 작성할 것.
+사례마다 직업명·상황·활용 방법을 포함할 것.`);
+  }
+  if (slideKeys.includes('career')) {
+    lines.push(`\n### 진로·취업 연계 슬라이드
+"${topic}" 관련 직업군 3~5개를 소개하고, 각 직업에서 이 내용을 어떻게 활용하는지 구체적으로 작성할 것.
+관련 자격증·채용 정보도 1~2가지 포함할 것.`);
+  }
+  if (slideKeys.includes('summary')) {
+    lines.push(`\n### 핵심 정리 슬라이드
+오늘 배운 내용을 핵심 키워드 중심으로 5~7개로 요약하여 작성할 것.
+"오늘의 한 줄 정리" 문장을 굵게 표시하여 마무리할 것.`);
+  }
+  if (slideKeys.includes('closing')) {
+    lines.push(`\n### 마무리·과제 안내 슬라이드
+다음 수업 예고 내용, 과제(구체적인 과제 내용 직접 작성), 제출 방법·기한을 작성할 것.
+"수고했습니다!" 등 학생 격려 메시지 포함.`);
   }
 
-  if (outputKeys.includes('mindmap')) {
-    parts.push(`### 🧠 마인드맵 시각화 (HTML/SVG)
-- 핵심 개념을 중앙 노드로, 하위 개념들을 가지(branch)로 연결한 마인드맵을 HTML/SVG로 구현하세요.
-- 각 노드에 클릭 시 설명이 표시되는 인터랙티브 기능을 추가하세요.
-- 색상 코드로 개념의 위계를 시각적으로 구분하세요.`);
-  }
-
-  if (outputKeys.includes('infographic')) {
-    parts.push(`### 📊 인포그래픽 (HTML/CSS)
-- 단일 화면에 핵심 정보를 시각적으로 배치한 인포그래픽 HTML을 작성하세요.
-- 텍스트 최소화, 아이콘·수치·차트 등 시각 요소 최대화.
-- 인쇄 시에도 깔끔하게 출력될 수 있는 레이아웃 적용.`);
-  }
-
-  if (outputKeys.includes('lesson_plan')) {
-    parts.push(`### 📋 교수·학습 지도안
-다음 항목을 모두 포함한 완성된 지도안을 Markdown 표 형식으로 작성하세요.
-
-| 항목 | 내용 |
-|------|------|
-| 단원명 | (작성) |
-| 차시 | (작성) |
-| 학습 목표 | 지식·기능·태도 각 1개 이상 |
-| 성취기준 | 2022 개정 교육과정 기준 코드 포함 |
-| 수업 모형 | (작성) |
-| 학습 자료 | (작성) |
-| 평가 방법 | (작성) |
-
-수업 전개 상세 계획 — 각 단계(도입/전개/정리)마다:
-- 교사 활동 / 학생 활동 분리 기술
-- 교사 발문 (질문 3개 이상, 예상 답변 포함)
-- 시간 배분 (분 단위)
-- 지도 유의사항`);
-  }
-
-  if (outputKeys.includes('lecture_script')) {
-    parts.push(`### 🎙️ 강의 대본 (교사 스크립트)
-- 도입부터 정리까지 교사가 실제로 말하는 모든 문장을 작성하세요.
-- [교사 발화], [학생 예상 반응], [판서 내용], [PPT 전환 시점] 태그로 구분.
-- 교사 발화는 구어체로 자연스럽게 작성하세요.
-- 학생 흥미를 유발하는 도입 스토리나 질문 반드시 포함.
-- 판서 계획: 칠판에 적을 핵심 개념어 및 도식을 텍스트로 표현.`);
-  }
-
-  if (outputKeys.includes('session_plan')) {
-    parts.push(`### 📅 차시 계획서
-- 수업 일시, 단원, 차시, 학습 목표, 성취기준(코드 포함)
-- 교수·학습 자료 목록
-- 수업 흐름 개요 (단계별 활동 요약)
-- 평가 기준 및 방법
-- 준비물·유의사항`);
-  }
-
-  if (outputKeys.includes('worksheet')) {
-    parts.push(`### 📝 학생 활동지
-[PART A — 개념 확인]
-- 핵심 개념 빈칸 완성 문제 5문항 이상
-- 핵심 용어 풀이 3~5개
-
-[PART B — 탐구 활동]
-- 모둠 토론 또는 개인 탐구 활동 (사례 분석·실험·계산 등 주제 맞게 구성)
-- 단계별 탐구 질문 최소 3단계
-- 생각 정리 기록란
-
-[PART C — 적용 및 심화]
-- 실생활 연계 적용 문제 2문항 이상
-- 오늘 배운 내용 한 줄 정리란`);
-  }
-
-  if (outputKeys.includes('summary_note')) {
-    parts.push(`### 📌 핵심 개념 요약 노트
-- 단원 핵심 키워드 목록 (최소 10개, 설명 포함)
-- 핵심 개념 관계도 (텍스트 다이어그램으로 표현)
-- 공식·법칙·절차 요약 (해당 과목에 맞게)
-- 오개념 주의 포인트 (실수하기 쉬운 내용)
-- 자주 나오는 시험 유형 안내`);
-  }
-
-  if (outputKeys.includes('formative_test')) {
-    parts.push(`### ❓ 형성평가 문제지
-- 문제 구성: 4지선다형 5문항 + 단답형 3문항 + 서술형 2문항
-- 각 문항에 난이도 표시 (★/★★/★★★)
-- 각 문항 아래 정답 및 상세 해설 반드시 포함
-- 서술형 문항에는 채점 기준(예상 답안 + 배점 기준) 포함
-- 문항이 수업 목표와 직접 연결되도록 출제`);
-  }
-
-  if (outputKeys.includes('rubric')) {
-    parts.push(`### 📏 수행평가 루브릭
-- 수행평가 과제 설명 (학생 제출물 형식 명시)
-- 평가 영역 3~5개 설정
-- 각 영역별 우수/보통/미흡 기준 기술 (표 형식)
-- 총점 및 배점 분배
-- 학생용 자기평가 체크리스트 포함`);
-  }
-
-  return parts.join('\n\n');
+  return lines.length ? '\n## 📝 슬라이드 내용 작성 상세 지침' + lines.join('') : '';
 }
 
 // ============================================================
-// TOAST
+// VALIDATION / TOAST / RESET
 // ============================================================
+function showValidation(msg) {
+  const el = document.getElementById('validationMsg');
+  document.getElementById('validationText').textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 3500);
+}
+
 function showToast() {
   const t = document.getElementById('toast');
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 3500);
 }
 
-// ============================================================
-// RESET
-// ============================================================
 function resetAll() {
   if (!confirm('모든 선택을 초기화할까요?')) return;
-  Object.keys(state).forEach(k => (state[k] = []));
+  Object.keys(state).forEach(k => { state[k] = Array.isArray(state[k]) ? [] : null; });
+  state.youtubes = [];
   document.querySelectorAll('.tag').forEach(t => t.classList.remove('on'));
   document.getElementById('topicInput').value = '';
+  document.getElementById('ytUrlInput').value = '';
+  document.getElementById('ytList').innerHTML = '';
   document.getElementById('validationMsg').classList.remove('show');
-  updateBlockHighlight();
+  document.querySelectorAll('.step-block').forEach(b => b.classList.remove('has-selection'));
   updateCountChips();
   updatePreview();
   updateProgress();
 }
 
-// ============================================================
-// INIT
-// ============================================================
+// ── 초기화 ──
 updatePreview();
 updateProgress();
 </script>
