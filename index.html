@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CJCH | AI Prompt Studio V12.0</title>
+    <title>CJCH | AI 통합 프롬프트 빌더 V14.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,16 +13,15 @@
         .ai-gradient { background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
         .workspace { display: flex; flex-direction: row; flex: 1; overflow: hidden; }
-        .builder-panel { width: 58%; overflow-y: auto; border-right: 1px solid rgba(255, 255, 255, 0.05); padding: 1.5rem 2rem; background: rgba(255, 255, 255, 0.01); }
-        .editor-panel { width: 42%; overflow-y: auto; padding: 1.5rem 2rem; background: rgba(0, 0, 0, 0.4); }
+        .builder-panel { width: 55%; overflow-y: auto; border-right: 1px solid rgba(255, 255, 255, 0.05); padding: 1.5rem 2rem; background: rgba(255, 255, 255, 0.01); }
+        .editor-panel { width: 45%; overflow-y: auto; padding: 1.5rem 2rem; background: rgba(0, 0, 0, 0.4); }
 
         .chip { cursor: pointer; transition: all 0.2s; font-size: 0.65rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(30, 41, 59, 0.7); border-radius: 0.5rem; padding: 0.4rem 0.65rem; display: inline-flex; align-items: center; gap: 0.3rem; white-space: nowrap; margin-bottom: 5px; }
         .chip:hover { background: rgba(96, 165, 250, 0.2); border-color: #60a5fa; transform: translateY(-1px); color: white; }
         .chip.active { background: #3b82f6 !important; border-color: #60a5fa; color: white !important; box-shadow: 0 0 12px rgba(59, 130, 246, 0.4); }
         
-        .step-title { font-size: 0.75rem; font-weight: 800; color: #60a5fa; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.8rem; margin-top: 1.5rem; display: flex; align-items: center; gap: 8px; }
-        .step-num { width: 1.25rem; height: 1.25rem; background: #334155; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; color: #f1f5f9; }
-        .sub-label { font-size: 0.6rem; font-weight: 700; color: #475569; margin-bottom: 0.4rem; display: block; }
+        .step-title { font-size: 0.75rem; font-weight: 800; color: #60a5fa; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.8rem; margin-top: 1.5rem; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(96, 165, 250, 0.1); padding-bottom: 5px; }
+        .step-num { width: 1.2rem; height: 1.2rem; background: #1e293b; border: 1px solid #3b82f6; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; color: #60a5fa; }
 
         textarea { background: rgba(0, 0, 0, 0.6) !important; border: 1px solid rgba(255, 255, 255, 0.08) !important; color: white !important; width: 100%; border-radius: 1rem; padding: 0.8rem; font-size: 0.8rem; outline: none; transition: all 0.2s; resize: none; }
         textarea:focus { border-color: #60a5fa; }
@@ -35,37 +34,150 @@
 
     <header class="h-14 glass flex items-center justify-between px-6 shrink-0 z-50">
         <div class="flex items-center gap-6">
-            <div class="text-xl font-black ai-gradient tracking-tighter italic">CJCH PROMPT STUDIO <span class="text-[10px] text-slate-500 ml-1">V12.0</span></div>
-            <div class="hidden md:block text-[11px] font-bold text-slate-400">충주상업고등학교 교사 전용 프롬프트 빌더</div>
+            <div class="text-xl font-black ai-gradient tracking-tighter italic">CJCH AI STUDIO <span class="text-[10px] text-slate-500 ml-1">V14.0</span></div>
+            <div class="hidden md:block text-[11px] font-bold text-slate-400 uppercase tracking-widest">Multi-AI Supported (GPT / Claude / Gemini)</div>
         </div>
         <div class="flex gap-4">
-            <button onclick="location.reload()" class="text-slate-500 hover:text-white transition"><i class="fas fa-redo-alt"></i></button>
-            <div class="bg-indigo-600/20 border border-indigo-500/30 px-3 py-1 rounded-full text-[10px] font-bold text-indigo-400 uppercase tracking-widest">Canvas Optimized</div>
+            <div class="bg-blue-600/20 border border-blue-500/30 px-3 py-1 rounded-full text-[10px] font-bold text-blue-400">충주상업고등학교</div>
         </div>
     </header>
 
     <main class="workspace">
         
-        <!-- 왼쪽 패널: 빌더 -->
+        <!-- 왼쪽 패널 -->
         <section class="builder-panel custom-scroll">
             
-            <div class="step-title"><div class="step-num">0</div> 주제 및 대상 교과 (Topic)</div>
+            <div class="step-title"><div class="step-num">0</div> 수업 주제 선택 (Topic)</div>
             <div class="flex flex-wrap gap-1">
                 <span onclick="setText('in-source', '고1 음악. 노래하는 즐거움 단원. 가곡 \'마중\' 가창 수업')" class="chip">🎼 음악(마중)</span>
                 <span onclick="setText('in-source', '고2 회계원리. 자산의 이해 단원. 재무상태표 작성 실무')" class="chip">📊 회계실무</span>
-                <span onclick="setText('in-source', '고1 정보. 프로그래밍 단원. 파이썬 기초 문법 및 실습')" class="chip">🐍 파이썬</span>
-                <span onclick="setText('in-source', '고3 조리실무. 서양조리 단원. 스테이크 조리법 실습')" class="chip">🍳 조리실무</span>
-                <span onclick="addText('in-source', '\n[추가 주제]: ')" class="chip text-blue-400">+ 직접 입력</span>
+                <span onclick="setText('in-source', '고1 정보. 프로그래밍 단원. 파이썬 기초 문법 실습')" class="chip">🐍 파이썬 기초</span>
+                <span onclick="addText('in-source', '[직접 입력]: ')" class="chip text-blue-400">+ 주제 직접 입력</span>
             </div>
 
-            <div class="step-title"><div class="step-num">1</div> 결과물 형태 (Output Type)</div>
+            <div class="step-title"><div class="step-num">1</div> 결과물 형태 (Format)</div>
             <div class="flex flex-wrap gap-1">
-                <span onclick="setText('in-type', 'HTML/CSS 기반의 웹 슬라이드(Web PPT)')" class="chip">🖥️ 웹 슬라이드</span>
-                <span onclick="setText('in-type', '학생용 인터랙티브 학습지 (HTML/CSS)')" class="chip">📝 인터랙티브 학습지</span>
-                <span onclick="setText('in-type', '단원 핵심 개념 요약 문서 (마크다운)')" class="chip">📌 요약 정리본</span>
-                <span onclick="setText('in-type', '형성평가 퀴즈 세트 (정답 및 해설 포함)')" class="chip">❓ 문제지</span>
+                <span onclick="setText('in-type', 'HTML/CSS/JS 기반의 인터랙티브 웹 슬라이드(Web PPT)')" class="chip active">🎞️ 웹 슬라이드(Canvas용)</span>
+                <span onclick="setText('in-type', '학생용 인터랙티브 디지털 학습지 (웹 기반)')" class="chip">📝 디지털 학습지</span>
+                <span onclick="setText('in-type', '반응형 핵심 개념 요약 웹 페이지')" class="chip">📌 디지털 요약본</span>
             </div>
 
+            <div class="step-title"><div class="step-num">2</div> 교수학습 전략 (Pedagogy)</div>
+            <div class="flex flex-wrap gap-1">
+                <span onclick="addText('in-pedagogy', '- 게이미피케이션: 레벨, 배지, 보상 시스템 적용')" class="chip">🎮 게이미피케이션</span>
+                <span onclick="addText('in-pedagogy', '- PBL: 실생활 문제 해결 프로젝트형')" class="chip">🏗️ PBL 모형</span>
+                <span onclick="addText('in-pedagogy', '- 하브루타: 대화와 토론 중심 설계')" class="chip">💬 하브루타</span>
+                <span onclick="addText('in-pedagogy', '- 스캐폴딩: 단계별 힌트 제공')" class="chip">🪜 스캐폴딩</span>
+            </div>
+
+            <div class="step-title"><div class="step-num">3</div> 디자인 테마 (Design Style)</div>
+            <div class="flex flex-wrap gap-1">
+                <span onclick="setText('in-design', '- 넷플릭스 스타일: 다크 배경, 레드 포인트, 가로 스크롤')" class="chip">🎬 넷플릭스</span>
+                <span onclick="setText('in-design', '- 토스 스타일: 화이트 배경, 블루 포인트, 깔끔한 카드 UI')" class="chip">🔹 토스</span>
+                <span onclick="setText('in-design', '- 다크 AI 스타일: 네온 컬러, 미래지향적 감성')" class="chip">🌑 다크AI</span>
+                <span onclick="setText('in-design', '- 교실 칠판 스타일: 초록 배경, 분필 느낌 폰트')" class="chip">🏫 칠판테마</span>
+            </div>
+
+        </section>
+
+        <!-- 오른쪽 패널 -->
+        <section class="editor-panel custom-scroll">
+            <div class="space-y-4">
+                <div class="p-4 bg-blue-500/10 rounded-2xl border border-blue-500/20 shadow-xl">
+                    <label class="block text-[10px] font-bold text-blue-400 mb-1 uppercase tracking-widest italic">Target Topic</label>
+                    <textarea id="in-source" rows="2" placeholder="수업 주제를 선택하세요"></textarea>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-500 mb-1 uppercase">Material Format</label>
+                    <textarea id="in-type" rows="2" placeholder="결과물 형태"></textarea>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-500 mb-1 uppercase">Teaching Strategy</label>
+                    <textarea id="in-pedagogy" rows="3" placeholder="교수법 및 전략"></textarea>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-500 mb-1 uppercase">Visual Concept</label>
+                    <textarea id="in-design" rows="2" placeholder="디자인 스타일"></textarea>
+                </div>
+
+                <div class="pt-4">
+                    <button onclick="generateAndCopy()" class="w-full bg-blue-600 hover:bg-blue-500 py-5 rounded-2xl font-black text-white shadow-2xl transition-all active:scale-95 flex flex-col items-center gap-1">
+                        <span class="text-base uppercase tracking-widest">Generate Multi-AI Prompt</span>
+                        <span class="text-[9px] font-normal opacity-70">ChatGPT / Gemini / Claude 공용</span>
+                    </button>
+                    <p class="text-[10px] text-center text-slate-500 mt-4 leading-relaxed">
+                        "지피티, 제미나이, 클로드 중<br>선생님이 편하신 AI에 붙여넣기만 하세요!"
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 모달 -->
+    <div id="modal" class="fixed inset-0 bg-black/90 hidden flex items-center justify-center z-[100] backdrop-blur-3xl">
+        <div class="w-full max-w-sm p-12 text-center animate-in zoom-in duration-300">
+            <div class="text-6xl mb-6">🤝</div>
+            <h3 class="text-xl font-black mb-2 text-white">통합 프롬프트 복사 완료</h3>
+            <p class="text-slate-400 text-xs mb-10 leading-relaxed">어떤 AI라도 상관없습니다.<br>지금 바로 붙여넣어 수업을 혁신하세요.</p>
+            <button onclick="closeModal()" class="w-full bg-white text-black py-4 rounded-xl font-black text-sm hover:bg-slate-200 transition">확인</button>
+        </div>
+    </div>
+
+    <script>
+        function setText(id, val) { document.getElementById(id).value = val; }
+        function addText(id, val) { 
+            const targetId = (id === 'in-source' || id === 'in-type') ? id : 'in-pedagogy';
+            const el = document.getElementById(targetId);
+            el.value += (el.value ? '\n' : '') + val; 
+        }
+
+        function generateAndCopy() {
+            const v = {
+                source: document.getElementById('in-source').value,
+                type: document.getElementById('in-type').value,
+                pedagogy: document.getElementById('in-pedagogy').value,
+                design: document.getElementById('in-design').value
+            };
+
+            if(!v.source || !v.type) { alert('주제와 형태를 선택해주세요!'); return; }
+
+            // ChatGPT Canvas와 Gemini/Claude 트리거를 모두 포함한 통합 프롬프트
+            const prompt = `[ROLE: Expert Education Content Designer & Full-stack Developer]
+[MISSION: Create a fully functional, visually stunning, and interactive educational application. NO placeholders.]
+
+0. TOPIC & SOURCE
+${v.source}
+
+1. OUTPUT TYPE (CRITICAL)
+${v.type}
+
+2. TARGET & STRATEGY
+${v.pedagogy || '- Optimized for High School students'}
+
+3. VISUAL STYLE & TONE
+${v.design}
+
+4. TECHNICAL REQUIREMENTS
+- Create a complete, single-file HTML5 application (HTML/CSS/JS).
+- Include all styles and scripts within the file. 
+- Ensure smooth navigation (Slide transitions, Interactive buttons).
+- Use modern UI components (Cards, Grids, Animations).
+
+---
+[INTERFACE TRIGGER]
+- **ChatGPT:** OPEN CANVAS and write full code to display the interactive content.
+- **Claude:** Generate Artifacts immediately.
+- **Gemini:** Write full code & Show HTML Preview in canvas.`;
+
+            navigator.clipboard.writeText(prompt).then(() => {
+                document.getElementById('modal').classList.remove('hidden');
+            });
+        }
+
+        function closeModal() { document.getElementById('modal').classList.add('hidden'); }
+    </script>
+</body>
+</html>
             <div class="step-title"><div class="step-num">2</div> 대상 및 목표 (Audience)</div>
             <div class="flex flex-wrap gap-1">
                 <span onclick="setText('in-target', '대상: 고등학생 - 심화 탐구, 입시 및 진로 연계')" class="chip">🎓 심화/진로</span>
