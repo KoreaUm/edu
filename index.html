@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CJCH | Professional AI Studio V16.0</title>
+    <title>CJCH | All-Subject AI Studio V17.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,17 +13,17 @@
         .ai-gradient { background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
         .workspace { display: flex; flex-direction: row; flex: 1; overflow: hidden; }
-        .builder-panel { width: 58%; overflow-y: auto; border-right: 1px solid rgba(255, 255, 255, 0.05); padding: 1.5rem 2rem; background: rgba(255, 255, 255, 0.01); }
-        .editor-panel { width: 42%; overflow-y: auto; padding: 1.5rem 2rem; background: rgba(0, 0, 0, 0.5); }
+        .builder-panel { width: 60%; overflow-y: auto; border-right: 1px solid rgba(255, 255, 255, 0.05); padding: 1.5rem 2rem; background: rgba(255, 255, 255, 0.01); }
+        .editor-panel { width: 40%; overflow-y: auto; padding: 1.5rem 2rem; background: rgba(0, 0, 0, 0.5); }
 
-        .chip { cursor: pointer; transition: all 0.2s; font-size: 0.65rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(30, 41, 59, 0.7); border-radius: 0.4rem; padding: 0.35rem 0.55rem; display: inline-flex; align-items: center; gap: 0.25rem; white-space: nowrap; margin-bottom: 4px; color: #cbd5e1; }
+        .chip { cursor: pointer; transition: all 0.15s; font-size: 0.65rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(30, 41, 59, 0.7); border-radius: 0.4rem; padding: 0.4rem 0.6rem; display: inline-flex; align-items: center; gap: 0.25rem; white-space: nowrap; margin-bottom: 4px; color: #cbd5e1; }
         .chip:hover { background: rgba(96, 165, 250, 0.2); border-color: #60a5fa; transform: translateY(-1px); color: white; }
         .chip.active { background: #3b82f6 !important; border-color: #60a5fa; color: white !important; box-shadow: 0 0 10px rgba(59, 130, 246, 0.3); }
         
-        .section-title { font-size: 0.75rem; font-weight: 800; color: #60a5fa; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.8rem; margin-top: 1.5rem; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(96, 165, 250, 0.1); padding-bottom: 4px; }
+        .section-title { font-size: 0.75rem; font-weight: 800; color: #60a5fa; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.8rem; margin-top: 1.2rem; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(96, 165, 250, 0.1); padding-bottom: 4px; }
         .sub-group-title { font-size: 0.6rem; color: #64748b; font-weight: 800; margin: 10px 0 6px 0; display: flex; align-items: center; gap: 5px; }
 
-        textarea { background: rgba(0, 0, 0, 0.6) !important; border: 1px solid rgba(255, 255, 255, 0.08) !important; color: white !important; width: 100%; border-radius: 1rem; padding: 0.8rem; font-size: 0.8rem; outline: none; transition: all 0.2s; resize: none; line-height: 1.5; }
+        textarea { background: rgba(0, 0, 0, 0.6) !important; border: 1px solid rgba(255, 255, 255, 0.08) !important; color: white !important; width: 100%; border-radius: 1rem; padding: 0.7rem; font-size: 0.8rem; outline: none; transition: all 0.2s; resize: none; line-height: 1.4; }
         textarea:focus { border-color: #60a5fa; }
         
         .custom-scroll::-webkit-scrollbar { width: 4px; }
@@ -34,95 +34,125 @@
 
     <header class="h-14 glass flex items-center justify-between px-6 shrink-0 z-50">
         <div class="flex items-center gap-6">
-            <div class="text-xl font-black ai-gradient tracking-tighter italic">CJCH AI STUDIO <span class="text-[10px] text-slate-500 ml-1">V16.0</span></div>
-            <div class="hidden lg:block text-[11px] font-bold text-slate-400 uppercase tracking-widest">Lecture & Web-Slide Integrated System</div>
+            <div class="text-xl font-black ai-gradient tracking-tighter italic">CJCH AI STUDIO <span class="text-[10px] text-slate-500 ml-1">V17.0</span></div>
+            <div class="hidden lg:block text-[11px] font-bold text-slate-400">충주상업고등학교 전교과 개별 맞춤형 프롬프트 시스템</div>
         </div>
         <div class="flex gap-3">
-            <div class="bg-blue-600/20 border border-blue-500/30 px-3 py-1 rounded-full text-[10px] font-bold text-blue-400">WIDE WORKSPACE</div>
+            <div class="bg-blue-600/20 border border-blue-500/30 px-3 py-1 rounded-full text-[10px] font-bold text-blue-400 uppercase">Universal Edition</div>
         </div>
     </header>
 
     <main class="workspace">
         
+        <!-- 왼쪽 패널: 모든 과목 개별 선택 -->
         <section class="builder-panel custom-scroll">
             
-            <div class="section-title"><i class="fas fa-book"></i> 0. 전공 및 교과 선택</div>
+            <div class="section-title"><i class="fas fa-chalkboard-teacher"></i> 0. 교과 및 과목 선택 (Individual Subjects)</div>
             
-            <div class="sub-group-title">경영 / 회계 / 금융 / 사무</div>
+            <div class="sub-group-title">보통교과 (General Education)</div>
             <div class="flex flex-wrap gap-1">
-                <span onclick="setText('in-source', '과목: 회계원리/원가회계/세무실무')" class="chip">📊 회계군</span>
-                <span onclick="setText('in-source', '과목: 기업경영/창업실무/상업경제')" class="chip">🚀 경영/경제</span>
-                <span onclick="setText('in-source', '과목: 금융실무/창구사무/금융기초')" class="chip">🏦 금융군</span>
-                <span onclick="setText('in-source', '과목: 사무관리/ERP인사/ERP회계')" class="chip">📂 사무/ERP</span>
-                <span onclick="setText('in-source', '과목: 국제상무/유통관리/비즈영어')" class="chip">📦 유통/상무</span>
+                <span onclick="setText('in-source', '과목: 국어')" class="chip">📖 국어</span>
+                <span onclick="setText('in-source', '과목: 수학')" class="chip">📐 수학</span>
+                <span onclick="setText('in-source', '과목: 영어')" class="chip">🔤 영어</span>
+                <span onclick="setText('in-source', '과목: 한국사')" class="chip">📜 한국사</span>
+                <span onclick="setText('in-source', '과목: 사회 (통합사회/지리/윤리)')" class="chip">🗺️ 사회</span>
+                <span onclick="setText('in-source', '과목: 과학 (통합과학/생명/물리)')" class="chip">🧪 과학</span>
             </div>
 
-            <div class="sub-group-title">IT / 프로그래밍 / 조리 / 관광 / 보통교과</div>
+            <div class="sub-group-title">예체능 및 교양 (Arts, PE & Others)</div>
             <div class="flex flex-wrap gap-1">
-                <span onclick="setText('in-source', '과목: C프로그래밍/응용프로그래밍/AI')" class="chip">💻 IT/코딩</span>
-                <span onclick="setText('in-source', '과목: 한식/양식/중식/제과제빵/바리스타')" class="chip">🍳 조리/제과</span>
-                <span onclick="setText('in-source', '과목: 관광서비스/객실/여행/관광일반')" class="chip">🏨 관광/여행</span>
-                <span onclick="setText('in-source', '과목: 국어/수학/영어/사회/과학/역사')" class="chip">📚 보통교과</span>
-                <span onclick="setText('in-source', '과목: 체육/음악/미술/보건/진로/한문')" class="chip">🎨 예체능/기타</span>
+                <span onclick="setText('in-source', '과목: 음악')" class="chip">🎼 음악</span>
+                <span onclick="setText('in-source', '과목: 미술')" class="chip">🎨 미술</span>
+                <span onclick="setText('in-source', '과목: 체육')" class="chip">🏀 체육</span>
+                <span onclick="setText('in-source', '과목: 보건')" class="chip">🏥 보건</span>
+                <span onclick="setText('in-source', '과목: 진로와 직업')" class="chip">🛣️ 진로</span>
+                <span onclick="setText('in-source', '과목: 한문')" class="chip">🉐 한문</span>
             </div>
 
-            <div class="section-title"><i class="fas fa-graduation-cap"></i> 1. 교수학습 모델 (핵심 전략)</div>
+            <div class="sub-group-title">경영 / 회계 / 금융 실무</div>
             <div class="flex flex-wrap gap-1">
-                <span onclick="addText('in-pedagogy', '- 강의식 수업: 명확한 개념 설명, 구조화된 판서, 문답법 활용')" class="chip text-blue-300 font-bold">👨‍🏫 강의식(Direct)</span>
-                <span onclick="addText('in-pedagogy', '- PBL: 실무 문제 해결 중심 프로젝트')" class="chip">🏗️ PBL(프로젝트)</span>
-                <span onclick="addText('in-pedagogy', '- 게이미피케이션: 미션, 보상, 랭킹 시스템')" class="chip">🎮 게이미피케이션</span>
-                <span onclick="addText('in-pedagogy', '- 하브루타: 질문과 토론 중심 대화수업')" class="chip">💬 하브루타</span>
-                <span onclick="addText('in-pedagogy', '- 플립러닝: 거꾸로 수업, 심화 탐구 활동')" class="chip">🔄 플립러닝</span>
-                <span onclick="addText('in-pedagogy', '- 디자인 씽킹: 공감과 창의적 해결 단계')" class="chip">💡 디자인씽킹</span>
+                <span onclick="setText('in-source', '과목: 회계원리')" class="chip">💰 회계원리</span>
+                <span onclick="setText('in-source', '과목: 세무실무')" class="chip">🧾 세무실무</span>
+                <span onclick="setText('in-source', '과목: 기업경영')" class="chip">🏢 기업경영</span>
+                <span onclick="setText('in-source', '과목: 창업실무')" class="chip">🚀 창업실무</span>
+                <span onclick="setText('in-source', '과목: 금융실무')" class="chip">🏦 금융실무</span>
+                <span onclick="setText('in-source', '과목: 사무관리')" class="chip">📂 사무관리</span>
+                <span onclick="setText('in-source', '과목: ERP실무')" class="chip">⚙️ ERP실무</span>
             </div>
 
-            <div class="section-title"><i class="fas fa-file-invoice"></i> 2. 결과물 형태 (교사 지원 자료)</div>
-            <div class="sub-group-title">강의 및 문서 자료 (문서 중심)</div>
+            <div class="sub-group-title">IT / 프로그래밍 / 앱개발</div>
             <div class="flex flex-wrap gap-1">
-                <span onclick="setText('in-type', '강의용 상세 교안 및 수업 대본(Script), 판서 계획 포함')" class="chip text-blue-300 font-bold">📜 강의교안/대본</span>
-                <span onclick="setText('in-type', '단원 핵심 개념 요약 정리 (학생 배부용 요약지)')" class="chip">📌 핵심 요약지</span>
-                <span onclick="setText('in-type', '형성평가 및 단원평가 문제지 (해설/정답 포함)')" class="chip">❓ 평가 문제지</span>
-                <span onclick="setText('in-type', '수행평가 계획서 및 채점 루브릭(상중하)')" class="chip">📋 수행평가 계획</span>
+                <span onclick="setText('in-source', '과목: C프로그래밍')" class="chip">💻 C프로그래밍</span>
+                <span onclick="setText('in-source', '과목: 응용프로그래밍')" class="chip">📱 응용프로그래밍</span>
+                <span onclick="setText('in-source', '과목: 인공지능 기초')" class="chip">🤖 AI기초</span>
+                <span onclick="setText('in-source', '과목: 데이터베이스')" class="chip">💽 데이터베이스</span>
+                <span onclick="setText('in-source', '과목: 앱개발')" class="chip">📲 앱개발</span>
             </div>
-            <div class="sub-group-title">디지털 및 시각 자료 (테크 중심)</div>
+
+            <div class="sub-group-title">조리 / 베이커리 / 관광</div>
+            <div class="flex flex-wrap gap-1">
+                <span onclick="setText('in-source', '과목: 한식조리')" class="chip">🍱 한식조리</span>
+                <span onclick="setText('in-source', '과목: 양식조리')" class="chip">🍝 양식조리</span>
+                <span onclick="setText('in-source', '과목: 제과제빵')" class="chip">🍞 제과제빵</span>
+                <span onclick="setText('in-source', '과목: 바리스타')" class="chip">☕ 바리스타</span>
+                <span onclick="setText('in-source', '과목: 관광서비스')" class="chip">🏨 관광서비스</span>
+                <span onclick="setText('in-source', '과목: 객실실무')" class="chip">🔑 객실실무</span>
+            </div>
+
+            <div class="section-title"><i class="fas fa-graduation-cap"></i> 1. 교수학습 모델 선택</div>
+            <div class="flex flex-wrap gap-1">
+                <span onclick="addText('in-pedagogy', '- 강의식: 구조화된 개념 설명과 명확한 판서 중심')" class="chip active">👨‍🏫 강의식</span>
+                <span onclick="addText('in-pedagogy', '- PBL: 실제 사례 기반 문제 해결 프로젝트')" class="chip">🏗️ PBL</span>
+                <span onclick="addText('in-pedagogy', '- 하브루타: 질문과 대화를 통한 사고 확장')" class="chip">💬 하브루타</span>
+                <span onclick="addText('in-pedagogy', '- 게이미피케이션: 미션 수행 및 보상 체계')" class="chip">🎮 게이미피케이션</span>
+                <span onclick="addText('in-pedagogy', '- 스캐폴딩: 단계별 힌트 제공 학습 보조')" class="chip">🪜 스캐폴딩</span>
+            </div>
+
+            <div class="section-title"><i class="fas fa-file-alt"></i> 2. 결과물 형태</div>
             <div class="flex flex-wrap gap-1">
                 <span onclick="setText('in-type', 'HTML/CSS/JS 기반 인터랙티브 웹 슬라이드(Web PPT)')" class="chip">🖥️ 웹 슬라이드</span>
-                <span onclick="setText('in-type', '디지털 카드뉴스 기획안 및 비주얼 씽킹 자료')" class="chip">🃏 디지털 카드뉴스</span>
+                <span onclick="setText('in-type', '강의용 상세 교안 및 수업 대본(Script), 판서 계획')" class="chip">📜 강의교안/대본</span>
+                <span onclick="setText('in-type', '학생용 활동지 (빈칸 채우기 및 탐구 문제)')" class="chip">📝 학습활동지</span>
+                <span onclick="setText('in-type', '단원 핵심 개념 요약지 (개조식 정리)')" class="chip">📌 핵심 요약지</span>
+                <span onclick="setText('in-type', '형성평가 퀴즈 세트 (객관식/단답형, 해설 포함)')" class="chip">❓ 평가 문제지</span>
             </div>
 
-            <div class="section-title"><i class="fas fa-palette"></i> 3. 디자인 테마 / 톤</div>
+            <div class="section-title"><i class="fas fa-palette"></i> 3. 디자인 및 스타일</div>
             <div class="flex flex-wrap gap-1">
-                <span onclick="setText('in-design', '- 교실 칠판 스타일: 초록 배경, 분필 느낌, 아날로그 감성')" class="chip">🏫 칠판테마</span>
-                <span onclick="setText('in-design', '- 토스 스타일: 심플한 화이트 배경, 깔끔한 가독성 중심')" class="chip">🔹 토스스타일</span>
-                <span onclick="setText('in-design', '- 넷플릭스 스타일: 다크 배경, 강렬한 시각적 효과')" class="chip">🎬 넷플릭스</span>
-                <span onclick="setText('in-design', '- 말투: 친근하고 위트 있는 격려형 어조')" class="chip">😊 친근한 말투</span>
-                <span onclick="setText('in-design', '- 말투: 명확하고 논리적인 전문가형 어조')" class="chip">🧐 전문적 말투</span>
+                <span onclick="setText('in-design', '- 교실 칠판 테마: 초록 배경, 분필 감성')" class="chip">🏫 칠판테마</span>
+                <span onclick="setText('in-design', '- 넷플릭스 테마: 다크 모드, 세련된 레이아웃')" class="chip">🎬 넷플릭스</span>
+                <span onclick="setText('in-design', '- 토스 스타일: 심플, 신뢰감 주는 블루 포인트')" class="chip">🔹 토스스타일</span>
+                <span onclick="addText('in-design', '- 어조: 친근하고 유머러스한 격려형')" class="chip">😊 친근함</span>
+                <span onclick="addText('in-design', '- 어조: 논리적이고 전문적인 전문가형')" class="chip">🧐 전문성</span>
             </div>
 
         </section>
 
-        <!-- 오른쪽: 프롬프트 구성 영역 -->
+        <!-- 오른쪽 패널: 프롬프트 에디터 -->
         <section class="editor-panel custom-scroll">
             <div class="space-y-4">
                 <div class="p-4 bg-blue-500/10 rounded-2xl border border-blue-500/20 shadow-xl">
-                    <label class="block text-[10px] font-bold text-blue-400 mb-1 uppercase tracking-widest italic">00. Subject & Pedagogy</label>
-                    <textarea id="in-source" rows="1" placeholder="교과를 선택하세요"></textarea>
-                    <textarea id="in-pedagogy" rows="3" class="mt-2" placeholder="교수법 전략이 추가됩니다"></textarea>
+                    <label class="block text-[10px] font-bold text-blue-400 mb-1 uppercase tracking-widest italic">00. Course Subject</label>
+                    <textarea id="in-source" rows="1" placeholder="과목을 선택하세요"></textarea>
                 </div>
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-500 mb-1 uppercase italic">01. Output Type & Design</label>
+                    <label class="block text-[10px] font-bold text-slate-500 mb-1 uppercase">01. Teaching Strategy</label>
+                    <textarea id="in-pedagogy" rows="3" placeholder="수업 전략을 선택하세요"></textarea>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-500 mb-1 uppercase">02. Format & Style</label>
                     <textarea id="in-type" rows="1" placeholder="결과물 형태"></textarea>
-                    <textarea id="in-design" rows="2" class="mt-2" placeholder="디자인/어조 스타일"></textarea>
+                    <textarea id="in-design" rows="2" class="mt-2" placeholder="디자인 스타일"></textarea>
                 </div>
                 <div>
-                    <label class="block text-[10px] font-bold text-teal-400 mb-1 uppercase italic">02. Lesson Topic (MUST ENTER)</label>
-                    <textarea id="in-topic" rows="4" class="border-teal-500/30!" placeholder="구체적인 학습 주제를 입력하세요. (예: 회계원리-분개의 법칙 강의 및 실습)"></textarea>
+                    <label class="block text-[10px] font-bold text-teal-400 mb-1 uppercase italic">03. Final Lesson Topic (MUST ENTER)</label>
+                    <textarea id="in-topic" rows="4" class="border-teal-500/30!" placeholder="구체적인 학습 주제를 입력하세요 (예: 피타고라스의 정리, 회계원리-자산의 정의)"></textarea>
                 </div>
 
-                <div class="pt-4">
+                <div class="pt-2">
                     <button onclick="generateAndCopy()" class="w-full bg-blue-600 hover:bg-blue-500 py-5 rounded-2xl font-black text-white shadow-2xl transition-all active:scale-95 flex flex-col items-center gap-1 border-t border-white/10">
                         <span class="text-base uppercase tracking-widest">Generate Master Prompt</span>
-                        <span class="text-[9px] font-normal opacity-70">모든 AI(GPT, Gemini, Claude) 대응</span>
+                        <span class="text-[9px] font-normal opacity-70">GPT / Gemini / Claude 공용 대응</span>
                     </button>
                 </div>
             </div>
@@ -133,8 +163,8 @@
     <div id="modal" class="fixed inset-0 bg-black/90 hidden flex items-center justify-center z-[100] backdrop-blur-3xl">
         <div class="w-full max-w-sm p-12 text-center animate-in zoom-in duration-300">
             <div class="text-6xl mb-6">✅</div>
-            <h3 class="text-xl font-black mb-2 text-white italic">COPIED SUCCESS!</h3>
-            <p class="text-slate-400 text-xs mb-10 leading-relaxed">프롬프트가 복사되었습니다.<br>강의식 수업부터 웹 슬라이드까지 모두 가능합니다.</p>
+            <h3 class="text-xl font-black mb-2 text-white italic tracking-tighter">COPIED SUCCESS!</h3>
+            <p class="text-slate-400 text-xs mb-10 leading-relaxed">프롬프트가 복사되었습니다.<br>어떤 AI라도 상관없습니다. 붙여넣기 하세요!</p>
             <button onclick="closeModal()" class="w-full bg-white text-black py-4 rounded-xl font-black text-sm hover:bg-slate-200 transition">확인</button>
         </div>
     </div>
@@ -155,34 +185,34 @@
                 topic: document.getElementById('in-topic').value
             };
 
-            if(!v.source || !v.topic || !v.type) { alert('교과, 형태, 주제를 모두 확인해 주세요!'); return; }
+            if(!v.source || !v.topic || !v.type) { alert('과목, 형태, 주제를 모두 확인해 주세요!'); return; }
 
-            const prompt = `[ROLE: 충주상업고등학교 전문 교육 설계자 및 고도의 수업 보조 AI]
-[MISSION: 교사를 위한 실질적인 수업 자료 및 학생용 학습 콘텐츠 제작]
+            const prompt = `[ROLE: Expert Education Content Designer & Professional Multi-Stack Developer]
+[MISSION: Create high-quality, fully populated educational content for Chungju Commercial High School.]
 
-0. 학습 주제 및 교과
+0. TOPIC & SUBJECT
 ${v.source}
 상세 주제: ${v.topic}
 
-1. 교수학습 전략 및 모델
-${v.pedagogy || '- 핵심 개념 전달 위주의 체계적 수업'}
-
-2. 요청 결과물 형태
+1. OUTPUT TYPE (CRITICAL)
 ${v.type}
 
-3. 시각적 테마 및 언어 스타일
+2. PEDAGOGY & STRATEGY
+${v.pedagogy || '- Optimized for High School students'}
+
+3. VISUAL STYLE & TONE
 ${v.design}
 
 ---
 [AI 작업 지침]
 - 만약 '강의식 수업'이나 '교안' 요청인 경우: 수업 흐름(도입-전개-정리), 각 단계별 교사의 구체적인 발문(Script), 칠판에 적을 핵심 내용(판서 계획)을 구조화하여 작성하세요.
-- 만약 '웹 슬라이드' 요청인 경우: [INTERFACE TRIGGER]를 실행하여 단일 HTML 파일 코드를 작성하세요.
+- 만약 '웹 슬라이드' 요청인 경우: [INTERFACE TRIGGER]를 실행하여 단일 HTML 파일 코드를 작성하세요. (CSS/JS 포함)
 - 특성화고 학생들의 수준(기초~실무)을 고려하여 전문 용어를 알기 쉽게 풀이하고, 풍부한 산업 현장 사례를 포함하세요.
 - 모든 내용은 성취기준에 부합해야 하며, 빈칸(Placeholder) 없이 모든 정보를 채워 넣으십시오.
 
 ---
 [INTERFACE TRIGGER]
-- **ChatGPT:** OPEN CANVAS and execute full logic.
+- **ChatGPT:** OPEN CANVAS and write full code to display the interactive content.
 - **Claude:** Generate Artifacts for interactive content.
 - **Gemini:** Write full code & Show HTML Preview in canvas.`;
 
