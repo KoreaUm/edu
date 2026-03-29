@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>충주상업고 | AI 통합 프롬프트 스튜디오</title>
+    <title>충주상업고 | AI 수업자료 헬퍼 V9.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -12,155 +12,133 @@
         .glass { background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
         .ai-gradient { background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        .chip { cursor: pointer; transition: all 0.2s; font-size: 0.65rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(30, 41, 59, 0.5); border-radius: 0.5rem; padding: 0.35rem 0.55rem; display: inline-flex; align-items: center; gap: 0.25rem; white-space: nowrap; margin-bottom: 4px; }
-        .chip:hover { background: rgba(96, 165, 250, 0.2); border-color: #60a5fa; transform: translateY(-1px); color: white; }
-        .chip.active { background: #3b82f6 !important; border-color: #60a5fa; color: white !important; }
-        
-        .chip-group-title { font-size: 0.65rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.6rem; margin-top: 1.2rem; border-left: 3px solid #334155; padding-left: 8px; display: flex; align-items: center; gap: 5px; }
+        .main-container { display: flex; flex-direction: row; flex: 1; overflow: hidden; }
+        .left-panel { width: 55%; overflow-y: auto; border-right: 1px solid rgba(255, 255, 255, 0.05); padding: 1.5rem 2rem; background: rgba(255, 255, 255, 0.02); }
+        .right-panel { width: 45%; overflow-y: auto; padding: 2rem; background: rgba(0, 0, 0, 0.4); }
 
-        textarea { background: rgba(0, 0, 0, 0.4) !important; border: 1px solid rgba(255, 255, 255, 0.1) !important; color: white !important; width: 100%; border-radius: 1rem; padding: 0.75rem; font-size: 0.8rem; outline: none; transition: all 0.2s; resize: none; }
-        textarea:focus { border-color: #60a5fa; box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.2); }
+        .chip { cursor: pointer; transition: all 0.2s; font-size: 0.7rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(30, 41, 59, 0.6); border-radius: 0.6rem; padding: 0.45rem 0.75rem; display: inline-flex; align-items: center; gap: 0.35rem; white-space: nowrap; margin-bottom: 6px; }
+        .chip:hover { background: rgba(96, 165, 250, 0.2); border-color: #60a5fa; color: white; }
+        .chip.active { background: #3b82f6 !important; border-color: #60a5fa; color: white !important; box-shadow: 0 0 10px rgba(59, 130, 246, 0.4); }
+        
+        .section-title { font-size: 0.8rem; font-weight: 800; color: #60a5fa; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.8rem; margin-top: 1.5rem; display: flex; align-items: center; gap: 8px; }
+        .sub-group-title { font-size: 0.65rem; color: #64748b; font-weight: 700; margin: 12px 0 6px 0; border-left: 2px solid #334155; padding-left: 8px; }
+
+        textarea { background: rgba(0, 0, 0, 0.5) !important; border: 1px solid rgba(255, 255, 255, 0.1) !important; color: white !important; width: 100%; border-radius: 1rem; padding: 0.8rem; font-size: 0.85rem; outline: none; transition: all 0.2s; resize: none; }
+        textarea:focus { border-color: #60a5fa; box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.1); }
         
         .custom-scroll::-webkit-scrollbar { width: 4px; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
-        section { scroll-behavior: smooth; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <!-- 헤더 -->
     <header class="h-14 glass flex items-center justify-between px-6 shrink-0 z-50">
         <div class="flex items-center gap-6">
-            <div class="text-lg font-black ai-gradient tracking-tighter italic">CJCH AI STUDIO <span class="text-[10px] text-slate-500 ml-1">V7.0</span></div>
-            <nav class="flex space-x-6 h-14">
-                <button class="border-b-2 border-blue-500 text-blue-400 text-xs font-bold px-2">전교과 통합 빌더</button>
-            </nav>
+            <div class="text-xl font-black ai-gradient tracking-tighter italic">CJCH AI HELPER <span class="text-[10px] text-slate-500 ml-1">V9.0</span></div>
+            <div class="text-[11px] font-bold text-slate-400">충주상업고등학교 교사 전용 수업지원 도구</div>
         </div>
-        <div class="bg-blue-600/10 border border-blue-500/20 px-3 py-1 rounded-full text-[10px] font-bold text-blue-400 uppercase tracking-widest">All Subjects United</div>
+        <div class="bg-blue-600/20 border border-blue-500/30 px-4 py-1.5 rounded-full text-[10px] font-bold text-blue-400 uppercase tracking-widest italic">Document Focus</div>
     </header>
 
-    <!-- 빌더 뷰 -->
-    <main class="flex flex-1 overflow-hidden">
+    <main class="main-container">
         
-        <!-- 왼쪽: 4대 영역 교과 옵션 패널 -->
-        <section class="w-[62%] overflow-y-auto custom-scroll p-6 border-r border-white/5 bg-slate-900/10">
-            <div class="max-w-4xl mx-auto space-y-6">
+        <!-- 왼쪽 패널: 선택 영역 -->
+        <section class="left-panel custom-scroll">
+            <div class="space-y-4">
                 
-                <!-- 1. 대상 학년 -->
-                <div>
-                    <h2 class="text-white font-bold text-xs flex items-center gap-2 mb-2"><i class="fas fa-user-graduate text-blue-400"></i> 1. 대상 학년 (Target)</h2>
-                    <div class="flex gap-2">
-                        <span onclick="setGrade('고등학교 1학년')" class="chip grade-chip">1학년</span>
-                        <span onclick="setGrade('고등학교 2학년')" class="chip grade-chip">2학년</span>
-                        <span onclick="setGrade('고등학교 3학년')" class="chip grade-chip">3학년</span>
-                        <span onclick="setGrade('전학년 공통')" class="chip grade-chip">전학년</span>
-                    </div>
+                <div class="section-title"><i class="fas fa-graduation-cap"></i> 1. 대상 학년</div>
+                <div class="flex gap-2">
+                    <span onclick="setGrade('고등학교 1학년')" class="chip grade-chip">1학년</span>
+                    <span onclick="setGrade('고등학교 2학년')" class="chip grade-chip">2학년</span>
+                    <span onclick="setGrade('고등학교 3학년')" class="chip grade-chip">3학년</span>
                 </div>
 
-                <!-- 2. 교과 선택 (4대 영역 균형 배치) -->
-                <div>
-                    <h2 class="text-white font-bold text-xs flex items-center gap-2 mb-2"><i class="fas fa-layer-group text-blue-400"></i> 2. 교과 영역 선택 (Subject Area)</h2>
-                    
-                    <!-- 영역 1: 기초 및 보통교과 -->
-                    <div class="chip-group-title"><i class="fas fa-book-open"></i> 보통교과 (Basic & General)</div>
-                    <div class="flex flex-wrap gap-1">
-                        <span onclick="setText('in-source', '과목: 국어/문학/언어와매체')" class="chip">📚 국어군</span>
-                        <span onclick="setText('in-source', '과목: 수학/미적분/확률과통계')" class="chip">🔢 수학군</span>
-                        <span onclick="setText('in-source', '과목: 영어/심화영어/영미문학')" class="chip">🌍 영어군</span>
-                        <span onclick="setText('in-source', '과목: 한국사/통합사회/지리/윤리')" class="chip">🗺️ 사회/역사</span>
-                        <span onclick="setText('in-source', '과목: 통합과학/물리/화학/생명/지구')" class="chip">🧪 과학군</span>
-                    </div>
-
-                    <!-- 영역 2: 경영·회계·사무 (경영회계과, 경영관리과) -->
-                    <div class="chip-group-title"><i class="fas fa-chart-line"></i> 경영·회계·사무 (Business)</div>
-                    <div class="flex flex-wrap gap-1">
-                        <span onclick="setText('in-source', '과목: 회계원리/원가회계/세무회계')" class="chip">💰 회계실무</span>
-                        <span onclick="setText('in-source', '과목: 금융실무/창구사무/금융기초')" class="chip">🏦 금융사무</span>
-                        <span onclick="setText('in-source', '과목: 상업경제/기업경영/창업실무')" class="chip">🚀 경제/경영</span>
-                        <span onclick="setText('in-source', '과목: 사무관리/비즈니스영어/ERP')" class="chip">📂 사무/ERP</span>
-                        <span onclick="setText('in-source', '과목: 유통관리/국제상무/마케팅')" class="chip">📦 유통/마케팅</span>
-                    </div>
-
-                    <!-- 영역 3: IT·AI·콘텐츠 (스마트IT과) -->
-                    <div class="chip-group-title"><i class="fas fa-code"></i> IT·콘텐츠·디자인 (Tech & Design)</div>
-                    <div class="flex flex-wrap gap-1">
-                        <span onclick="setText('in-source', '과목: 프로그래밍/C/파이썬/응용프로그래밍')" class="chip">💻 코딩/응용</span>
-                        <span onclick="setText('in-source', '과목: 앱개발/데이터베이스/알고리즘')" class="chip">📱 앱/DB개발</span>
-                        <span onclick="setText('in-source', '과목: 인공지능기초/빅데이터분석')" class="chip">🤖 AI/빅데이터</span>
-                        <span onclick="setText('in-source', '과목: 웹디자인/컴퓨터그래픽/영상제작')" class="chip">🎨 디자인/영상</span>
-                        <span onclick="setText('in-source', '과목: 컴퓨터일반/정보처리기능사')" class="chip">⚙️ 컴퓨터일반</span>
-                    </div>
-
-                    <!-- 영역 4: 관광·조리·예체능 (관광레저과, 외식조리과 및 교양) -->
-                    <div class="chip-group-title"><i class="fas fa-utensils"></i> 관광·조리·예체능 (Service & Arts)</div>
-                    <div class="flex flex-wrap gap-1">
-                        <span onclick="setText('in-source', '과목: 한식/양식/중식/일식 조리')" class="chip">🍳 조리실무</span>
-                        <span onclick="setText('in-source', '과목: 제과/제빵/떡제조')" class="chip">🍞 베이커리</span>
-                        <span onclick="setText('in-source', '과목: 바리스타/식음료서비스')" class="chip">☕ 식음료/카페</span>
-                        <span onclick="setText('in-source', '과목: 관광서비스/관광영어/여행실무')" class="chip">🏨 관광/여행</span>
-                        <span onclick="setText('in-source', '과목: 체육/음악/미술/보건/한문')" class="chip">⚽ 예체능/교양</span>
-                    </div>
+                <div class="section-title"><i class="fas fa-chalkboard"></i> 2. 담당 교과 선택</div>
+                
+                <div class="sub-group-title">공통교과 (국/수/영/사/과)</div>
+                <div class="flex flex-wrap gap-1">
+                    <span onclick="setText('in-source', '교과: 국어/문학/실무국어')" class="chip">📚 국어군</span>
+                    <span onclick="setText('in-source', '교과: 수학/실용수학/수학I')" class="chip">🔢 수학군</span>
+                    <span onclick="setText('in-source', '교과: 영어/실무영어/관광영어')" class="chip">🌍 영어군</span>
+                    <span onclick="setText('in-source', '교과: 한국사/사회/윤리/지리')" class="chip">🗺️ 사회/국사</span>
+                    <span onclick="setText('in-source', '교과: 통합과학/과학탐구실험')" class="chip">🧪 과학군</span>
                 </div>
 
-                <!-- 3. 결과물 형태 -->
-                <div>
-                    <h2 class="text-white font-bold text-xs flex items-center gap-2 mb-2"><i class="fas fa-magic text-purple-400"></i> 3. 결과물 형태 (Output)</h2>
-                    <div class="flex flex-wrap gap-1">
-                        <span onclick="setText('in-type', 'HTML/JS 기반 인터랙티브 학습 게임')" class="chip">🎮 웹 게임</span>
-                        <span onclick="setText('in-type', '실무 데이터 시각화 시뮬레이터 웹앱')" class="chip">🧪 시뮬레이터</span>
-                        <span onclick="setText('in-type', '핵심 요약 카드뉴스 5장 기획안')" class="chip">🃏 카드뉴스</span>
-                        <span onclick="setText('in-type', '수행평가 계획서 및 루브릭(채점표)')" class="chip">📋 수행평가</span>
-                        <span onclick="setText('in-type', '학습 활동지 및 형성평가 문제')" class="chip">📝 활동지</span>
-                        <span onclick="setText('in-type', '전개-도입-정리 수업 지도안')" class="chip">📜 지도안</span>
-                        <span onclick="setText('in-type', 'AI 기반 맞춤형 학습 튜터 시나리오')" class="chip">🤖 AI 튜터</span>
-                    </div>
+                <div class="sub-group-title">전공교과 (경영/IT/관광/조리)</div>
+                <div class="flex flex-wrap gap-1">
+                    <span onclick="setText('in-source', '교과: 회계원리/원가회계/세무회계')" class="chip">💰 회계실무</span>
+                    <span onclick="setText('in-source', '교과: 상업경제/기업경영/창업실무')" class="chip">🚀 경영/창업</span>
+                    <span onclick="setText('in-source', '교과: 프로그래밍/파이썬/앱개발')" class="chip">💻 IT/코딩</span>
+                    <span onclick="setText('in-source', '교과: 조리실무/제과제빵/바리스타')" class="chip">🍳 조리/제과</span>
+                    <span onclick="setText('in-source', '교과: 관광서비스/객실실무/여행실무')" class="chip">🏨 관광서비스</span>
+                    <span onclick="setText('in-source', '교과: 사무관리/ERP실무/비즈영어')" class="chip">📂 사무/ERP</span>
+                </div>
+
+                <div class="sub-group-title">기타/교양</div>
+                <div class="flex flex-wrap gap-1">
+                    <span onclick="setText('in-source', '교과: 체육/음악/미술/보건/진로/한문')" class="chip">🏀 예체능/교양</span>
+                </div>
+
+                <div class="section-title"><i class="fas fa-file-alt"></i> 3. 필요한 자료 형태 (AI가 텍스트로 작성)</div>
+                <div class="flex flex-wrap gap-1">
+                    <span onclick="setText('in-type', '수업용 PPT 슬라이드 구성안 (슬라이드별 제목/내용/이미지추천)')" class="chip active">🎞️ PPT 슬라이드</span>
+                    <span onclick="setText('in-type', '학생용 학습 활동지 (빈칸 채우기, 탐구 질문 포함)')" class="chip">📝 학습 활동지</span>
+                    <span onclick="setText('in-type', '단원 핵심 개념 요약 정리 (한글/워드용)')" class="chip">📌 요약 정리</span>
+                    <span onclick="setText('in-type', '형성평가 문제 (객관식 5문항, 단답식 2문항, 해설 포함)')" class="chip">❓ 문제 출제</span>
+                    <span onclick="setText('in-type', '수행평가 계획서 및 채점 기준표(루브릭)')" class="chip">📋 수행평가</span>
+                    <span onclick="setText('in-type', '수업 도입-전개-정리 지도안(Lesson Plan)')" class="chip">📜 수업 지도안</span>
+                </div>
+
+                <div class="section-title"><i class="fas fa-pen-nib"></i> 4. 자료의 톤(말투)</div>
+                <div class="flex flex-wrap gap-1">
+                    <span onclick="addText('in-design', '- 학생들에게 친근하고 쉬운 설명 위주')" class="chip">😊 친근하게</span>
+                    <span onclick="addText('in-design', '- 전문적이고 구조화된 학술적 문체')" class="chip">🧐 전문적으로</span>
+                    <span onclick="addText('in-design', '- 핵심만 간단히 요약된 개조식 문체')" class="chip">📍 핵심요약</span>
                 </div>
 
             </div>
         </section>
 
-        <!-- 오른쪽: 프롬프트 에디터 패널 -->
-        <section class="w-[38%] bg-black/60 p-6 overflow-y-auto custom-scroll border-l border-white/5">
-            <div class="space-y-4">
-                <div class="p-4 bg-blue-500/5 rounded-2xl border border-blue-500/10">
-                    <p class="text-[9px] text-blue-400 font-bold mb-2 uppercase">Selected Target</p>
-                    <input type="text" id="in-grade" readonly class="w-full bg-transparent text-sm text-white font-bold outline-none" placeholder="1. 학년을 먼저 선택하세요">
+        <!-- 오른쪽 패널: 프롬프트 구성 -->
+        <section class="right-panel custom-scroll">
+            <div class="space-y-6">
+                <div class="p-4 bg-blue-500/5 rounded-2xl border border-blue-500/20 shadow-lg">
+                    <p class="text-[10px] text-blue-400 font-bold mb-1 uppercase tracking-tighter">Target Grade</p>
+                    <input type="text" id="in-grade" readonly class="w-full bg-transparent text-lg text-white font-black outline-none" placeholder="1. 학년을 선택하세요">
                 </div>
 
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-500 mb-1 tracking-widest uppercase">Subject Selection</label>
-                    <textarea id="in-source" rows="2" placeholder="2. 교과 영역을 선택하세요"></textarea>
+                    <label class="block text-[10px] font-bold text-slate-500 mb-1 tracking-widest uppercase italic">01. Subject</label>
+                    <textarea id="in-source" rows="2" placeholder="담당 교과를 선택하세요"></textarea>
                 </div>
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-500 mb-1 tracking-widest uppercase">Content Format</label>
-                    <textarea id="in-type" rows="2" placeholder="3. 결과물 형태를 선택하세요"></textarea>
+                    <label class="block text-[10px] font-bold text-blue-500 mb-1 tracking-widest uppercase italic">02. Material Type</label>
+                    <textarea id="in-type" rows="2" placeholder="어떤 자료가 필요하신가요?"></textarea>
                 </div>
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-500 mb-1 tracking-widest uppercase">Additional Strategy</label>
-                    <textarea id="in-pedagogy" rows="3" placeholder="추가 요청사항 (예: 하브루타 방식, 토스 디자인 등)"></textarea>
+                    <label class="block text-[10px] font-bold text-teal-500 mb-1 tracking-widest uppercase italic">03. Topic & Option</label>
+                    <textarea id="in-design" rows="3" placeholder="구체적인 단원명이나 주제, 추가 요구사항을 적어주세요. (예: 1단원 자산의 정의, 표 형태로 작성 등)"></textarea>
                 </div>
 
-                <div class="pt-2">
-                    <button onclick="generateAndCopy()" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-xl font-black text-white shadow-xl shadow-blue-500/10 transition-all active:scale-95 flex items-center justify-center gap-2">
-                        <i class="fas fa-bolt"></i> 프롬프트 생성 & 복사
+                <div class="pt-4">
+                    <button onclick="generateAndCopy()" class="w-full bg-blue-600 hover:bg-blue-500 py-5 rounded-2xl font-black text-white shadow-2xl shadow-blue-500/20 transition-all active:scale-95 flex flex-col items-center gap-1">
+                        <span class="text-base uppercase tracking-tighter">Prompt Copy & Start</span>
+                        <span class="text-[9px] font-normal opacity-70">복사 후 AI에게 붙여넣으세요</span>
                     </button>
-                    <p class="text-[9px] text-center text-slate-500 mt-3 italic leading-relaxed">
-                        생성된 프롬프트를 복사하여 <br>ChatGPT / Claude / Gemini 등에 붙여넣으세요.
+                    <p class="text-[10px] text-center text-slate-500 mt-4 leading-relaxed">
+                        "프롬프트를 복사하여 ChatGPT나 Claude에 붙여넣으면<br>선생님을 위한 고퀄리티 학습자료가 즉시 생성됩니다."
                     </p>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- 복사 완료 알림 모달 -->
-    <div id="modal" class="fixed inset-0 bg-black/90 hidden flex items-center justify-center z-[100] backdrop-blur-3xl">
-        <div class="w-full max-w-sm p-10 text-center animate-in zoom-in duration-300">
-            <div class="w-20 h-20 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-6 text-blue-400 text-3xl">
-                <i class="fas fa-check"></i>
-            </div>
-            <h3 class="text-xl font-black mb-2 text-white italic">PROMPT READY</h3>
-            <p class="text-slate-400 text-xs mb-8">프롬프트가 복사되었습니다.<br>AI와 함께 최고의 수업을 설계해 보세요.</p>
-            <button onclick="closeModal()" class="w-full bg-white text-black py-3 rounded-lg font-black text-sm hover:bg-slate-200 transition">확인</button>
+    <div id="modal" class="fixed inset-0 bg-black/90 hidden flex items-center justify-center z-[100] backdrop-blur-2xl">
+        <div class="w-full max-w-sm p-12 text-center">
+            <div class="text-5xl mb-6">✅</div>
+            <h3 class="text-2xl font-black mb-2 text-white italic tracking-tighter">SUCCESS</h3>
+            <p class="text-slate-400 text-xs mb-10 leading-relaxed">수업자료 프롬프트가 복사되었습니다.<br>지금 바로 AI와 수업 준비를 시작하세요.</p>
+            <button onclick="closeModal()" class="w-full bg-white text-black py-4 rounded-xl font-black text-sm hover:bg-slate-200 transition shadow-lg">확인</button>
         </div>
     </div>
 
@@ -174,186 +152,30 @@
         }
 
         function setText(id, val) { document.getElementById(id).value = val; }
+        function addText(id, val) { document.getElementById(id).value += (document.getElementById(id).value ? '\n' : '') + val; }
 
         function generateAndCopy() {
             const grade = document.getElementById('in-grade').value;
             const subject = document.getElementById('in-source').value;
             const type = document.getElementById('in-type').value;
             
-            if(!grade || !subject || !type) { alert('모든 항목을 선택해주세요!'); return; }
+            if(!grade || !subject || !type) { alert('학년, 교과, 자료 형태를 모두 선택해주세요!'); return; }
 
-            const prompt = `[ROLE: 고등학교 교육 전문 설계자 및 충주상업고등학교 전문 컨설턴트]
-[TARGET AUDIENCE: ${grade} 학생]
+            const prompt = `[본분: 충주상업고등학교 전문 교사 및 학습 콘텐츠 설계자]
+[대상: ${grade} 학생]
 
-대상 과목: ${subject}
-요청 콘텐츠: ${type}
-추가 요청 및 스타일: ${document.getElementById('in-pedagogy').value || '- 교육적이고 전문적인 스타일'}
-
----
-[지침]
-1. 2022 개정 교육과정 성취기준을 기반으로 전문적인 내용을 구성하세요.
-2. 충주상업고등학교의 특성(상업, 정보, 조리, 관광 등)을 고려하여 실무 중심 사례를 포함하세요.
-3. 보통교과(국영수사과)의 경우 학생들의 수준에 맞는 심화 및 탐구 내용을 포함하세요.
-4. 웹 앱/게임 개발 시, 단일 HTML 파일(Tailwind CSS 포함)로 즉시 실행 가능한 완성된 코드를 제공하세요.
-5. 모든 답변은 논리적이고 창의적이며, 교사들이 바로 수업에 활용할 수 있는 수준이어야 합니다.`;
-
-            navigator.clipboard.writeText(prompt).then(() => {
-                document.getElementById('modal').classList.remove('hidden');
-            });
-        }
-
-        function closeModal() { document.getElementById('modal').classList.add('hidden'); }
-    </script>
-</body>
-</html>                    <div class="chip-group-title">체육 (Physical Education)</div>
-                    <div class="flex flex-wrap gap-1">
-                        <span onclick="setText('in-source', '과목: 체육 - 건강/체력 측정')" class="chip">💪 건강체력</span>
-                        <span onclick="setText('in-source', '과목: 체육 - 축구/농구/배구')" class="chip">⚽ 구기운동</span>
-                        <span onclick="setText('in-source', '과목: 체육 - 배드민턴/탁구')" class="chip">🏸 라켓운동</span>
-                        <span onclick="setText('in-source', '과목: 체육 - 댄스/치어리딩')" class="chip">💃 표현활동</span>
-                        <span onclick="setText('in-source', '과목: 체육 - 스포츠 안전/응급처치')" class="chip">🚑 스포츠안전</span>
-                        <span onclick="setText('in-source', '과목: 체육 - 학교 스포츠클럽 기획')" class="chip">🏆 스포츠클럽</span>
-                    </div>
-
-                    <div class="chip-group-title">미술 (Fine Arts & Design)</div>
-                    <div class="flex flex-wrap gap-1">
-                        <span onclick="setText('in-source', '과목: 미술 - 데생/기초 소묘')" class="chip">🎨 기초소묘</span>
-                        <span onclick="setText('in-source', '과목: 미술 - 평면/입체 디자인')" class="chip">📐 디자인기초</span>
-                        <span onclick="setText('in-source', '과목: 미술 - 매체미술/영상 제작')" class="chip">🎬 매체미술</span>
-                        <span onclick="setText('in-source', '과목: 미술 - 한국미술사/서양미술사')" class="chip">🏛️ 미술사</span>
-                        <span onclick="setText('in-source', '과목: 미술 - 캐릭터/굿즈 디자인')" class="chip">🧸 캐릭터디자인</span>
-                        <span onclick="setText('in-source', '과목: 미술 - 환경디자인/건축')" class="chip">🏘️ 환경디자인</span>
-                    </div>
-
-                    <div class="chip-group-title">음악 (Music & Sound)</div>
-                    <div class="flex flex-wrap gap-1">
-                        <span onclick="setText('in-source', '과목: 음악 - 가창(합창/독창)')" class="chip">🎤 가창실기</span>
-                        <span onclick="setText('in-source', '과목: 음악 - 기악(기타/우쿨렐레)')" class="chip">🎸 기악실기</span>
-                        <span onclick="setText('in-source', '과목: 음악 - 서양음악/클래식 감상')" class="chip">🎼 음악감상</span>
-                        <span onclick="setText('in-source', '과목: 음악 - 디지털 작곡(MIDI)/창작')" class="chip">💻 디지털작곡</span>
-                        <span onclick="setText('in-source', '과목: 음악 - 국악(판소리/민요/사물놀이)')" class="chip">🇰🇷 국악실기</span>
-                    </div>
-
-                    <div class="chip-group-title">특성화 전문교과 (Business/IT/Service)</div>
-                    <div class="flex flex-wrap gap-1">
-                        <span onclick="setText('in-source', '과목: 회계원리/원가회계')" class="chip">💰 회계실무</span>
-                        <span onclick="setText('in-source', '과목: C프로그래밍/응용프로그래밍')" class="chip">💻 응용코딩</span>
-                        <span onclick="setText('in-source', '과목: 제과/제빵/조리실무')" class="chip">🍞 조리/제과</span>
-                        <span onclick="setText('in-source', '과목: 금융실무/창구사무')" class="chip">🏦 금융사무</span>
-                        <span onclick="setText('in-source', '과목: 객실실무/관광서비스')" class="chip">🏨 관광서비스</span>
-                    </div>
-                </div>
-
-                <!-- 결과물 형태 -->
-                <div>
-                    <h2 class="text-purple-400 font-bold text-xs flex items-center gap-2 mb-2"><i class="fas fa-magic"></i> 1. 결과물 형태</h2>
-                    <div class="flex flex-wrap gap-1">
-                        <span onclick="setText('in-type', '인터랙티브 웹 게임 (Web Game)')" class="chip">🎮 웹 게임</span>
-                        <span onclick="setText('in-type', '현상 원리 시뮬레이터 웹앱')" class="chip">🧪 시뮬레이터</span>
-                        <span onclick="setText('in-type', '주제별 핵심 요약 카드뉴스 5장')" class="chip">🃏 카드뉴스</span>
-                        <span onclick="setText('in-type', '수행평가 계획 및 루브릭(채점표)')" class="chip">📋 수행평가</span>
-                        <span onclick="setText('in-type', '빈칸 채우기 활동지 및 형성평가')" class="chip">📝 학습활동지</span>
-                        <span onclick="setText('in-type', '수업 지도안(도입-전개-정리)')" class="chip">📜 수업지도안</span>
-                    </div>
-                </div>
-
-                <!-- 디자인 스타일 -->
-                <div>
-                    <h2 class="text-teal-400 font-bold text-xs flex items-center gap-2 mb-2"><i class="fas fa-palette"></i> 2. 디자인 테마</h2>
-                    <div class="flex flex-wrap gap-1">
-                        <span onclick="addText('in-design', '- 토스(Toss) 스타일')" class="chip">🔹 토스</span>
-                        <span onclick="addText('in-design', '- 배달의민족 스타일')" class="chip">🔸 배민</span>
-                        <span onclick="addText('in-design', '- 넷플릭스 스타일')" class="chip">🌑 넷플릭스</span>
-                        <span onclick="addText('in-design', '- 픽셀 레트로 게임 스타일')" class="chip">👾 레트로</span>
-                        <span onclick="addText('in-design', '- 칠판 테마')" class="chip">🏫 칠판</span>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- 오른쪽: 프롬프트 에디터 -->
-        <section class="w-[35%] bg-black/60 p-6 overflow-y-auto custom-scroll border-l border-white/5">
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-[10px] font-bold text-slate-500 mb-1 tracking-widest uppercase italic">00. Selected Grade</label>
-                    <input type="text" id="in-grade" readonly class="w-full bg-slate-800 border-none rounded-lg p-3 text-sm text-blue-400 font-bold outline-none" placeholder="학년을 선택하세요">
-                </div>
-                <div>
-                    <label class="block text-[10px] font-bold text-blue-500 mb-1 tracking-widest uppercase">01. Target Subject</label>
-                    <textarea id="in-source" rows="2" placeholder="교과를 선택하세요"></textarea>
-                </div>
-                <div>
-                    <label class="block text-[10px] font-bold text-purple-500 mb-1 tracking-widest uppercase">02. Output Format</label>
-                    <textarea id="in-type" rows="2" placeholder="형태를 선택하세요"></textarea>
-                </div>
-                <div>
-                    <label class="block text-[10px] font-bold text-teal-500 mb-1 tracking-widest uppercase">03. UI/Visual Style</label>
-                    <textarea id="in-design" rows="2" placeholder="스타일을 선택하세요"></textarea>
-                </div>
-
-                <div class="pt-2">
-                    <button onclick="generateAndCopy()" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-xl font-black text-white shadow-xl shadow-blue-500/20 transition-all active:scale-95 flex items-center justify-center gap-2">
-                        <i class="fas fa-bolt"></i> 프롬프트 생성 & 복사
-                    </button>
-                    <p class="text-[9px] text-center text-slate-500 mt-2">프롬프트를 복사하여 ChatGPT / Claude / Gemini에 붙여넣으세요.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- 모달 -->
-    <div id="modal" class="fixed inset-0 bg-black/90 hidden flex items-center justify-center z-[100] backdrop-blur-2xl">
-        <div class="w-full max-w-sm p-10 text-center animate-in zoom-in duration-300">
-            <div class="w-20 h-20 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-6 text-blue-400 text-3xl">
-                <i class="fas fa-check"></i>
-            </div>
-            <h3 class="text-xl font-black mb-2 text-white italic">PROMPT COPIED!</h3>
-            <p class="text-slate-400 text-xs mb-8">성공적으로 복사되었습니다.<br>이제 AI와 고퀄리티 수업 자료를 만들어보세요.</p>
-            <button onclick="closeModal()" class="w-full bg-white text-black py-3 rounded-lg font-black text-sm hover:bg-slate-200 transition">확인</button>
-        </div>
-    </div>
-
-    <script>
-        function setGrade(grade) {
-            document.getElementById('in-grade').value = grade;
-            // 칩 스타일 업데이트
-            document.querySelectorAll('.grade-chip').forEach(chip => {
-                chip.classList.remove('active');
-                if(chip.innerText === grade.replace('고등학교 ', '')) chip.classList.add('active');
-            });
-        }
-
-        function setText(id, val) { 
-            document.getElementById(id).value = val; 
-        }
-
-        function addText(id, val) { 
-            document.getElementById(id).value += (document.getElementById(id).value ? '\n' : '') + val; 
-        }
-
-        function generateAndCopy() {
-            const grade = document.getElementById('in-grade').value;
-            const type = document.getElementById('in-type').value;
-            const subject = document.getElementById('in-source').value;
-            
-            if(!grade) { alert('대상 학년을 먼저 선택해주세요!'); return; }
-            if(!type || !subject) { alert('과목과 형태를 선택해주세요!'); return; }
-
-            const prompt = `[ROLE: 고등학교 교육 전문 설계자 및 충주상업고 전문 컨설턴트]
-[TARGET AUDIENCE: ${grade} 학생 (고등학교 수준)]
-
-대상 과목: ${subject}
-요청 결과물: ${type}
-디자인 스타일: ${document.getElementById('in-design').value || '모던하고 직관적인 교육용 디자인'}
+1. 교과목: ${subject}
+2. 요청 자료: ${type}
+3. 주제 및 추가 옵션: ${document.getElementById('in-design').value || '교과서 기반 핵심 내용'}
 
 ---
-[미션 및 지침]
-1. ${grade} 학생들의 발달 수준과 교육과정 성취기준에 맞춰 전문적인 내용을 구성하세요.
-2. 예체능 과목의 경우 실제 실습(노래, 운동, 그리기)에 바로 활용 가능한 가이드라인을 포함하세요.
-3. 기술/전문 교과의 경우 실무 데이터와 현장 중심 사례를 강조하세요.
-4. 웹 앱/게임 개발 시, Tailwind CSS를 활용한 단일 HTML 파일 코드를 제공하며, 코드는 즉시 작동 가능해야 합니다.
-5. 설명은 세련된 고등학생 눈높이에 맞추며, 핵심 내용이 시각적으로 잘 보이도록 구조화하세요.`;
+[AI 요청사항 - 선생님을 위한 문서 작성 지침]
+- 위 조건에 맞는 고품질 학습 자료를 텍스트 형식(마크다운)으로 작성해주세요.
+- 절대 코딩(HTML/JS)이나 프로그램 코드를 작성하지 마세요. 오직 문서 내용만 생성합니다.
+- 'PPT 구성안'일 경우 각 슬라이드별로 제목과 들어갈 상세 내용을 텍스트로 정리해주세요.
+- '활동지'나 '학습지'일 경우 학생용 문제와 교사용 정답/해설을 분리하여 작성해주세요.
+- 특성화고 수준에 맞는 실무 사례와 2022 개정 교육과정 성취기준을 반영해주세요.
+- 문서의 가독성을 위해 표(Table)나 글머리 기호를 적절히 사용하여 구조화해주세요.`;
 
             navigator.clipboard.writeText(prompt).then(() => {
                 document.getElementById('modal').classList.remove('hidden');
