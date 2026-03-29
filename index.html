@@ -3,139 +3,93 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>충주상업고등학교 AI Studio — 수업 콘텐츠 생성기</title>
+<title>충주상업고등학교 AI Studio — 수업 콘텐츠 생성기 V9.0</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
   :root {
-    --bg:             #f0f2f7;
-    --surface:        #ffffff;
-    --border:         #d4d8e8;
-    --accent:         #3b50c8;
-    --accent-hover:   #2d3ea0;
-    --accent-light:   #e8ebfb;
-    --text:           #1a1e2e;
-    --text-sub:       #4a5270;
-    --muted:          #7a84a8;
-    --danger:         #c0392b;
-    --warning:        #f39c12;
-    --tag-bg:         #eef0fb;
-    --tag-border:     #c0c8ea;
-    --tag-text:       #2d3a9a;
-    --tag-on-bg:      #3b50c8;
-    --tag-on-text:    #ffffff;
-    --preview-bg:     #1a1e2e;
-    --preview-surf:   #252b40;
-    --preview-border: #323856;
-    --preview-text:   #c8ceea;
-    --preview-hi:     #7eb8ff;
-    --preview-muted:  #5a6290;
+    --bg:             #020617;
+    --surface:        #0f172a;
+    --surface-light:  #1e293b;
+    --border:         rgba(255,255,255,0.1);
+    --accent:         #3b82f6;
+    --accent-hover:   #2563eb;
+    --text:           #f1f5f9;
+    --text-muted:     #94a3b8;
+    --preview-hi:     #60a5fa;
     --radius:         12px;
-    --radius-sm:      8px;
-    --radius-lg:      16px;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', sans-serif; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+  body { background: var(--bg); color: var(--text); font-family: 'Pretendard', 'Noto Sans KR', sans-serif; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
 
   /* ── HEADER ── */
   header {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 0 2rem; height: 72px; background: var(--surface);
-    border-bottom: 2px solid var(--border); z-index: 200; flex-shrink: 0;
+    padding: 0 2rem; height: 70px; background: rgba(15, 23, 42, 0.95);
+    border-bottom: 1px solid var(--border); backdrop-filter: blur(10px); z-index: 200; flex-shrink: 0;
   }
-  .logo-wrap { display: flex; align-items: center; gap: 0.75rem; }
-  .logo-icon {
-    width: 44px; height: 44px; background: linear-gradient(135deg, var(--accent), #6c40c9);
-    border-radius: 12px; display: flex; align-items: center; justify-content: center;
-    color: white; font-size: 1.2rem; box-shadow: 0 3px 10px rgba(59,80,200,0.3);
-  }
-  .logo-text { font-size: 1.25rem; font-weight: 900; color: var(--accent); letter-spacing: -0.02em; }
-  .logo-sub  { font-size: 0.75rem; color: var(--muted); font-weight: 600; display: block; }
-  
-  .nav-tabs { display: flex; gap: 1rem; margin-left: 2rem; }
+  .logo-wrap { display: flex; align-items: center; gap: 1rem; }
+  .logo-text { font-size: 1.3rem; font-weight: 900; color: var(--accent); letter-spacing: -0.02em; italic; }
+  .nav-tabs { display: flex; gap: 0.5rem; margin-left: 2rem; }
   .nav-tab {
-    padding: 0.5rem 1.25rem; border-radius: 20px; cursor: pointer;
-    font-weight: 700; font-size: 0.9rem; transition: 0.2s; color: var(--muted);
+    padding: 0.5rem 1.2rem; border-radius: 20px; cursor: pointer;
+    font-weight: 700; font-size: 0.85rem; transition: 0.2s; color: var(--text-muted);
   }
   .nav-tab.active { background: var(--accent); color: white; }
-  .nav-tab:hover:not(.active) { background: var(--accent-light); color: var(--accent); }
 
-  .header-right { display: flex; align-items: center; gap: 1rem; }
-  .dev-info { font-size: 0.75rem; text-align: right; color: var(--text-sub); border-right: 1px solid var(--border); padding-right: 1rem; }
+  .header-right { display: flex; align-items: center; gap: 1.5rem; }
+  .dev-info { font-size: 0.75rem; text-align: right; color: var(--text-muted); border-right: 1px solid var(--border); padding-right: 1rem; }
+  .dev-info strong { color: var(--accent); }
 
   /* ── WORKSPACE ── */
-  .workspace { display: grid; grid-template-columns: 1fr 500px; flex: 1; height: calc(100vh - 72px); overflow: hidden; }
-  .workspace.hidden { display: none; }
+  .workspace { display: grid; grid-template-columns: 1fr 480px; flex: 1; height: calc(100vh - 70px); overflow: hidden; }
+  .builder { overflow-y: auto; padding: 2rem; background: var(--bg); }
+  .editor { border-left: 1px solid var(--border); background: #000; display: flex; flex-direction: column; }
 
-  /* ── BUILDER (LEFT) ── */
-  .builder { overflow-y: auto; padding: 2rem 2.5rem 4rem; background: var(--bg); }
-  .builder::-webkit-scrollbar { width: 6px; }
-  .builder::-webkit-scrollbar-thumb { background: var(--tag-border); border-radius: 10px; }
+  /* ── STEP BLOCKS ── */
+  .step-block { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1.2rem; transition: 0.2s; }
+  .step-block.active { border-color: var(--accent); border-left: 5px solid var(--accent); }
+  .step-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem; }
+  .step-num { font-family: 'DM Mono'; font-size: 0.7rem; background: var(--accent); color: white; padding: 2px 8px; border-radius: 4px; }
+  .step-title { font-size: 1rem; font-weight: 800; color: var(--preview-hi); }
+  
+  .sub-title { font-size: 0.65rem; color: #64748b; font-weight: 800; text-transform: uppercase; margin: 15px 0 8px 8px; border-left: 2px solid #334155; padding-left: 8px; }
 
-  .step-block {
-    background: var(--surface); border: 1.5px solid var(--border);
-    border-radius: var(--radius-lg); padding: 1.75rem 2rem;
-    margin-bottom: 1.5rem; box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-  }
-  .step-block.has-selection { border-color: var(--accent); border-left: 6px solid var(--accent); }
-  .step-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.8rem; }
-  .step-num { font-family: 'DM Mono', monospace; font-size: 0.75rem; font-weight: 600; color: white; background: var(--accent); padding: 3px 12px; border-radius: 100px; }
-  .step-title { font-size: 1.1rem; font-weight: 800; }
-
-  .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; }
+  /* ── CHIPS ── */
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .tag {
-    cursor: pointer; font-size: 0.9rem; font-weight: 600; padding: 10px 18px;
-    border-radius: var(--radius-sm); border: 1.5px solid var(--tag-border);
-    background: var(--tag-bg); color: var(--tag-text); transition: 0.16s;
+    cursor: pointer; font-size: 0.75rem; font-weight: 600; padding: 8px 12px;
+    border-radius: 8px; border: 1px solid var(--border);
+    background: var(--surface-light); color: var(--text-muted); transition: 0.15s;
   }
-  .tag.on { background: var(--tag-on-bg); border-color: var(--tag-on-border); color: var(--tag-on-text); }
+  .tag:hover { border-color: var(--accent); color: white; transform: translateY(-1px); }
+  .tag.on { background: var(--accent) !important; color: white !important; border-color: var(--accent); box-shadow: 0 0 15px rgba(59,130,246,0.3); }
 
-  /* ── EDITOR (RIGHT) ── */
-  .editor { border-left: 2px solid var(--border); background: var(--preview-bg); display: flex; flex-direction: column; }
+  /* ── YOUTUBE ── */
+  .yt-input-wrap { display: flex; gap: 0.5rem; margin-top: 1rem; }
+  .yt-input { flex: 1; padding: 10px; background: #000; border: 1px solid var(--border); border-radius: 8px; color: white; outline: none; }
+  .yt-add-btn { padding: 10px 20px; background: #ef4444; color: white; border: none; border-radius: 8px; font-weight: 800; cursor: pointer; }
+  .yt-item { display: flex; align-items: center; gap: 0.6rem; padding: 8px; background: #1e1b4b; border-radius: 6px; margin-top: 0.5rem; font-size: 0.7rem; }
+
+  /* ── PREVIEW ── */
   .prompt-preview { flex: 1; overflow-y: auto; padding: 1.5rem; }
-  .prompt-section { margin-bottom: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--preview-border); background: rgba(0,0,0,0.2); }
-  .prompt-sec-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; padding: 8px 12px; color: var(--preview-muted); border-bottom: 1px solid var(--preview-border); text-transform: uppercase; }
-  .prompt-sec-content { padding: 12px; font-family: 'DM Mono', monospace; font-size: 0.8rem; line-height: 1.6; color: var(--preview-muted); }
-  .prompt-sec-content.has-value { color: var(--preview-hi); }
+  .prompt-section { margin-bottom: 0.8rem; border: 1px solid #1e293b; border-radius: 8px; background: rgba(15,23,42,0.5); }
+  .prompt-label { font-family: 'DM Mono'; font-size: 0.6rem; padding: 6px 12px; color: #475569; border-bottom: 1px solid #1e293b; }
+  .prompt-content { padding: 10px; font-family: 'DM Mono'; font-size: 0.8rem; color: var(--preview-hi); white-space: pre-wrap; line-height: 1.5; }
 
-  .topic-area { padding: 1.5rem; background: var(--preview-surf); }
-  textarea.topic-input { width: 100%; background: var(--preview-bg); border: 2px solid var(--preview-border); border-radius: var(--radius-sm); padding: 1rem; color: white; outline: none; min-height: 100px; }
-  
-  .gen-btn {
-    width: 100%; padding: 1.25rem; border-radius: var(--radius); border: none;
-    background: linear-gradient(135deg, #3b50c8, #6c40c9); color: white;
-    font-weight: 900; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.8rem;
-  }
+  textarea.topic-input { width: 100%; background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 1rem; color: white; outline: none; min-height: 100px; font-size: 0.9rem; }
+  .gen-btn { width: 100%; padding: 1.2rem; border-radius: 12px; border: none; background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white; font-weight: 900; font-size: 1.1rem; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 20px rgba(59,130,246,0.3); }
+  .gen-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(59,130,246,0.5); }
 
-  /* ── GUIDE VIEW ── */
-  #view-guide { overflow-y: auto; padding: 3rem; background: white; height: calc(100vh - 72px); }
-  .guide-container { max-w: 900px; margin: 0 auto; }
-  .guide-title { font-size: 2rem; font-weight: 900; color: var(--accent); margin-bottom: 2rem; border-bottom: 4px solid var(--accent-light); padding-bottom: 0.5rem; }
-  .guide-section { margin-bottom: 3rem; }
-  .guide-h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; color: var(--text); }
-  .guide-h3 i { color: var(--accent); }
-  .guide-card { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1rem; }
-  .guide-step { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; }
-  .step-circle { width: 32px; height: 32px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0; }
-  
-  .ai-badge-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1rem; }
-  .ai-badge { padding: 1rem; border-radius: var(--radius); border: 1px solid var(--border); text-align: center; }
-  .ai-badge img { height: 30px; margin-bottom: 0.5rem; }
-  .ai-badge strong { display: block; font-size: 1rem; margin-bottom: 0.3rem; }
-  .ai-badge span { font-size: 0.75rem; color: var(--text-sub); }
+  /* ── GUIDE ── */
+  #view-guide { overflow-y: auto; padding: 3rem; background: #f8fafc; color: #1e293b; height: calc(100vh - 70px); }
+  .guide-container { max-w: 800px; margin: 0 auto; line-height: 1.8; }
+  .guide-card { background: white; padding: 2rem; border-radius: 15px; border: 1px solid #e2e8f0; margin-bottom: 2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+  .caution-box { background: #fff5f5; border-left: 5px solid #f87171; padding: 1.5rem; border-radius: 8px; color: #991b1b; margin: 2rem 0; }
+  .restricted-box { background: #0f172a; color: white; padding: 2.5rem; border-radius: 15px; text-align: center; }
 
-  .caution-box { background: #fff5f5; border: 2px solid #feb2b2; border-radius: var(--radius); padding: 1.5rem; color: #c53030; }
-  .caution-box h4 { margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
-  
-  .restricted-box { background: #1a1e2e; color: #fff; padding: 2rem; border-radius: var(--radius); text-align: center; margin-top: 4rem; }
-  .restricted-box h2 { color: #f87171; margin-bottom: 1rem; }
-
-  .toast {
-    position: fixed; bottom: 3rem; left: 50%; transform: translateX(-50%) translateY(150px);
-    background: #0f172a; border: 2px solid var(--preview-hi); border-radius: 50px;
-    padding: 1rem 3rem; color: white; font-weight: 700; z-index: 10000; transition: 0.5s;
-  }
+  .toast { position: fixed; bottom: 3rem; left: 50%; transform: translateX(-50%) translateY(150px); background: #3b82f6; border-radius: 50px; padding: 1rem 3rem; color: white; font-weight: 800; z-index: 10000; transition: 0.5s; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
   .toast.show { transform: translateX(-50%) translateY(0); }
 </style>
 </head>
@@ -143,50 +97,90 @@
 
 <header>
   <div class="logo-wrap">
-    <div class="logo-icon"><i class="fas fa-microchip"></i></div>
-    <div>
-      <div class="logo-text">충주상업고등학교 AI Studio</div>
-      <span class="logo-sub">수업 설계 & 콘텐츠 빌더</span>
-    </div>
+    <div class="logo-text">CJCH AI STUDIO</div>
     <nav class="nav-tabs">
-      <div class="nav-tab active" onclick="switchTab('builder')">콘텐츠 빌더</div>
-      <div class="nav-tab" onclick="switchTab('guide')">사용 설명서</div>
+      <div class="nav-tab active" onclick="switchTab('builder')">마스터 빌더</div>
+      <div class="nav-tab" onclick="switchTab('guide')">사용법 및 가이드</div>
     </nav>
   </div>
   <div class="header-right">
     <div class="dev-info">Developed by<br><strong>충주상업고 교사 임재환</strong></div>
-    <button class="reset-btn" onclick="location.reload()">
-      <i class="fas fa-sync-alt"></i> 초기화
-    </button>
+    <button onclick="location.reload()" style="background:none; border:none; color:#64748b; cursor:pointer; font-size:1.2rem;"><i class="fas fa-sync-alt"></i></button>
   </div>
 </header>
 
-<!-- ============ VIEW 1: BUILDER ============ -->
+<!-- ============ BUILDER VIEW ============ -->
 <div id="view-builder" class="workspace">
   <section class="builder custom-scroll">
-    <div class="builder-hint">
-      <i class="fas fa-lightbulb"></i> <strong>임재환 선생님, 환영합니다!</strong> 아래 단계를 따라 옵션을 선택하고 주제를 입력해 주세요.
-    </div>
-
+    
+    <!-- STEP 0: 과목 (전체 리스트 복구) -->
     <div class="step-block" id="block-subject">
-      <div class="step-header"><span class="step-num">01</span><span class="step-title">담당 교과 선택</span></div>
+      <div class="step-header"><span class="step-num">01</span><span class="step-title">과목 선택 (전체 세분화)</span></div>
+      
+      <div class="sub-title">보통교과</div>
       <div class="tags">
         <span class="tag" data-group="subject" data-key="국어">📖 국어</span>
         <span class="tag" data-group="subject" data-key="수학">📐 수학</span>
         <span class="tag" data-group="subject" data-key="영어">🔤 영어</span>
         <span class="tag" data-group="subject" data-key="한국사">📜 한국사</span>
-        <span class="tag" data-group="subject" data-key="회계원리">💰 회계원리</span>
-        <span class="tag" data-group="subject" data-key="세무실무">🧾 세무실무</span>
-        <span class="tag" data-group="subject" data-key="프로그래밍">💻 프로그래밍</span>
-        <span class="tag" data-group="subject" data-key="조리실무">🍳 조리실무</span>
+        <span class="tag" data-group="subject" data-key="사회">🗺️ 사회</span>
+        <span class="tag" data-group="subject" data-key="과학">🧪 과학</span>
+      </div>
+
+      <div class="sub-title">예체능 및 교양</div>
+      <div class="tags">
         <span class="tag" data-group="subject" data-key="음악">🎼 음악</span>
         <span class="tag" data-group="subject" data-key="미술">🎨 미술</span>
         <span class="tag" data-group="subject" data-key="체육">🏀 체육</span>
+        <span class="tag" data-group="subject" data-key="보건">🏥 보건</span>
+        <span class="tag" data-group="subject" data-key="진로와직업">🛣️ 진로</span>
+        <span class="tag" data-group="subject" data-key="한문">㊙️ 한문</span>
+      </div>
+
+      <div class="sub-title">경영 / 회계 / 금융</div>
+      <div class="tags">
+        <span class="tag" data-group="subject" data-key="회계원리">💰 회계원리</span>
+        <span class="tag" data-group="subject" data-key="세무실무">🧾 세무실무</span>
+        <span class="tag" data-group="subject" data-key="기업경영">🏢 기업경영</span>
+        <span class="tag" data-group="subject" data-key="금융실무">🏦 금융실무</span>
+        <span class="tag" data-group="subject" data-key="창업실무">🚀 창업실무</span>
+        <span class="tag" data-group="subject" data-key="사무관리">📂 사무관리</span>
+        <span class="tag" data-group="subject" data-key="ERP실무">⚙️ ERP실무</span>
+      </div>
+
+      <div class="sub-title">IT / 프로그래밍 / 조리 / 관광</div>
+      <div class="tags">
+        <span class="tag" data-group="subject" data-key="C프로그래밍">💻 C프로그래밍</span>
+        <span class="tag" data-group="subject" data-key="파이썬">🐍 파이썬</span>
+        <span class="tag" data-group="subject" data-key="AI기초">🤖 AI기초</span>
+        <span class="tag" data-group="subject" data-key="한식조리">🍱 한식조리</span>
+        <span class="tag" data-group="subject" data-key="양식조리">🍝 양식조리</span>
+        <span class="tag" data-group="subject" data-key="제과제빵">🍞 제과제빵</span>
+        <span class="tag" data-group="subject" data-key="바리스타">☕ 바리스타</span>
+        <span class="tag" data-group="subject" data-key="관광서비스">🏨 관광서비스</span>
       </div>
     </div>
 
+    <!-- STEP 1: 학습 대상 및 난이도 -->
+    <div class="step-block" id="block-target">
+      <div class="step-header"><span class="step-num">02</span><span class="step-title">대상 학년 및 수준</span></div>
+      <div class="sub-title">학년</div>
+      <div class="tags">
+        <span class="tag" data-group="grade" data-key="1학년">1학년</span>
+        <span class="tag" data-group="grade" data-key="2학년">2학년</span>
+        <span class="tag" data-group="grade" data-key="3학년">3학년</span>
+      </div>
+      <div class="sub-title">난이도</div>
+      <div class="tags">
+        <span class="tag" data-group="level" data-key="기초보충">🌱 기초보충</span>
+        <span class="tag" data-group="level" data-key="보통수준">🌿 보통수준</span>
+        <span class="tag" data-group="level" data-key="심화발전">🌳 심화발전</span>
+      </div>
+    </div>
+
+    <!-- STEP 2: 결과물 형태 -->
     <div class="step-block" id="block-output">
-      <div class="step-header"><span class="step-num">02</span><span class="step-title">결과물 형태</span></div>
+      <div class="step-header"><span class="step-num">03</span><span class="step-title">결과물 형태</span></div>
       <div class="tags">
         <span class="tag" data-group="output" data-key="web_slide">🎞️ 웹 제작 (Web PPT)</span>
         <span class="tag" data-group="output" data-key="lesson_plan">📜 수업 지도안</span>
@@ -196,19 +190,33 @@
       </div>
     </div>
 
+    <!-- STEP 3: 교수법 -->
     <div class="step-block" id="block-pedagogy">
-      <div class="step-header"><span class="step-num">03</span><span class="step-title">교수법 및 전략</span></div>
+      <div class="step-header"><span class="step-num">04</span><span class="step-title">교수법 및 전략</span></div>
       <div class="tags">
         <span class="tag" data-group="pedagogy" data-key="lecture">👨‍🏫 강의식</span>
         <span class="tag" data-group="pedagogy" data-key="pbl">🏗️ PBL(프로젝트)</span>
         <span class="tag" data-group="pedagogy" data-key="game">🎮 게이미피케이션</span>
         <span class="tag" data-group="pedagogy" data-key="havruta">💬 하브루타</span>
+        <span class="tag" data-group="pedagogy" data-key="flip">🔄 플립러닝</span>
         <span class="tag" data-group="pedagogy" data-key="scaffold">🪜 스캐폴딩</span>
       </div>
     </div>
 
-    <div class="step-block" id="block-design">
-      <div class="step-header"><span class="step-num">04</span><span class="step-title">디자인 스타일</span></div>
+    <!-- STEP 4: 유튜브 (복구) -->
+    <div class="step-block" id="block-yt">
+      <div class="step-header"><span class="step-num">05</span><span class="step-title">유튜브 영상 링크</span></div>
+      <div class="yt-input-wrap">
+        <input class="yt-input" id="ytUrlInput" placeholder="유튜브 주소 복사-붙여넣기">
+        <button class="yt-add-btn" onclick="addYoutube()">추가</button>
+      </div>
+      <div class="yt-list" id="ytList"></div>
+    </div>
+
+    <!-- STEP 5: 스타일 -->
+    <div class="step-block" id="block-style">
+      <div class="step-header"><span class="step-num">06</span><span class="step-title">디자인 및 어조</span></div>
+      <div class="sub-title">디자인 테마</div>
       <div class="tags">
         <span class="tag" data-group="design" data-key="toss">🔹 토스</span>
         <span class="tag" data-group="design" data-key="netflix">🎬 넷플릭스</span>
@@ -217,17 +225,27 @@
         <span class="tag" data-group="design" data-key="joseon">📜 조선왕조</span>
         <span class="tag" data-group="design" data-key="chalkboard">🏫 칠판</span>
       </div>
+      <div class="sub-title">어조</div>
+      <div class="tags">
+        <span class="tag" data-group="tone" data-key="friendly">😊 친근함</span>
+        <span class="tag" data-group="tone" data-key="professional">🧐 전문적</span>
+        <span class="tag" data-group="tone" data-key="humorous">🤣 유머러스</span>
+        <span class="tag" data-group="tone" data-key="logical">⚖️ 논리적</span>
+      </div>
     </div>
+
   </section>
 
+  <!-- RIGHT PREVIEW -->
   <section class="editor">
-    <div class="prompt-preview custom-scroll" id="promptPreview">
-      <div class="prompt-section"><div class="prompt-sec-label">Subject & Output</div><div class="prompt-sec-content" id="pv-info"></div></div>
-      <div class="prompt-section"><div class="prompt-sec-label">Strategy & Style</div><div class="prompt-sec-content" id="pv-strategy"></div></div>
-      <div class="prompt-section"><div class="prompt-sec-label">Course Topic</div><div class="prompt-sec-content" id="pv-topic"></div></div>
+    <div class="prompt-preview custom-scroll">
+      <div class="prompt-section"><div class="prompt-label">01 Subject & Target</div><div class="prompt-content" id="pv-info"></div></div>
+      <div class="prompt-section"><div class="prompt-label">02 Pedagogy & Format</div><div class="prompt-content" id="pv-strategy"></div></div>
+      <div class="prompt-section"><div class="prompt-label">03 YouTube References</div><div class="prompt-content" id="pv-yt"></div></div>
+      <div class="prompt-section"><div class="prompt-label">04 Topic Detail</div><div class="prompt-content" id="pv-topic"></div></div>
     </div>
     <div class="topic-area">
-      <textarea class="topic-input" id="topicInput" placeholder="상세 주제를 입력하세요 (예: 재무제표의 종류, 파이썬 리스트 활용 등)"></textarea>
+      <textarea class="topic-input" id="topicInput" placeholder="수업 주제를 입력하세요 (예: 재무제표의 종류와 특징)"></textarea>
     </div>
     <div class="gen-area">
       <button class="gen-btn" onclick="generateAndCopy()"><i class="fas fa-bolt"></i> 프롬프트 생성 & 복사</button>
@@ -235,67 +253,37 @@
   </section>
 </div>
 
-<!-- ============ VIEW 2: GUIDE ============ -->
+<!-- ============ GUIDE VIEW ============ -->
 <div id="view-guide" class="custom-scroll" style="display:none">
   <div class="guide-container">
-    <h1 class="guide-title">사용 설명서 (User Guide)</h1>
+    <h1 class="guide-title">수업 설계 도구 사용 가이드</h1>
     
-    <div class="guide-section">
-      <h3 class="guide-h3"><i class="fas fa-play-circle"></i> 이용 방법 3단계</h3>
-      <div class="guide-step">
-        <div class="step-circle">1</div>
-        <div>
-          <strong>옵션 선택 및 주제 입력</strong>
-          <p>좌측 '콘텐츠 빌더' 화면에서 과목, 형태, 교수법, 디자인을 클릭하여 선택한 후, 하단에 구체적인 수업 주제를 입력하세요.</p>
-        </div>
-      </div>
-      <div class="guide-step">
-        <div class="step-circle">2</div>
-        <div>
-          <strong>프롬프트 생성 및 복사</strong>
-          <p>'프롬프트 생성 & 복사' 버튼을 누르면 인공지능에게 전달할 마스터 프롬프트가 클립보드에 자동으로 저장됩니다.</p>
-        </div>
-      </div>
-      <div class="guide-step">
-        <div class="step-circle">3</div>
-        <div>
-          <strong>AI 모델에 붙여넣기</strong>
-          <p>평소 사용하시는 AI 채팅창에 <strong>붙여넣기(Ctrl+V)</strong>를 하세요. AI가 선택한 옵션에 맞춰 자료 작성을 시작합니다.</p>
-        </div>
-      </div>
+    <div class="guide-card">
+      <h3 style="margin-bottom:1rem"><i class="fas fa-magic"></i> 이용 방법</h3>
+      <p>1. 좌측 빌더에서 <strong>과목, 학년, 교수법, 결과물 형태, 디자인</strong> 등을 클릭하여 선택하세요.<br>
+         2. 수업에 참고할 유튜브 영상이 있다면 링크를 추가해 주세요.<br>
+         3. 우측 하단에 구체적인 <strong>수업 주제</strong>를 입력하고 생성 버튼을 누릅니다.<br>
+         4. 복사된 프롬프트를 <strong>ChatGPT, Gemini, Claude</strong> 등 선생님이 사용하시는 AI 모델에 <strong>붙여넣기(Ctrl+V)</strong> 하세요.</p>
     </div>
 
-    <div class="guide-section">
-      <h3 class="guide-h3"><i class="fas fa-robot"></i> 추천 AI 모델</h3>
-      <p>본 서비스에서 생성된 프롬프트는 아래 모델들에서 최상의 결과물을 보여줍니다.</p>
-      <div class="ai-badge-grid">
-        <div class="ai-badge">
-          <strong>ChatGPT (Plus/Free)</strong>
-          <span>'Canvas' 기능을 통해 슬라이드를 직접 렌더링할 수 있습니다.</span>
-        </div>
-        <div class="ai-badge">
-          <strong>Claude 3.5 Sonnet</strong>
-          <span>'Artifacts' 기능을 통해 웹 콘텐츠를 즉시 실행해 보여줍니다.</span>
-        </div>
-        <div class="ai-badge">
-          <strong>Google Gemini</strong>
-          <span>코드 실행 및 구글 워크스페이스 연동에 최적화되어 있습니다.</span>
-        </div>
-      </div>
+    <div class="guide-card">
+      <h3 style="margin-bottom:1rem"><i class="fas fa-robot"></i> 추천 AI 모델별 특징</h3>
+      <ul style="padding-left:1.5rem">
+        <li><strong>ChatGPT:</strong> 'Canvas' 기능을 통해 시각적인 웹 슬라이드를 가장 잘 구현합니다.</li>
+        <li><strong>Claude 3.5:</strong> 'Artifacts' 기능을 사용하여 실제 작동하는 앱 형태의 자료를 보여줍니다.</li>
+        <li><strong>Gemini:</strong> 구글 워크스페이스와의 연동성이 좋으며 빠른 검색이 가능합니다.</li>
+      </ul>
     </div>
 
-    <div class="guide-section">
-      <h3 class="guide-h3"><i class="fas fa-exclamation-triangle"></i> 주의사항 및 안내</h3>
-      <div class="caution-box">
-        <h4><i class="fas fa-info-circle"></i> AI는 실수할 수 있습니다</h4>
-        <p>인공지능이 생성한 수치, 역사적 사실, 코드 등은 100% 정확하지 않을 수 있습니다. <strong>수업에 활용하시기 전, 반드시 선생님의 전문적인 검토와 수정</strong> 과정을 거쳐주시기 바랍니다.</p>
-      </div>
+    <div class="caution-box">
+      <h4><i class="fas fa-exclamation-triangle"></i> AI는 실수할 수 있습니다</h4>
+      <p>인공지능이 생성한 자료에는 사실과 다른 정보나 수치 오류가 포함될 수 있습니다. <strong>학생들에게 배부하시기 전, 반드시 선생님의 전문적인 검토</strong>를 부탁드립니다.</p>
     </div>
 
     <div class="restricted-box">
-      <h2>⚠️ 사용 제한 안내</h2>
-      <p>본 시스템은 <strong>충주상업고등학교(CJCH) 교직원 전용</strong>으로 개발되었습니다.</p>
-      <p style="margin-top:0.5rem; color:#94a3b8">타 학교 및 외부 기관에서의 무단 사용, 복제 및 배포를 엄격히 금지합니다.</p>
+      <h2>⛔ 사용 권한 및 보안 안내</h2>
+      <p>본 시스템은 <strong>충주상업고등학교(CJCH) 교직원 전용</strong>으로 기획 및 개발되었습니다.</p>
+      <p style="margin-top:1rem; color:#94a3b8; font-size:0.9rem;">타 학교 선생님이나 외부 기관의 무단 사용 및 배포는 엄격히 금지됩니다.</p>
     </div>
   </div>
 </div>
@@ -303,19 +291,14 @@
 <div class="toast" id="toast">📋 프롬프트가 복사되었습니다!</div>
 
 <script>
-const state = { subject:[], output:[], pedagogy:[], design:[] };
-const SINGLE_SELECT = new Set(['subject', 'output', 'design']);
+const state = { subject:[], grade:[], level:[], output:[], pedagogy:[], design:[], tone:[], youtubes:[] };
+const SINGLE_SELECT = new Set(['subject', 'grade', 'level', 'output', 'design', 'tone']);
 
 function switchTab(tab) {
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   event.target.classList.add('active');
-  if(tab === 'builder') {
-    document.getElementById('view-builder').style.display = 'grid';
-    document.getElementById('view-guide').style.display = 'none';
-  } else {
-    document.getElementById('view-builder').style.display = 'none';
-    document.getElementById('view-guide').style.display = 'block';
-  }
+  document.getElementById('view-builder').style.display = tab === 'builder' ? 'grid' : 'none';
+  document.getElementById('view-guide').style.display = tab === 'guide' ? 'block' : 'none';
 }
 
 document.querySelectorAll('.tag').forEach(tag => {
@@ -334,19 +317,37 @@ document.querySelectorAll('.tag').forEach(tag => {
   });
 });
 
+function addYoutube() {
+  const url = document.getElementById('ytUrlInput').value.trim();
+  if(!url) return;
+  state.youtubes.push(url);
+  document.getElementById('ytUrlInput').value = '';
+  renderYoutubeList();
+  updateUI();
+}
+
+function removeYoutube(idx) { state.youtubes.splice(idx, 1); renderYoutubeList(); updateUI(); }
+function renderYoutubeList() {
+  document.getElementById('ytList').innerHTML = state.youtubes.map((y,i) => `
+    <div class="yt-item"><i class="fab fa-youtube" style="color:red"></i> ${y}
+    <i class="fas fa-times" style="margin-left:auto;cursor:pointer" onclick="removeYoutube(${i})"></i></div>`).join('');
+}
+
 document.getElementById('topicInput').addEventListener('input', updateUI);
 
 function updateUI() {
-  document.getElementById('pv-info').textContent = [state.subject[0], state.output[0]].filter(Boolean).join(' → ');
-  document.getElementById('pv-strategy').textContent = [...state.pedagogy, state.design[0]].filter(Boolean).join(' / ');
+  document.getElementById('pv-info').textContent = [state.subject[0], state.grade[0], state.level[0]].filter(Boolean).join(' / ');
+  document.getElementById('pv-strategy').textContent = [state.pedagogy.join(', '), state.output[0]].filter(Boolean).join(' → ');
+  document.getElementById('pv-yt').textContent = state.youtubes.join('\n');
   document.getElementById('pv-topic').textContent = document.getElementById('topicInput').value;
   
   document.querySelectorAll('.step-block').forEach(b => {
     const groups = b.id === 'block-subject' ? ['subject'] : 
+                   b.id === 'block-target' ? ['grade', 'level'] :
                    b.id === 'block-output' ? ['output'] :
                    b.id === 'block-pedagogy' ? ['pedagogy'] :
-                   b.id === 'block-design' ? ['design'] : [];
-    b.classList.toggle('has-selection', groups.some(g => state[g].length > 0));
+                   b.id === 'block-style' ? ['design', 'tone'] : [];
+    b.classList.toggle('active', groups.some(g => state[g].length > 0) || (b.id === 'block-yt' && state.youtubes.length > 0));
   });
 }
 
@@ -355,20 +356,23 @@ function generateAndCopy() {
   if(!state.subject.length || !state.output.length || !topic) { alert('필수 항목을 모두 선택해 주세요!'); return; }
 
   const prompt = `
-[ROLE: 교육 전문가 및 충주상업고등학교 전용 콘텐츠 설계자]
-[CONTEXT: 충주상업고등학교 수업을 위한 고퀄리티 자료 제작]
+[ROLE: 교육 전문가 및 충주상업고등학교 수업 설계 AI]
+[MISSION: 충주상업고등학교 학생들을 위한 고품질 수업 콘텐츠 제작]
 
-1. 주제: ${topic}
-2. 과목: ${state.subject[0]}
-3. 형태: ${state.output[0]}
-4. 전략/디자인: ${state.pedagogy.join(', ')} / ${state.design[0]}
+1. 과목 및 대상: ${state.subject[0]} (${state.grade[0]}, ${state.level[0]})
+2. 결과물 형태: ${state.output[0]}
+3. 수업 전략: ${state.pedagogy.join(', ')}
+4. 스타일/어조: ${state.design[0]} 테마 / ${state.tone[0]} 말투
+5. 주제: ${topic}
+6. 참고 영상: ${state.youtubes.join(', ')}
 
 ---
-[요구사항]
-- 빈칸 없이 실제 수업 내용을 모두 채워 작성하세요.
-- 특성화고 실무 사례를 포함하고, 2022 개정 교육과정을 반영하세요.
-- 웹 제작 시 단일 HTML 파일로 코드를 작성하고 시각화 기능을 사용하세요.
-- AI의 특성상 오류가 있을 수 있으니 검토 가능한 구조로 작성하세요.
+[지침]
+- 플레이스홀더 없이 실제 수업 내용을 구체적으로 작성하세요.
+- 특성화고 실무 역량 강화를 위해 최신 비즈니스 사례와 성취기준을 반영하세요.
+- 웹 제작 시 단일 HTML 파일로 완벽한 시각화 결과물을 만드세요.
+- AI의 잠재적 오류를 인지하고 교사가 검토하기 좋은 구조로 출력하세요.
+- ChatGPT(Canvas), Claude(Artifacts), Gemini(Canvas) 트리거를 사용하세요.
 `;
 
   navigator.clipboard.writeText(prompt);
@@ -376,8 +380,6 @@ function generateAndCopy() {
   toast.classList.add('show');
   setTimeout(() => toast.classList.remove('show'), 3000);
 }
-
-updateUI();
 </script>
 </body>
 </html>
