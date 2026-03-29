@@ -1,16 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>KoreaUm의 교육 공간</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KoreaUm | AI Edu Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #030712; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .ai-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
 </head>
-<body>
-    <h1>축하합니다! KoreaUm님의 첫 홈페이지입니다.</h1>
-    <p>여기는 제가 공부한 내용을 정리하는 소중한 공간입니다.</p>
-    <hr>
-    <h3>기록 목록</h3>
-    <ul>
-        <li>첫 번째 기록: 깃허브 홈페이지 만들기 성공!</li>
-    </ul>
+<body class="text-slate-200">
+
+    <!-- 상단 네비게이션 -->
+    <nav class="sticky top-0 z-50 glass border-b border-white/5 px-6 py-4 flex justify-between items-center">
+        <div class="text-xl font-bold tracking-tight ai-gradient">KOREAUM AI</div>
+        <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-400">
+            <a href="#" class="hover:text-white transition">Docs</a>
+            <a href="#" class="hover:text-white transition">Projects</a>
+            <a href="#" class="hover:text-white transition">About</a>
+        </div>
+        <button class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-full text-sm font-semibold transition">Get Started</button>
+    </nav>
+
+    <!-- 메인 히어로 섹션 -->
+    <main class="max-w-6xl mx-auto px-6 pt-20 pb-32">
+        <div class="text-center">
+            <span class="inline-block px-4 py-1.5 rounded-full glass text-xs font-semibold text-indigo-400 mb-6 border border-indigo-500/20">Next Generation Learning</span>
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-8 tracking-tight">
+                미래를 설계하는 <br><span class="ai-gradient">지능형 교육 플랫폼</span>
+            </h1>
+            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+                KoreaUm의 edu 저장소에 오신 것을 환영합니다. 이곳에서는 최신 AI 기술과 학습 데이터를 결합하여 혁신적인 교육 경험을 정리합니다.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4">
+                <a href="#" class="w-full md:w-auto bg-white text-black px-8 py-4 rounded-xl font-bold hover:bg-slate-200 transition">학습 시작하기</a>
+                <a href="#" class="w-full md:w-auto glass px-8 py-4 rounded-xl font-bold hover:bg-white/5 transition border border-white/10 text-white">문서 읽기</a>
+            </div>
+        </div>
+
+        <!-- 카드 섹션 -->
+        <div class="grid md:grid-cols-3 gap-6 mt-32">
+            <div class="glass p-8 rounded-3xl hover:border-indigo-500/50 transition group">
+                <div class="w-12 h-12 bg-indigo-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                    <svg class="w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3">초고속 로딩</h3>
+                <p class="text-slate-400 leading-relaxed">GitHub Pages를 활용한 압도적인 성능의 웹 호스팅 서비스를 경험하세요.</p>
+            </div>
+            
+            <div class="glass p-8 rounded-3xl hover:border-purple-500/50 transition group text-white">
+                <div class="w-12 h-12 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                    <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3">AI 데이터 보안</h3>
+                <p class="text-slate-400 leading-relaxed">모든 학습 데이터는 안전하게 관리되며 최신 보안 프로토콜을 따릅니다.</p>
+            </div>
+
+            <div class="glass p-8 rounded-3xl hover:border-pink-500/50 transition group">
+                <div class="w-12 h-12 bg-pink-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                    <svg class="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3">맞춤형 모듈</h3>
+                <p class="text-slate-400 leading-relaxed">필요한 기능만 쏙쏙 골라 담는 모듈형 아키텍처를 지원합니다.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-t border-white/5 py-12 text-center text-slate-500 text-sm">
+        © 2024 KoreaUm Education. Built with AI Vision.
+    </footer>
+
 </body>
 </html>
