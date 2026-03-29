@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>충주상업고등학교 AI Studio — 수업 콘텐츠 생성기 V9.0</title>
+<title>충주상업고등학교 AI Studio — 수업 콘텐츠 생성기 V10.0</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
@@ -30,7 +30,7 @@
     border-bottom: 1px solid var(--border); backdrop-filter: blur(10px); z-index: 200; flex-shrink: 0;
   }
   .logo-wrap { display: flex; align-items: center; gap: 1rem; }
-  .logo-text { font-size: 1.3rem; font-weight: 900; color: var(--accent); letter-spacing: -0.02em; italic; }
+  .logo-text { font-size: 1.3rem; font-weight: 900; color: var(--accent); letter-spacing: -0.02em; }
   .nav-tabs { display: flex; gap: 0.5rem; margin-left: 2rem; }
   .nav-tab {
     padding: 0.5rem 1.2rem; border-radius: 20px; cursor: pointer;
@@ -89,7 +89,7 @@
   .caution-box { background: #fff5f5; border-left: 5px solid #f87171; padding: 1.5rem; border-radius: 8px; color: #991b1b; margin: 2rem 0; }
   .restricted-box { background: #0f172a; color: white; padding: 2.5rem; border-radius: 15px; text-align: center; }
 
-  .toast { position: fixed; bottom: 3rem; left: 50%; transform: translateX(-50%) translateY(150px); background: #3b82f6; border-radius: 50px; padding: 1rem 3rem; color: white; font-weight: 800; z-index: 10000; transition: 0.5s; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+  .toast { position: fixed; bottom: 3rem; left: 50%; transform: translateX(-50%) translateY(150px); background: #3b82f6; border-radius: 50px; padding: 1rem 3rem; color: white; font-weight: 800; z-index: 10000; transition: 0.5s; }
   .toast.show { transform: translateX(-50%) translateY(0); }
 </style>
 </head>
@@ -113,9 +113,9 @@
 <div id="view-builder" class="workspace">
   <section class="builder custom-scroll">
     
-    <!-- STEP 0: 과목 (전체 리스트 복구) -->
+    <!-- STEP 01: 과목 선택 -->
     <div class="step-block" id="block-subject">
-      <div class="step-header"><span class="step-num">01</span><span class="step-title">과목 선택 (전체 세분화)</span></div>
+      <div class="step-header"><span class="step-num">01</span><span class="step-title">과목 선택</span></div>
       
       <div class="sub-title">보통교과</div>
       <div class="tags">
@@ -161,7 +161,7 @@
       </div>
     </div>
 
-    <!-- STEP 1: 학습 대상 및 난이도 -->
+    <!-- STEP 02: 대상 및 수준 -->
     <div class="step-block" id="block-target">
       <div class="step-header"><span class="step-num">02</span><span class="step-title">대상 학년 및 수준</span></div>
       <div class="sub-title">학년</div>
@@ -178,9 +178,19 @@
       </div>
     </div>
 
-    <!-- STEP 2: 결과물 형태 -->
+    <!-- STEP 03: 교육과정 (신규 추가) -->
+    <div class="step-block" id="block-curriculum">
+      <div class="step-header"><span class="step-num">03</span><span class="step-title">교육과정 선택</span></div>
+      <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:0.8rem; padding-left:8px;">성취기준 및 내용 체계의 기준이 되는 교육과정을 선택하세요.</p>
+      <div class="tags">
+        <span class="tag" data-group="curriculum" data-key="2022 개정 교육과정">✨ 2022 개정 교육과정</span>
+        <span class="tag" data-group="curriculum" data-key="2015 개정 교육과정">📜 2015 개정 교육과정</span>
+      </div>
+    </div>
+
+    <!-- STEP 04: 결과물 형태 -->
     <div class="step-block" id="block-output">
-      <div class="step-header"><span class="step-num">03</span><span class="step-title">결과물 형태</span></div>
+      <div class="step-header"><span class="step-num">04</span><span class="step-title">결과물 형태</span></div>
       <div class="tags">
         <span class="tag" data-group="output" data-key="web_slide">🎞️ 웹 제작 (Web PPT)</span>
         <span class="tag" data-group="output" data-key="lesson_plan">📜 수업 지도안</span>
@@ -190,9 +200,9 @@
       </div>
     </div>
 
-    <!-- STEP 3: 교수법 -->
+    <!-- STEP 05: 교수법 -->
     <div class="step-block" id="block-pedagogy">
-      <div class="step-header"><span class="step-num">04</span><span class="step-title">교수법 및 전략</span></div>
+      <div class="step-header"><span class="step-num">05</span><span class="step-title">교수법 및 전략</span></div>
       <div class="tags">
         <span class="tag" data-group="pedagogy" data-key="lecture">👨‍🏫 강의식</span>
         <span class="tag" data-group="pedagogy" data-key="pbl">🏗️ PBL(프로젝트)</span>
@@ -203,19 +213,19 @@
       </div>
     </div>
 
-    <!-- STEP 4: 유튜브 (복구) -->
+    <!-- STEP 06: 유튜브 -->
     <div class="step-block" id="block-yt">
-      <div class="step-header"><span class="step-num">05</span><span class="step-title">유튜브 영상 링크</span></div>
+      <div class="step-header"><span class="step-num">06</span><span class="step-title">유튜브 영상 링크</span></div>
       <div class="yt-input-wrap">
-        <input class="yt-input" id="ytUrlInput" placeholder="유튜브 주소 복사-붙여넣기">
+        <input class="yt-input" id="ytUrlInput" placeholder="유튜브 주소 입력">
         <button class="yt-add-btn" onclick="addYoutube()">추가</button>
       </div>
-      <div class="yt-list" id="ytList"></div>
+      <div id="ytList"></div>
     </div>
 
-    <!-- STEP 5: 스타일 -->
+    <!-- STEP 07: 스타일/어조 -->
     <div class="step-block" id="block-style">
-      <div class="step-header"><span class="step-num">06</span><span class="step-title">디자인 및 어조</span></div>
+      <div class="step-header"><span class="step-num">07</span><span class="step-title">디자인 및 어조</span></div>
       <div class="sub-title">디자인 테마</div>
       <div class="tags">
         <span class="tag" data-group="design" data-key="toss">🔹 토스</span>
@@ -239,13 +249,13 @@
   <!-- RIGHT PREVIEW -->
   <section class="editor">
     <div class="prompt-preview custom-scroll">
-      <div class="prompt-section"><div class="prompt-label">01 Subject & Target</div><div class="prompt-content" id="pv-info"></div></div>
+      <div class="prompt-section"><div class="prompt-label">01 Subject & Curriculum</div><div class="prompt-content" id="pv-info"></div></div>
       <div class="prompt-section"><div class="prompt-label">02 Pedagogy & Format</div><div class="prompt-content" id="pv-strategy"></div></div>
       <div class="prompt-section"><div class="prompt-label">03 YouTube References</div><div class="prompt-content" id="pv-yt"></div></div>
       <div class="prompt-section"><div class="prompt-label">04 Topic Detail</div><div class="prompt-content" id="pv-topic"></div></div>
     </div>
     <div class="topic-area">
-      <textarea class="topic-input" id="topicInput" placeholder="수업 주제를 입력하세요 (예: 재무제표의 종류와 특징)"></textarea>
+      <textarea class="topic-input" id="topicInput" placeholder="수업 주제를 입력하세요 (예: 재무상태표의 종류와 특징)"></textarea>
     </div>
     <div class="gen-area">
       <button class="gen-btn" onclick="generateAndCopy()"><i class="fas fa-bolt"></i> 프롬프트 생성 & 복사</button>
@@ -253,46 +263,32 @@
   </section>
 </div>
 
-<!-- ============ GUIDE VIEW ============ -->
 <div id="view-guide" class="custom-scroll" style="display:none">
   <div class="guide-container">
     <h1 class="guide-title">수업 설계 도구 사용 가이드</h1>
-    
     <div class="guide-card">
-      <h3 style="margin-bottom:1rem"><i class="fas fa-magic"></i> 이용 방법</h3>
-      <p>1. 좌측 빌더에서 <strong>과목, 학년, 교수법, 결과물 형태, 디자인</strong> 등을 클릭하여 선택하세요.<br>
-         2. 수업에 참고할 유튜브 영상이 있다면 링크를 추가해 주세요.<br>
-         3. 우측 하단에 구체적인 <strong>수업 주제</strong>를 입력하고 생성 버튼을 누릅니다.<br>
-         4. 복사된 프롬프트를 <strong>ChatGPT, Gemini, Claude</strong> 등 선생님이 사용하시는 AI 모델에 <strong>붙여넣기(Ctrl+V)</strong> 하세요.</p>
+      <h3 style="margin-bottom:1rem"><i class="fas fa-play-circle"></i> 이용 방법</h3>
+      <p>1. 빌더에서 <strong>과목, 학년, 교육과정, 전략, 형태</strong> 등을 선택하세요.<br>
+         2. 유튜브 영상 참고가 필요하면 주소를 추가하세요.<br>
+         3. <strong>수업 주제</strong>를 입력하고 생성 버튼을 누릅니다.<br>
+         4. 복사된 내용을 <strong>ChatGPT, Gemini, Claude</strong> 등에 붙여넣기 하세요.</p>
     </div>
-
-    <div class="guide-card">
-      <h3 style="margin-bottom:1rem"><i class="fas fa-robot"></i> 추천 AI 모델별 특징</h3>
-      <ul style="padding-left:1.5rem">
-        <li><strong>ChatGPT:</strong> 'Canvas' 기능을 통해 시각적인 웹 슬라이드를 가장 잘 구현합니다.</li>
-        <li><strong>Claude 3.5:</strong> 'Artifacts' 기능을 사용하여 실제 작동하는 앱 형태의 자료를 보여줍니다.</li>
-        <li><strong>Gemini:</strong> 구글 워크스페이스와의 연동성이 좋으며 빠른 검색이 가능합니다.</li>
-      </ul>
-    </div>
-
     <div class="caution-box">
-      <h4><i class="fas fa-exclamation-triangle"></i> AI는 실수할 수 있습니다</h4>
-      <p>인공지능이 생성한 자료에는 사실과 다른 정보나 수치 오류가 포함될 수 있습니다. <strong>학생들에게 배부하시기 전, 반드시 선생님의 전문적인 검토</strong>를 부탁드립니다.</p>
+      <h4>⚠️ 주의사항</h4>
+      <p>AI가 생성한 내용은 정확하지 않을 수 있습니다. 수업 활용 전 선생님의 검토가 필수입니다.</p>
     </div>
-
     <div class="restricted-box">
-      <h2>⛔ 사용 권한 및 보안 안내</h2>
-      <p>본 시스템은 <strong>충주상업고등학교(CJCH) 교직원 전용</strong>으로 기획 및 개발되었습니다.</p>
-      <p style="margin-top:1rem; color:#94a3b8; font-size:0.9rem;">타 학교 선생님이나 외부 기관의 무단 사용 및 배포는 엄격히 금지됩니다.</p>
+      <h2>⛔ 사용 제한</h2>
+      <p>충주상업고등학교 교직원 전용 도구입니다. 외부 무단 배포를 금지합니다.</p>
     </div>
   </div>
 </div>
 
-<div class="toast" id="toast">📋 프롬프트가 복사되었습니다!</div>
+<div class="toast" id="toast">📋 복사되었습니다! AI에 붙여넣으세요.</div>
 
 <script>
-const state = { subject:[], grade:[], level:[], output:[], pedagogy:[], design:[], tone:[], youtubes:[] };
-const SINGLE_SELECT = new Set(['subject', 'grade', 'level', 'output', 'design', 'tone']);
+const state = { subject:[], grade:[], level:[], curriculum:[], output:[], pedagogy:[], design:[], tone:[], youtubes:[] };
+const SINGLE_SELECT = new Set(['subject', 'grade', 'level', 'curriculum', 'output', 'design', 'tone']);
 
 function switchTab(tab) {
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
@@ -336,7 +332,7 @@ function renderYoutubeList() {
 document.getElementById('topicInput').addEventListener('input', updateUI);
 
 function updateUI() {
-  document.getElementById('pv-info').textContent = [state.subject[0], state.grade[0], state.level[0]].filter(Boolean).join(' / ');
+  document.getElementById('pv-info').textContent = [state.subject[0], state.curriculum[0], state.grade[0], state.level[0]].filter(Boolean).join(' / ');
   document.getElementById('pv-strategy').textContent = [state.pedagogy.join(', '), state.output[0]].filter(Boolean).join(' → ');
   document.getElementById('pv-yt').textContent = state.youtubes.join('\n');
   document.getElementById('pv-topic').textContent = document.getElementById('topicInput').value;
@@ -344,6 +340,7 @@ function updateUI() {
   document.querySelectorAll('.step-block').forEach(b => {
     const groups = b.id === 'block-subject' ? ['subject'] : 
                    b.id === 'block-target' ? ['grade', 'level'] :
+                   b.id === 'block-curriculum' ? ['curriculum'] :
                    b.id === 'block-output' ? ['output'] :
                    b.id === 'block-pedagogy' ? ['pedagogy'] :
                    b.id === 'block-style' ? ['design', 'tone'] : [];
@@ -353,23 +350,24 @@ function updateUI() {
 
 function generateAndCopy() {
   const topic = document.getElementById('topicInput').value.trim();
-  if(!state.subject.length || !state.output.length || !topic) { alert('필수 항목을 모두 선택해 주세요!'); return; }
+  if(!state.subject.length || !state.output.length || !topic) { alert('필수 항목(과목, 형태, 주제)을 선택해 주세요!'); return; }
 
   const prompt = `
 [ROLE: 교육 전문가 및 충주상업고등학교 수업 설계 AI]
 [MISSION: 충주상업고등학교 학생들을 위한 고품질 수업 콘텐츠 제작]
 
-1. 과목 및 대상: ${state.subject[0]} (${state.grade[0]}, ${state.level[0]})
-2. 결과물 형태: ${state.output[0]}
-3. 수업 전략: ${state.pedagogy.join(', ')}
-4. 스타일/어조: ${state.design[0]} 테마 / ${state.tone[0]} 말투
-5. 주제: ${topic}
-6. 참고 영상: ${state.youtubes.join(', ')}
+1. 과목 및 교육과정: ${state.subject[0]} (기준: ${state.curriculum[0] || '최신 개정 교육과정'})
+2. 대상 및 수준: ${state.grade[0] || '고등학생'} (${state.level[0] || '보통 수준'})
+3. 결과물 형태: ${state.output[0]}
+4. 수업 전략: ${state.pedagogy.join(', ')}
+5. 스타일/어조: ${state.design[0]} 테마 / ${state.tone[0]} 말투
+6. 주제: ${topic}
+7. 참고 영상: ${state.youtubes.join(', ')}
 
 ---
 [지침]
+- 선택된 [${state.curriculum[0] || '교육과정'}]의 성취기준을 준수하여 전문적인 내용을 구성하세요.
 - 플레이스홀더 없이 실제 수업 내용을 구체적으로 작성하세요.
-- 특성화고 실무 역량 강화를 위해 최신 비즈니스 사례와 성취기준을 반영하세요.
 - 웹 제작 시 단일 HTML 파일로 완벽한 시각화 결과물을 만드세요.
 - AI의 잠재적 오류를 인지하고 교사가 검토하기 좋은 구조로 출력하세요.
 - ChatGPT(Canvas), Claude(Artifacts), Gemini(Canvas) 트리거를 사용하세요.
@@ -380,6 +378,8 @@ function generateAndCopy() {
   toast.classList.add('show');
   setTimeout(() => toast.classList.remove('show'), 3000);
 }
+
+updateUI();
 </script>
 </body>
 </html>
