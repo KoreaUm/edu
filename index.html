@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>충주상업고등학교 AI Studio — 수업 콘텐츠 생성기 V14.3</title>
+<title>충주상업고등학교 AI Studio — 수업 콘텐츠 생성기 V14.4</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
@@ -115,7 +115,7 @@
     </nav>
   </div>
   <div class="header-right">
-    <div class="dev-info">Developed by<br><strong>충주상업고 교사 임재환</strong></div>
+    <div class="dev-info">AI Powered by<br><strong>교육자 커뮤니티</strong></div>
     <button onclick="location.reload()" style="background:none; border:none; color:#64748b; cursor:pointer; padding:0;"><i class="fas fa-sync-alt fa-lg"></i></button>
   </div>
 </header>
@@ -195,7 +195,16 @@
         <span class="tag" data-group="period" data-key="3차시">🟠 3차시 (135분)</span>
         <span class="tag" data-group="period" data-key="4차시">🔴 4차시 (180분)</span>
       </div>
-      <p style="font-size:0.7rem; color:#94a3b8; margin-top:10px;">✓ 도입(5~10분) → 전개(25~30분) → 정리(5~10분)<br>✓ 차시별로 단계적 심화, 이전 학습과 연계</p>
+
+      <div class="sub-title">도입 방식 선택</div>
+      <div class="tags">
+        <span class="tag" data-group="intro" data-key="질문">❓ 질문으로 도입</span>
+        <span class="tag" data-group="intro" data-key="예시">💡 예시/상황으로 도입</span>
+        <span class="tag" data-group="intro" data-key="사례">📰 실제 사례로 도입</span>
+        <span class="tag" data-group="intro" data-key="영상">🎬 영상으로 도입</span>
+        <span class="tag" data-group="intro" data-key="문제">🎯 문제 상황으로 도입</span>
+      </div>
+      <p style="font-size:0.7rem; color:#94a3b8; margin-top:10px;">✓ 도입(5~10분) → 전개(25~30분) → 정리(5~10분)</p>
     </div>
 
     <div class="step-block" id="block-slidecount">
@@ -285,10 +294,10 @@
       <div class="step-header"><span class="step-num">10</span><span class="step-title">디자인 및 어조</span></div>
       <div class="sub-title">디자인 스타일</div>
       <div class="tags">
-        <span class="tag" data-group="design" data-key="배민">🟢 배민(따뜻한 미니멀)</span>
-        <span class="tag" data-group="design" data-key="토스">🔵 토스(스마트 미니멀)</span>
-        <span class="tag" data-group="design" data-key="쿠팡">🟠 쿠팡(다이나믹 에너지)</span>
-        <span class="tag" data-group="design" data-key="당근">🟡 당근(커뮤니티 감성)</span>
+        <span class="tag" data-group="design" data-key="배민">🟢 배민 스타일(따뜻한 미니멀)</span>
+        <span class="tag" data-group="design" data-key="토스">🔵 토스 스타일(스마트 미니멀)</span>
+        <span class="tag" data-group="design" data-key="쿠팡">🟠 쿠팡 스타일(다이나믹)</span>
+        <span class="tag" data-group="design" data-key="당근">🟡 당근 스타일(커뮤니티)</span>
         <span class="tag" data-group="design" data-key="넷플릭스">🎬 넷플릭스(극적 임팩트)</span>
         <span class="tag" data-group="design" data-key="애플">⚫ 애플(프리미엄 심플)</span>
         <span class="tag" data-group="design" data-key="칠판">🏫 칠판(전통 강의)</span>
@@ -324,10 +333,19 @@
     <p style="margin-bottom:15px; line-height:1.8;">
       1️⃣ 좌측 빌더에서 옵션들을 선택하세요<br>
       2️⃣ 과목, 학년, 결과물 형태는 필수입니다<br>
-      3️⃣ 웹 PPT나 구글 슬라이드 선택 시 수업 차시가 나타납니다<br>
+      3️⃣ 웹 PPT나 구글 슬라이드 선택 시 수업 차시와 도입 방식이 나타납니다<br>
       4️⃣ 우측 프리뷰에서 선택사항을 확인하세요<br>
       5️⃣ 구체적인 주제를 입력하고 생성 버튼을 누르세요<br>
       6️⃣ 프롬프트가 자동으로 복사되면 AI에 붙여넣기 하세요
+    </p>
+
+    <h2 style="margin-top:30px; margin-bottom:15px;">도입 방식 설명</h2>
+    <p style="margin-bottom:15px;">
+      <strong>❓ 질문으로 도입</strong>: 학생들을 생각하게 만드는 개방형 질문으로 시작<br>
+      <strong>💡 예시/상황으로 도입</strong>: 일상적인 예시나 흥미로운 상황을 제시<br>
+      <strong>📰 실제 사례로 도입</strong>: 실제 뉴스, 사건, 현상을 바탕으로 시작<br>
+      <strong>🎬 영상으로 도입</strong>: 짧은 영상이나 동영상 클립으로 주의 집중<br>
+      <strong>🎯 문제 상황으로 도입</strong>: 해결해야 할 구체적인 문제 상황 제시
     </p>
 
     <h2 style="margin-top:30px; margin-bottom:15px;">수업 차시 및 구성</h2>
@@ -337,7 +355,7 @@
       <strong>🟠 3차시 (135분)</strong>: 1→2→3차시 (단계적 심화)<br>
       <strong>🔴 4차시 (180분)</strong>: 1~4차시 (전문화 과정)<br><br>
       수업 흐름:<br>
-      • 도입(5~10분): 동기유발, 이전 차시 복습, 학습목표 제시<br>
+      • 도입(5~10분): 선택한 방식으로 동기유발, 이전 차시 복습, 학습목표 제시<br>
       • 전개(25~30분): 강의, 학습활동, 토론, 실습 (차시별 심화)<br>
       • 정리(5~10분): 핵심 내용 정리, 차시 예고, 과제 안내
     </p>
@@ -353,7 +371,7 @@
     <div class="caution-box">
       <strong>⚠️ 주의사항</strong><br>
       - 과목, 결과물 형태, 주제는 필수입니다<br>
-      - 웹 PPT/구글 슬라이드 선택 시 수업 차시를 반드시 선택하세요<br>
+      - 웹 PPT/구글 슬라이드 선택 시 수업 차시와 도입 방식을 반드시 선택하세요<br>
       - 유튜브 URL은 youtube.com 또는 youtu.be 이어야 합니다<br>
       - 주제는 구체적일수록 좋은 결과를 얻을 수 있습니다
     </div>
@@ -365,10 +383,10 @@
 <script>
 const state = { 
   subject: [], grade: [], level: [], curriculum: [], output: [], 
-  slidecnt: [], period: [], pedagogy: [], design: [], tone: [], 
+  slidecnt: [], period: [], intro: [], pedagogy: [], design: [], tone: [], 
   youtubes: [], youtubeOptions: {}, visualization: [] 
 };
-const SINGLE_SELECT = new Set(['subject', 'grade', 'level', 'curriculum', 'output', 'slidecnt', 'period', 'design', 'tone']);
+const SINGLE_SELECT = new Set(['subject', 'grade', 'level', 'curriculum', 'output', 'slidecnt', 'period', 'intro', 'design', 'tone']);
 
 function switchTab(tab, element) {
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
@@ -450,7 +468,14 @@ function updateUI() {
   
   let structureText = '';
   if (state.period[0]) {
-    structureText = `${state.period[0]}\n도입(5~10분) → 전개(25~30분) → 정리(5~10분)`;
+    const introMap = {
+      '질문': '❓ 질문으로 도입',
+      '예시': '💡 예시/상황으로 도입',
+      '사례': '📰 실제 사례로 도입',
+      '영상': '🎬 영상으로 도입',
+      '문제': '🎯 문제 상황으로 도입'
+    };
+    structureText = `${state.period[0]}\n도입방식: ${introMap[state.intro[0]] || '(미선택)'}\n도입→전개→정리`;
   }
   document.getElementById('pv-structure').textContent = structureText || '(웹PPT/구글슬라이드 선택 시)';
   
@@ -510,7 +535,7 @@ function updateUI() {
       b.id === 'block-target' ? ['grade', 'level'] :
       b.id === 'block-curr' ? ['curriculum'] :
       b.id === 'block-output' ? ['output'] :
-      b.id === 'block-period' ? ['period'] :
+      b.id === 'block-period' ? ['period', 'intro'] :
       b.id === 'block-slidecount' ? ['slidecnt'] :
       b.id === 'block-pedagogy' ? ['pedagogy'] :
       b.id === 'block-style' ? ['design', 'tone'] :
@@ -530,80 +555,97 @@ function generateAndCopy() {
     return;
   }
   
-  if (isSlideOutput && !state.period.length) {
-    alert('❌ 웹 PPT/구글 슬라이드 선택 시 수업 차시를 선택해야 합니다!');
+  if (isSlideOutput && (!state.period.length || !state.intro.length)) {
+    alert('❌ 웹 PPT/구글 슬라이드 선택 시 수업 차시와 도입 방식을 반드시 선택해야 합니다!');
     return;
   }
 
   const cnt = state.slidecnt[0] || '15';
   const isWeb = state.output[0] === 'web_slide';
   
-  const designMap = {
-    배민: '배민 (따뜻한 미니멀)',
-    토스: '토스 (스마트 미니멀)',
-    쿠팡: '쿠팡 (다이나믹)',
-    당근: '당근 (커뮤니티)',
-    넷플릭스: '넷플릭스 (극적)',
-    애플: '애플 (프리미엄)',
-    칠판: '칠판 (전통)'
+  const introGuide = {
+    '질문': '개방형 질문으로 학생들을 생각하게 만들기',
+    '예시': '일상적인 예시나 흥미로운 상황 제시하기',
+    '사례': '실제 뉴스, 사건, 현상을 바탕으로 시작하기',
+    '영상': '짧은 영상이나 동영상 클립으로 주의 집중시키기',
+    '문제': '해결해야 할 구체적인 문제 상황 제시하기'
   };
 
-  let prompt = `[COMMAND: TRIGGER INTERACTIVE PREVIEW]
-- 역할: 교육 콘텐츠 설계자 (개발자: 충주상업고 교사 임재환)
-- 대상: ${state.grade[0] || 'N/A'} / 난이도: ${state.level[0] || 'N/A'}
-- 형식: ${state.output[0]} (정확히 ${cnt}장)
+  let prompt = `[INSTRUCTION: 교육 콘텐츠 생성]
 
-MISSION:
-${state.subject[0]} 교과 "${topic}"를 [${cnt}장]으로 구성하세요.
-완전하고 실습 가능하게 작성하세요.
+█ 기본 정보:
+대상: ${state.grade[0] || 'N/A'} / 난이도: ${state.level[0] || 'N/A'}
+과목: ${state.subject[0]}
+형식: ${state.output[0]} (정확히 ${cnt}장)
+교육과정: ${state.curriculum[0] || '2022'}
 
-1. 교수법 & 전략: ${state.pedagogy.join(', ') || 'Standard'} / 교육과정: ${state.curriculum[0] || '2022'}`;
+█ 주제:
+${topic}
+
+█ 교수법 및 전략:
+${state.pedagogy.join(', ') || 'Standard'}`;
 
   if (state.period[0]) {
-    prompt += `\n   수업 구성 (${state.period[0]}):
-   - 도입(5~10분): 동기유발, 복습, 학습목표
-   - 전개(25~30분): 강의/활동/토론 (차시별 심화)
-   - 정리(5~10분): 핵심정리, 차시예고
-   ✓ 차시 간 연계성 강화`;
+    prompt += `\n\n█ 수업 구성 (${state.period[0]}):
+• 도입(5~10분): ${introGuide[state.intro[0]] || '학습 준비'} + 학습목표 제시
+• 전개(25~30분): 강의/활동/토론 (차시별로 단계적 심화)
+• 정리(5~10분): 핵심내용 정리 + 차시 예고
+✓ 차시 간 연계성 강화: 각 차시가 이전 학습을 바탕으로 심화됨`;
   }
 
-  prompt += `\n\n2. 디자인 & 어조:
-   스타일: ${state.design.length > 0 ? designMap[state.design[0]] : 'Modern'}
-   어조: ${state.tone[0] || 'Neutral'}`;
+  prompt += `\n\n█ 디자인 & 톤:`;
+  if (state.design.length > 0) {
+    const designDisplay = {
+      '배민': '배민 스타일: 따뜻하고 신뢰감 있는 미니멀 디자인',
+      '토스': '토스 스타일: 스마트하고 세련된 미니멀 디자인',
+      '쿠팡': '쿠팡 스타일: 활동적이고 다이나믹한 디자인',
+      '당근': '당근 스타일: 따뜻한 커뮤니티 감성의 디자인',
+      '넷플릭스': '넷플릭스: 대담하고 극적인 임팩트',
+      '애플': '애플: 고급스럽고 프리미엄한 심플 디자인',
+      '칠판': '칠판: 클래식한 전통 강의실 분위기'
+    };
+    prompt += `\nStyle: ${designDisplay[state.design[0]] || state.design[0]}`;
+  }
+  if (state.tone.length > 0) {
+    prompt += `\nTone: ${state.tone[0]}`;
+  }
 
   if (state.visualization.length > 0) {
-    prompt += `\n\n3. 시각화:
-${state.visualization.map(v => {
+    prompt += `\n\n█ 시각화 요소:`;
+    state.visualization.forEach(v => {
       const guides = {
-        'infographic': '- 인포그래픽: 차트/그래프로 통계 시각화',
-        'diagram': '- 다이어그램: 플로우/조직도/맵',
-        'illustration': '- 일러스트: 개념을 표현하는 아이콘/그림',
-        'photo': '- 사진: 실제 이미지 (저작권 프리)',
-        'animation': '- 애니메이션: 개념 설명 및 인터랙티브'
+        'infographic': '📊 인포그래픽: 통계 데이터를 차트/그래프로 시각화',
+        'diagram': '🔗 다이어그램: 프로세스 플로우, 조직도, 개념맵 포함',
+        'illustration': '🎨 일러스트: 개념을 표현하는 심플한 아이콘/그림',
+        'photo': '📸 사진: 실제 상황 사진, 현장 이미지 (저작권 프리)',
+        'animation': '✨ 애니메이션: 개념 설명 애니메이션, 인터랙티브 요소'
       };
-      return guides[v] || '';
-    }).join('\n')}`;
+      prompt += `\n${guides[v] || v}`;
+    });
   }
 
   if (state.youtubes.length > 0) {
-    prompt += `\n\n4. 참고 영상 (${state.youtubes.length}개):`;
+    prompt += `\n\n█ 참고 영상 (${state.youtubes.length}개):`;
     state.youtubes.forEach((url, i) => {
       const option = state.youtubeOptions[url];
       const guide = {
         'content_summary': '주요 내용을 슬라이드에 통합',
-        'url_attach': 'QR코드/링크 첨부 (수업 후 시청)',
+        'url_attach': 'QR코드/링크 첨부 (수업 후 시청 유도)',
         'visual_heavy': '시각 요소를 슬라이드에 반영',
         'discussion': '토론 질문 및 활동자료로 변환'
       }[option] || '';
-      prompt += `\n   ${i + 1}. ${url}\n      └─ ${guide}`;
+      prompt += `\n${i + 1}. ${url}\n   → ${guide}`;
     });
   }
 
-  prompt += `\n\n5. 필수:
-✓ 플레이스홀더 없이 완전한 콘텐츠
-✓ 학습목표/핵심개념/구체적 사례 포함
-✓ ${isWeb ? 'HTML/CSS/JS 완성 (반응형)' : '구글 슬라이드 기획 (스피커노트 포함)'}
-✓ ChatGPT: OPEN CANVAS / Claude: GENERATE ARTIFACT`;
+  prompt += `\n\n█ 필수 조건:
+✓ 모든 내용이 완전하고 실용적이어야 함
+✓ 각 페이지에 학습목표, 핵심개념, 구체적 사례 포함
+✓ 플레이스홀더([내용 입력] 같은 표현) 절대 금지
+✓ ${isWeb ? 'HTML/CSS/JS로 완성된 웹 PPT (반응형 디자인, 부드러운 전환 효과)' : '구글 슬라이드 상세 기획서 (스피커노트, 활동 가이드 포함)'}
+✓ 차시 간 연계성: 이전 학습 → 복습 → 새로운 개념 → 심화 순서로 구성
+
+[ChatGPT: OPEN CANVAS 사용 / Claude: GENERATE ARTIFACT 사용]`;
 
   navigator.clipboard.writeText(prompt).then(() => {
     const t = document.getElementById('toast');
