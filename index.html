@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>충주상업고등학교 AI Studio — 수업 콘텐츠 생성기 V14.0</title>
+<title>충주상업고등학교 AI Studio — 수업 콘텐츠 생성기 V14.2</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
@@ -29,7 +29,7 @@
     border-bottom: 1px solid var(--border); backdrop-filter: blur(10px); z-index: 200; flex-shrink: 0;
   }
   .logo-wrap { display: flex; align-items: center; gap: 1rem; }
-  .logo-text { font-size: 1.3rem; font-weight: 900; color: var(--accent); letter-spacing: -0.02em; }
+  .logo-text { font-size: 1.1rem; font-weight: 900; color: var(--accent); letter-spacing: -0.02em; line-height: 1.3; }
   .nav-tabs { display: flex; gap: 0.5rem; margin-left: 2rem; }
   .nav-tab {
     padding: 0.5rem 1.2rem; border-radius: 20px; cursor: pointer;
@@ -99,13 +99,15 @@
   .custom-scroll::-webkit-scrollbar-track { background: transparent; }
   .custom-scroll::-webkit-scrollbar-thumb { background: rgba(59,130,246,0.3); border-radius: 4px; }
   .custom-scroll::-webkit-scrollbar-thumb:hover { background: rgba(59,130,246,0.5); }
+
+  .conditional-block { margin-top: 1rem; }
 </style>
 </head>
 <body>
 
 <header>
   <div class="logo-wrap">
-    <div class="logo-text italic">CHUNGJU COMM. STUDIO</div>
+    <div class="logo-text">충주상업고 수업자료 제작<br>AI STUDIO</div>
     <nav class="nav-tabs">
       <div class="nav-tab active" onclick="switchTab('builder', this)">마스터 빌더</div>
       <div class="nav-tab" onclick="switchTab('guide', this)">사용 설명서</div>
@@ -206,14 +208,51 @@
       </div>
     </div>
 
-    <!-- 06 교수법/전략 유지 -->
+    <!-- 06 교수법/전략 (대폭 확장) -->
     <div class="step-block" id="block-pedagogy">
       <div class="step-header"><span class="step-num">06</span><span class="step-title">교수법 및 전략</span></div>
+      <div class="sub-title">기본 강의법</div>
       <div class="tags">
-        <span class="tag" data-group="pedagogy" data-key="강의식">👨‍🏫 강의식</span>
-        <span class="tag" data-group="pedagogy" data-key="PBL">🏗️ PBL</span>
-        <span class="tag" data-group="pedagogy" data-key="하브루타">💬 하브루타</span>
-        <span class="tag" data-group="pedagogy" data-key="플립러닝">🔄 플립러닝</span>
+        <span class="tag" data-group="pedagogy" data-key="강의식">👨‍🏫 강의식(전달)</span>
+        <span class="tag" data-group="pedagogy" data-key="소크라테스식">💭 소크라테스식 질문법</span>
+      </div>
+      <div class="sub-title">학생 중심 학습</div>
+      <div class="tags">
+        <span class="tag" data-group="pedagogy" data-key="협동학습">👥 협동학습</span>
+        <span class="tag" data-group="pedagogy" data-key="소그룹토의">💬 소그룹 토의</span>
+        <span class="tag" data-group="pedagogy" data-key="하브루타">🤝 하브루타(짝 토론)</span>
+        <span class="tag" data-group="pedagogy" data-key="피어러닝">🔄 피어러닝(동료 학습)</span>
+      </div>
+      <div class="sub-title">문제 해결 중심</div>
+      <div class="tags">
+        <span class="tag" data-group="pedagogy" data-key="PBL">🏗️ PBL(프로젝트학습)</span>
+        <span class="tag" data-group="pedagogy" data-key="케이스스터디">📂 케이스 스터디</span>
+        <span class="tag" data-group="pedagogy" data-key="실습중심">🔧 실습 중심 학습</span>
+      </div>
+      <div class="sub-title">능동적 학습</div>
+      <div class="tags">
+        <span class="tag" data-group="pedagogy" data-key="플립러닝">🔄 플립러닝(뒤집힌 수업)</span>
+        <span class="tag" data-group="pedagogy" data-key="게이미피케이션">🎮 게이미피케이션</span>
+        <span class="tag" data-group="pedagogy" data-key="탐구학습">🔬 탐구학습</span>
+      </div>
+      <div class="sub-title">활동 기반</div>
+      <div class="tags">
+        <span class="tag" data-group="pedagogy" data-key="역할극">🎭 역할극/시뮬레이션</span>
+        <span class="tag" data-group="pedagogy" data-key="토론식">🗣️ 토론식 수업</span>
+        <span class="tag" data-group="pedagogy" data-key="발표식">📢 발표 및 피드백</span>
+      </div>
+    </div>
+
+    <!-- 06-1 시각화 강화 (조건부: 웹/구글 슬라이드 선택시) -->
+    <div class="step-block conditional-block" id="block-visualization" style="display:none;">
+      <div class="step-header"><span class="step-num">06-1</span><span class="step-title">시각화 자료 강화</span></div>
+      <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:10px;">슬라이드에 포함될 시각화 요소를 선택하세요.</p>
+      <div class="tags">
+        <span class="tag" data-group="visualization" data-key="infographic">📊 인포그래픽(도표/차트)</span>
+        <span class="tag" data-group="visualization" data-key="diagram">🔗 다이어그램(플로우/맵)</span>
+        <span class="tag" data-group="visualization" data-key="illustration">🎨 일러스트/아이콘</span>
+        <span class="tag" data-group="visualization" data-key="photo">📸 사진/실제 이미지</span>
+        <span class="tag" data-group="visualization" data-key="animation">✨ 애니메이션 효과</span>
       </div>
     </div>
 
@@ -225,19 +264,31 @@
         <button class="yt-add-btn" onclick="addYoutube()">추가</button>
       </div>
       <div class="yt-list" id="ytList"></div>
-      <div class="sub-title">영상 활용 옵션</div>
-      <div class="tags">
-        <span class="tag" data-group="analysis" data-key="visual_heavy">🖼️ 영상 기반 시각화 강화</span>
+      <div id="youtube-options" style="display:none;">
+        <div class="sub-title">영상 활용 방식</div>
+        <div class="tags">
+          <span class="tag" data-group="analysis" data-key="content_summary">📝 내용 요약 및 분석</span>
+          <span class="tag" data-group="analysis" data-key="visual_heavy">🖼️ 영상 기반 시각화 강화</span>
+          <span class="tag" data-group="analysis" data-key="discussion">💬 토론·질문 자료화</span>
+        </div>
       </div>
     </div>
 
-    <!-- 08 디자인/어조 유지 -->
+    <!-- 08 디자인/어조 (한국 유명 서비스 포함) -->
     <div class="step-block" id="block-style">
       <div class="step-header"><span class="step-num">08</span><span class="step-title">디자인 및 어조</span></div>
+      <div class="sub-title">디자인 스타일 (한국/국제)</div>
       <div class="tags">
-        <span class="tag" data-group="design" data-key="토스">🔹 토스</span>
-        <span class="tag" data-group="design" data-key="넷플릭스">🎬 넷플릭스</span>
-        <span class="tag" data-group="design" data-key="칠판">🏫 칠판</span>
+        <span class="tag" data-group="design" data-key="배민">🟢 배민(따뜻한 미니멀)</span>
+        <span class="tag" data-group="design" data-key="토스">🔵 토스(스마트 미니멀)</span>
+        <span class="tag" data-group="design" data-key="쿠팡">🟠 쿠팡(다이나믹 에너지)</span>
+        <span class="tag" data-group="design" data-key="당근">🟡 당근(커뮤니티 감성)</span>
+        <span class="tag" data-group="design" data-key="넷플릭스">🎬 넷플릭스(극적 임팩트)</span>
+        <span class="tag" data-group="design" data-key="애플">⚫ 애플(프리미엄 심플)</span>
+        <span class="tag" data-group="design" data-key="칠판">🏫 칠판(전통 강의)</span>
+      </div>
+      <div class="sub-title">어조</div>
+      <div class="tags">
         <span class="tag" data-group="tone" data-key="친근한">😊 친근</span>
         <span class="tag" data-group="tone" data-key="전문적인">🧐 전문</span>
       </div>
@@ -249,6 +300,7 @@
     <div class="prompt-preview custom-scroll">
       <div class="prompt-section"><div class="prompt-label">Main Logic</div><div class="prompt-content" id="pv-logic"></div></div>
       <div class="prompt-section"><div class="prompt-label">Material Config</div><div class="prompt-content" id="pv-config"></div></div>
+      <div class="prompt-section"><div class="prompt-label">Visual & YouTube</div><div class="prompt-content" id="pv-visual"></div></div>
       <div class="prompt-section"><div class="prompt-label">User Topic</div><div class="prompt-content" id="pv-topic"></div></div>
     </div>
     <div class="topic-area">
@@ -266,7 +318,7 @@
     <p style="margin-bottom:15px; line-height:1.8;">
       1️⃣ <strong>좌측 빌더</strong>에서 옵션들을 선택하세요<br>
       2️⃣ <strong>과목, 학년, 결과물 형태</strong>는 필수 선택입니다<br>
-      3️⃣ <strong>우측 프리뷰</strong>에서 선택사항을 확인할 수 있습니다<br>
+      3️⃣ <strong>우측 프리��</strong>에서 선택사항을 확인할 수 있습니다<br>
       4️⃣ <strong>구체적인 주제</strong>를 입력한 후 생성 버튼을 누르세요<br>
       5️⃣ 생성된 프롬프트가 자동으로 복사되면 AI에 붙여넣기 하세요
     </p>
@@ -277,25 +329,84 @@
       <strong>👥 학년/난이도:</strong> 학년과 난이도를 선택하여 맞춤형 콘텐츠를 생성합니다<br>
       <strong>📜 교육과정:</strong> 2022개정 또는 2015개정 중 적용할 교육과정을 선택합니다<br>
       <strong>🎞️ 결과물 형태:</strong> 웹 PPT, 구글 슬라이드, 지도안, 학습지, 요약노트 중 선택<br>
-      <strong>📊 슬라이드 분량:</strong> 10~20장 범위에서 원하는 분량을 선택합니다<br>
-      <strong>👨‍🏫 교수법:</strong> 강의식, PBL, 하브루타, 플립러닝 중 원하는 방식을 선택할 수 있습니다<br>
-      <strong>🎬 유튜브:</strong> 관련 영상 URL을 추가하면 AI가 참고하여 콘텐츠를 생성합니다<br>
-      <strong>🎨 디자인/어조:</strong> 디자인 스타일과 톤을 선택합니다
+      <strong>📊 슬라이드 분량:</strong> 10~20장 범위에서 원하는 분량을 선택합니다
+    </p>
+
+    <h2 style="margin-top:25px; margin-bottom:15px;">시각화 자료 강화 가이드</h2>
+    <p style="margin-bottom:15px;">
+      웹 제작(Web PPT) 또는 구글 슬라이드 선택 시 다음 시각화 요소를 선택할 수 있습니다:<br><br>
+      <strong>📊 인포그래픽(도표/차트)</strong>: 통계, 수치 데이터를 시각화한 차트, 그래프<br>
+      <strong>🔗 다이어그램(플로우/맵)</strong>: 프로세스 플로우, 조직도, 개념맵, 마인드맵<br>
+      <strong>🎨 일러스트/아이콘</strong>: 개념을 표현하는 일러스트, 심플한 아이콘 디자인<br>
+      <strong>📸 사진/실제 이미지</strong>: 실제 상황 사진, 현장 이미지 (저작권 프리 이미지)<br>
+      <strong>✨ 애니메이션 효과</strong>: 개념 설명 애니메이션, 인터랙티브 요소
+    </p>
+
+    <h2 style="margin-top:25px; margin-bottom:15px;">디자인 스타일 가이드</h2>
+    <p style="margin-bottom:15px;">
+      <strong>🟢 배민(따뜻한 미니멀)</strong>: 온화하고 신뢰감 있는 디자인. 교육 콘텐츠에 친근함<br>
+      <strong>🔵 토스(스마트 미니멀)</strong>: 깔끔하고 세련된 인터페이스. 현대적 감성<br>
+      <strong>🟠 쿠팡(다이나믹 에너지)</strong>: 활동적이고 밝은 색상. 동적인 에너지 전달<br>
+      <strong>🟡 당근(커뮤니티 감성)</strong>: 따뜻하고 인간적. 공동체 느낌<br>
+      <strong>🎬 넷플릭스(극적 임팩트)</strong>: 대담한 이미지, 강렬한 인상. 몰입감 있는 콘텐츠<br>
+      <strong>⚫ 애플(프리미엄 심플)</strong>: 고급스럽고 미니멀. 우아한 감성<br>
+      <strong>🏫 칠판(전통 강의)</strong>: 클래식한 칠판 스타일. 전통적 강의 분위기
+    </p>
+
+    <h2 style="margin-top:25px; margin-bottom:15px;">교수법 전략 가이드</h2>
+    <p style="margin-bottom:15px;">
+      <strong>기본 강의법:</strong><br>
+      • <strong>강의식(전달)</strong>: 교사가 주도적으로 지식을 전달하는 방식<br>
+      • <strong>소크라테스식 질문법</strong>: 질문을 통해 학생 스스로 생각하도록 유도<br><br>
+
+      <strong>학생 중심 학습:</strong><br>
+      • <strong>협동학습</strong>: 소그룹이 함께 목표를 달성하는 학습<br>
+      • <strong>소그룹 토의</strong>: 주제에 대해 4~5명이 토론하며 의견 공유<br>
+      • <strong>하브루타</strong>: 2명이 짝을 이루어 질문과 대답을 반복하는 유대인 학습법<br>
+      • <strong>피어러닝</strong>: 동료 학생들로부터 배우는 동료 학습<br><br>
+
+      <strong>문제 해결 중심:</strong><br>
+      • <strong>PBL(프로젝트학습)</strong>: 실제 문제를 프로젝트로 해결하며 배우기<br>
+      • <strong>케이스 스터디</strong>: 실제 사례를 분석하고 토론하는 학습<br>
+      • <strong>실습 중심</strong>: 직접 해보며 배우는 경험 기반 학습<br><br>
+
+      <strong>능동적 학습:</strong><br>
+      • <strong>플립러닝</strong>: 집에서 영상을 보고 수업에서 활동하는 뒤집힌 수업<br>
+      • <strong>게이미피케이션</strong>: 게임 요소(점수, 도전, 보상)를 활용한 재미있는 학습<br>
+      • <strong>탐구학습</strong>: 학생이 직접 탐구하고 발견하는 과정 중심 학습<br><br>
+
+      <strong>활동 기반:</strong><br>
+      • <strong>역할극/시뮬레이션</strong>: 실제 상황을 역할극으로 체험하기<br>
+      • <strong>토론식 수업</strong>: 전체 학생이 참여하여 의견을 나누는 수업<br>
+      • <strong>발표 및 피드백</strong>: 학생 발표 후 피드백을 통한 성장 유도
+    </p>
+
+    <h2 style="margin-top:25px; margin-bottom:15px;">유튜브 활용 방식</h2>
+    <p style="margin-bottom:15px;">
+      유튜브 링크를 추가하면 다음과 같이 활용할 수 있습니다:<br><br>
+      <strong>📝 내용 요약 및 분석</strong>: 영상의 주요 내용을 정리하고 학습 포인트로 변환<br>
+      <strong>🖼️ 영상 기반 시각화 강화</strong>: 영상의 시각 요소를 분석하여 슬라이드에 반영<br>
+      <strong>💬 토론·질문 자료화</strong>: 영상의 내용을 바탕으로 토론 질문과 활동자료 생성
     </p>
 
     <div class="caution-box">
       <strong>⚠️ 주의사항</strong><br>
       - 과목, 결과물 형태, 주제는 반드시 입력해야 합니다<br>
       - 유튜브 URL은 youtube.com 또는 youtu.be 도메인이어야 합니다<br>
-      - 주제는 구체적일수록 더 좋은 결과를 얻을 수 있습니다
+      - 주제는 구체적일수록 더 좋은 결과를 얻을 수 있습니다<br>
+      - 교수법은 여러 개를 선택할 수 있으며, 과목과 학년에 맞게 조합하세요<br>
+      - 시각화와 디자인을 조합하면 학생들의 학습 효과가 더 높습니다
     </div>
 
     <h2 style="margin-top:30px; margin-bottom:15px;">프롬프트 생성 팁</h2>
     <p style="margin-bottom:15px;">
       ✅ 주제는 가능한 한 구체적으로 작성하세요<br>
-      ✅ 예: "분자의 극성과 화학결합" → "분자의 극성이 화학결합에 미치는 영향"<br>
+      ✅ 예: "분자의 극성" → "분자의 극성이 화학결합에 미치는 영향"<br>
       ✅ 유튜브 영상을 추가하면 시각적 요소를 강화할 수 있습니다<br>
-      ✅ 교수법을 선택하면 그에 맞는 구조로 콘텐츠가 생성됩니다
+      ✅ 교수법을 선택하면 그에 맞는 구조로 콘텐츠가 생성됩니다<br>
+      ✅ 여러 교수법을 조합하면 더 풍부한 수업 자료가 만들어집니다<br>
+      ✅ 시각화 옵션을 선택하면 인포그래픽, 아이콘, 차트 등이 포함됩니다<br>
+      ✅ 디자인 스타일은 학생 연령과 과목 특성에 맞게 선택하세요
     </p>
   </div>
 </div>
@@ -303,7 +414,7 @@
 <div class="toast" id="toast">📋 프롬프트 복사 성공!</div>
 
 <script>
-const state = { subject:[], grade:[], level:[], curriculum:[], output:[], slidecnt:[], pedagogy:[], design:[], tone:[], youtubes:[], analysis:[] };
+const state = { subject:[], grade:[], level:[], curriculum:[], output:[], slidecnt:[], pedagogy:[], design:[], tone:[], youtubes:[], analysis:[], visualization:[] };
 const SINGLE_SELECT = new Set(['subject', 'grade', 'level', 'curriculum', 'output', 'slidecnt', 'design', 'tone']);
 
 function switchTab(tab, element) {
@@ -362,9 +473,33 @@ function updateUI() {
     worksheet: '학습지',
     summary: '요약노트'
   };
+
+  const designMap = {
+    배민: '배민 스타일',
+    토스: '토스 스타일',
+    쿠팡: '쿠팡 스타일',
+    당근: '당근 스타일',
+    넷플릭스: '넷플릭스 스타일',
+    애플: '애플 스타일',
+    칠판: '칠판 스타일'
+  };
   
   document.getElementById('pv-logic').textContent = `${state.subject[0] || '(미선택)'} / ${state.curriculum[0] || '(미선택)'} / ${state.grade[0] || '(미선택)'}`;
   document.getElementById('pv-config').textContent = `${formatMap[state.output[0]] || '(미선택)'} [분량: ${state.slidecnt[0] || '15'}장] / 전략: ${state.pedagogy.join(', ') || '(미선택)'}`;
+  
+  let visualText = '';
+  if(state.visualization.length > 0) {
+    visualText += `시각화: ${state.visualization.join(', ')}`;
+  }
+  if(state.youtubes.length > 0) {
+    if(visualText) visualText += '\n';
+    visualText += `유튜브: ${state.youtubes.length}개 추가`;
+    if(state.analysis.length > 0) {
+      visualText += `\n활용방식: ${state.analysis.join(', ')}`;
+    }
+  }
+  document.getElementById('pv-visual').textContent = visualText || '(미설정)';
+  
   document.getElementById('pv-topic').textContent = document.getElementById('topicInput').value || '(주제 입력 대기 중)';
   
   // YouTube 리스트 렌더링
@@ -376,8 +511,15 @@ function updateUI() {
   `).join('');
   document.getElementById('ytList').innerHTML = ytListHtml;
   
+  // YouTube 옵션 표시/숨김
+  document.getElementById('youtube-options').style.display = state.youtubes.length > 0 ? 'block' : 'none';
+  
+  // 시각화 블록 표시/숨김 (웹이나 구글 슬라이드 선택시)
+  const isSlideOutput = state.output[0] === 'web_slide' || state.output[0] === 'google_slide';
+  document.getElementById('block-visualization').style.display = isSlideOutput ? 'block' : 'none';
+  
   document.querySelectorAll('.step-block').forEach(b => {
-    const grps = b.id==='block-subject'?['subject']:b.id==='block-target'?['grade','level']:b.id==='block-curr'?['curriculum']:b.id==='block-output'?['output']:b.id==='block-slidecount'?['slidecnt']:b.id==='block-pedagogy'?['pedagogy']:b.id==='block-style'?['design','tone']:[];
+    const grps = b.id==='block-subject'?['subject']:b.id==='block-target'?['grade','level']:b.id==='block-curr'?['curriculum']:b.id==='block-output'?['output']:b.id==='block-slidecount'?['slidecnt']:b.id==='block-pedagogy'?['pedagogy']:b.id==='block-style'?['design','tone']:b.id==='block-visualization'?['visualization']:[];
     const hasValue = grps.some(g=>state[g].length > 0) || (b.id==='block-yt' && state.youtubes.length);
     b.classList.toggle('active', hasValue);
   });
@@ -393,6 +535,42 @@ function generateAndCopy() {
   const cnt = state.slidecnt[0] || '15';
   const isWeb = state.output[0] === 'web_slide';
   
+  const designMap = {
+    배민: '배민 (따뜻한 미니멀, 신뢰감)',
+    토스: '토스 (스마트 미니멀, 세련됨)',
+    쿠팡: '쿠팡 (다이나믹, 활동적)',
+    당근: '당근 (커뮤니티 감성)',
+    넷플릭스: '넷플릭스 (극적 임팩트)',
+    애플: '애플 (프리미엄 심플)',
+    칠판: '칠판 (전통 강의)'
+  };
+
+  const visualizationGuide = state.visualization.length > 0 
+    ? `\n비주얼 강화:\n${state.visualization.map(v => {
+        const guides = {
+          'infographic': '- 인포그래픽: 통계, 수치 데이터를 차트/그래프로 시각화',
+          'diagram': '- 다이어그램: 프로세스 플로우, 조직도, 개념맵 포함',
+          'illustration': '- 일러스트: 개념을 표현하는 심플하고 이해하기 쉬운 그림',
+          'photo': '- 사진: 실제 상황과 현장 이미지 (저작권 프리)',
+          'animation': '- 애니메이션: 개념 설명 애니메이션, 인터랙티브 요소'
+        };
+        return guides[v] || '';
+      }).filter(g => g).join('\n')}`
+    : '';
+
+  const youtubeGuide = state.youtubes.length > 0
+    ? `\n참고 영상 (총 ${state.youtubes.length}개):\n${state.youtubes.map((url, i) => `${i+1}. ${url}`).join('\n')}${
+        state.analysis.length > 0 ? `\n활용 방식: ${state.analysis.map(a => {
+          const guides = {
+            'content_summary': '내용 요약 및 분석',
+            'visual_heavy': '영상 기반 시각화 강화',
+            'discussion': '토론·질문 자료화'
+          };
+          return guides[a] || '';
+        }).join(', ')}` : ''
+      }`
+    : '';
+  
   const prompt = `[COMMAND: TRIGGER INTERACTIVE PREVIEW]
 - Role: Elite Educational Designer (Master: Jaehwan Lim, CJCH)
 - Target: ${state.grade[0] || 'N/A'} / Difficulty: ${state.level[0] || 'N/A'}
@@ -402,15 +580,28 @@ MISSION:
 ${state.subject[0]} 교과의 "${topic}"에 관한 자료를 정확히 [${cnt}장] 구성으로 작성하십시오.
 절대 중간에 생략하지 말고 모든 페이지를 실습 가능하게 완성하세요.
 
-1. PEDAGOGY: ${state.pedagogy.join(', ') || 'Standard'} / Curriculum: ${state.curriculum[0] || '2022'}
-2. STYLE: ${state.design[0] || 'Modern'} Theme, Tone: ${state.tone[0] || 'Neutral'}
-${isWeb ? '3. Action: Write a complete, single-file HTML/JS/CSS app. Use modern slide transition logic. Include responsive design.' : '3. Action: Write a detailed step-by-step layout for Google Slides with specific contents for each page.'}
-4. REFS: ${state.youtubes.length > 0 ? state.youtubes.join(', ') : 'No external references'} ${state.analysis.includes('visual_heavy') ? '(Analyze these and create diagrams)' : ''}
+1. PEDAGOGY & STRATEGY: ${state.pedagogy.join(', ') || 'Standard Lecture'} / Curriculum: ${state.curriculum[0] || '2022'}
 
-[FINAL CHECK]
-- Do NOT use placeholders. 
-- Every page must be complete and functional.
-- ChatGPT: OPEN CANVAS. Claude: GENERATE ARTIFACT.
+2. DESIGN & TONE: 
+   디자인 스타일: ${state.design.length > 0 ? designMap[state.design[0]] : 'Modern Standard'}
+   어조: ${state.tone[0] || 'Neutral'}
+${visualizationGuide}
+${youtubeGuide}
+
+3. TECHNICAL:
+${isWeb ? `   - HTML/CSS/JS로 완전한 웹 PPT 제작
+   - 부드러운 슬라이드 전환 효과
+   - 반응형 디자인 (모바일/태블릿 대응)
+   - 인터랙티브 요소 포함` : `   - 구글 슬라이드용 상세 기획서
+   - 각 슬라이드별 구체적 콘텐츠 설명
+   - 스피커 노트 및 진행 안내 포함
+   - 활동 및 질문 가이드`}
+
+4. REQUIREMENTS
+✓ 모든 페이지는 완전하고 실용적이어야 함
+✓ 학습목표, 핵심개념, 구체적 예시 포함
+✓ 플레이스홀더([content here] 같은 표현) 금지
+✓ ChatGPT: OPEN CANVAS. Claude: GENERATE ARTIFACT.
 `;
 
   navigator.clipboard.writeText(prompt).then(() => {
