@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>충주상업고등학교 AI Studio — 수업 콘텐츠 생성기 V14.6</title>
+<title>충주상업고등학교 AI Studio — 수업 콘텐츠 생성기 V14.7</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
@@ -102,6 +102,8 @@
   .custom-scroll::-webkit-scrollbar-thumb:hover { background: rgba(59,130,246,0.5); }
 
   .conditional-block { margin-top: 1rem; }
+
+  .topic-highlight { background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(139,92,246,0.2)); }
 </style>
 </head>
 <body>
@@ -123,8 +125,15 @@
 <div id="view-builder" class="workspace">
   <section class="builder custom-scroll">
     
+    <div class="step-block topic-highlight" id="block-topic">
+      <div class="step-header"><span class="step-num">01</span><span class="step-title">수업 주제 입력</span></div>
+      <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:10px;">구체적이고 자세한 주제를 입력할수록 더 좋은 결과를 얻을 수 있습니다.</p>
+      <textarea class="topic-input" id="topicInput" placeholder="예) 분자의 극성과 화학결합의 관계 분석"></textarea>
+      <p style="font-size:0.7rem; color:#94a3b8; margin-top:10px;">💡 팁: 과목명, 단원명, 구체적인 학습 내용을 포함하면 좋습니다.</p>
+    </div>
+
     <div class="step-block" id="block-school">
-      <div class="step-header"><span class="step-num">01</span><span class="step-title">학교급 선택</span></div>
+      <div class="step-header"><span class="step-num">02</span><span class="step-title">학교급 선택</span></div>
       <div class="sub-title">학교급</div>
       <div class="tags">
         <span class="tag" data-group="school" data-key="고등학교">🏫 고등학교</span>
@@ -133,7 +142,7 @@
     </div>
 
     <div class="step-block" id="block-subject">
-      <div class="step-header"><span class="step-num">02</span><span class="step-title">과목 선택</span></div>
+      <div class="step-header"><span class="step-num">03</span><span class="step-title">과목 선택</span></div>
       
       <div class="sub-title">📚 공통 교과</div>
       <div class="tags">
@@ -170,7 +179,7 @@
       <div class="tags">
         <span class="tag" data-group="subject" data-key="회계">💰 회계</span>
         <span class="tag" data-group="subject" data-key="회계실무">📋 회계실무(회실)</span>
-        <span class="tag" data-group="subject" data-key="금융">💳 ��융</span>
+        <span class="tag" data-group="subject" data-key="금융">💳 금융</span>
         <span class="tag" data-group="subject" data-key="국제">🌏 국제</span>
         <span class="tag" data-group="subject" data-key="창구">🏦 창구</span>
         <span class="tag" data-group="subject" data-key="기업">🏢 기업</span>
@@ -212,7 +221,7 @@
     </div>
 
     <div class="step-block" id="block-target">
-      <div class="step-header"><span class="step-num">03</span><span class="step-title">대상 학년 및 난이도</span></div>
+      <div class="step-header"><span class="step-num">04</span><span class="step-title">대상 학년 및 난이도</span></div>
       <div class="sub-title">학년</div>
       <div class="tags">
         <span class="tag" data-group="grade" data-key="1학년">1학년</span>
@@ -228,7 +237,7 @@
     </div>
 
     <div class="step-block" id="block-curr">
-      <div class="step-header"><span class="step-num">04</span><span class="step-title">적용 교육과정</span></div>
+      <div class="step-header"><span class="step-num">05</span><span class="step-title">적용 교육과정</span></div>
       <div class="tags">
         <span class="tag" data-group="curriculum" data-key="2022 개정">✨ 2022 개정</span>
         <span class="tag" data-group="curriculum" data-key="2015 개정">📜 2015 개정</span>
@@ -236,18 +245,18 @@
     </div>
 
     <div class="step-block" id="block-output">
-      <div class="step-header"><span class="step-num">05</span><span class="step-title">최종 결과물 형태</span></div>
+      <div class="step-header"><span class="step-num">06</span><span class="step-title">최종 결과물 형태</span></div>
       <div class="tags">
         <span class="tag" data-group="output" data-key="web_slide">🎞️ 웹 제작 (Web PPT)</span>
         <span class="tag" data-group="output" data-key="google_slide">🟧 구글 슬라이드 기획안</span>
-        <span class="tag" data-group="output" data-key="lesson_plan">�� 수업 지도안</span>
+        <span class="tag" data-group="output" data-key="lesson_plan">📜 수업 지도안</span>
         <span class="tag" data-group="output" data-key="worksheet">📝 학생용 학습지</span>
         <span class="tag" data-group="output" data-key="summary">📌 핵심 요약노트</span>
       </div>
     </div>
 
     <div class="step-block" id="block-period" style="display:none;">
-      <div class="step-header"><span class="step-num">06</span><span class="step-title">수업 차시 및 구성</span></div>
+      <div class="step-header"><span class="step-num">07</span><span class="step-title">수업 차시 및 구성</span></div>
       <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:10px;">몇 차시 분량의 수업을 한 번에 준비할지 선택하세요.</p>
       <div class="tags">
         <span class="tag" data-group="period" data-key="1차시">🔵 1차시 (45분)</span>
@@ -268,7 +277,7 @@
     </div>
 
     <div class="step-block" id="block-slidecount">
-      <div class="step-header"><span class="step-num">07</span><span class="step-title">슬라이드 제작 분량</span></div>
+      <div class="step-header"><span class="step-num">08</span><span class="step-title">슬라이드 제작 분량</span></div>
       <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:10px;">웹 제작 또는 구글 슬라이드 선택 시 적용되는 총 장수입니다.</p>
       <div class="tags count-tags">
         <span class="tag tag-cnt" data-group="slidecnt" data-key="10">10장</span>
@@ -286,7 +295,7 @@
     </div>
 
     <div class="step-block" id="block-pedagogy">
-      <div class="step-header"><span class="step-num">08</span><span class="step-title">교수법 및 전략</span></div>
+      <div class="step-header"><span class="step-num">09</span><span class="step-title">교수법 및 전략</span></div>
       <div class="sub-title">기본 강의법</div>
       <div class="tags">
         <span class="tag" data-group="pedagogy" data-key="강의식">👨‍🏫 강의식(전달)</span>
@@ -302,7 +311,7 @@
       <div class="sub-title">문제 해결 중심</div>
       <div class="tags">
         <span class="tag" data-group="pedagogy" data-key="PBL">🏗️ PBL(프로젝트학습)</span>
-        <span class="tag" data-group="pedagogy" data-key="케이스스터디">📂 케이스 스터디</span>
+        <span class="tag" data-group="pedagogy" data-key="케이스스���디">📂 케이스 스터디</span>
         <span class="tag" data-group="pedagogy" data-key="실습중심">🔧 실습 중심 학습</span>
       </div>
       <div class="sub-title">능동적 학습</div>
@@ -320,7 +329,7 @@
     </div>
 
     <div class="step-block conditional-block" id="block-visualization" style="display:none;">
-      <div class="step-header"><span class="step-num">09</span><span class="step-title">시각화 자료 강화</span></div>
+      <div class="step-header"><span class="step-num">10</span><span class="step-title">시각화 자료 강화</span></div>
       <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:10px;">슬라이드에 포함될 시각화 요소를 선택하세요.</p>
       <div class="tags">
         <span class="tag" data-group="visualization" data-key="infographic">📊 인포그래픽(도표/차트)</span>
@@ -332,7 +341,7 @@
     </div>
 
     <div class="step-block" id="block-yt">
-      <div class="step-header"><span class="step-num">10</span><span class="step-title">유튜브 연계 및 분석</span></div>
+      <div class="step-header"><span class="step-num">11</span><span class="step-title">유튜브 연계 및 분석</span></div>
       <div class="yt-input-wrap">
         <input class="yt-input" id="ytUrlInput" placeholder="유튜브 주소 입력">
         <button class="yt-add-btn" onclick="addYoutube()">추가</button>
@@ -345,13 +354,13 @@
           <span class="tag" data-group="analysis" data-key="content_summary">📝 내용 요약</span>
           <span class="tag" data-group="analysis" data-key="url_attach">🔗 영상 주소 첨부</span>
           <span class="tag" data-group="analysis" data-key="visual_heavy">🖼️ 시각화 강화</span>
-          <span class="tag" data-group="analysis" data-key="discussion">💬 토론자��화</span>
+          <span class="tag" data-group="analysis" data-key="discussion">💬 토론자료화</span>
         </div>
       </div>
     </div>
 
     <div class="step-block" id="block-style">
-      <div class="step-header"><span class="step-num">11</span><span class="step-title">디자인 및 어조</span></div>
+      <div class="step-header"><span class="step-num">12</span><span class="step-title">디자인 및 어조</span></div>
       <div class="sub-title">디자인 스타일</div>
       <div class="tags">
         <span class="tag" data-group="design" data-key="배민">🟢 배민 스타일</span>
@@ -378,9 +387,9 @@
       <div class="prompt-section"><div class="prompt-label">Visual & YouTube</div><div class="prompt-content" id="pv-visual"></div></div>
       <div class="prompt-section"><div class="prompt-label">User Topic</div><div class="prompt-content" id="pv-topic"></div></div>
     </div>
-    <div class="topic-area">
-      <textarea class="topic-input" id="topicInput" placeholder="구체적인 주제를 입력해 주세요..."></textarea>
+    <div class="topic-area" style="border-top: 2px solid var(--accent);">
       <button class="gen-btn" onclick="generateAndCopy()"><i class="fas fa-magic"></i> 프롬프트 생성 & 복사</button>
+      <p style="font-size: 0.7rem; color: #94a3b8; text-align: center; margin-top: 10px; margin-bottom: 0;">모든 설정을 완료한 후<br>위 버튼을 클릭하세요</p>
     </div>
   </section>
 </div>
@@ -391,13 +400,14 @@
     
     <h2 style="margin-top:30px; margin-bottom:15px;">시작하기</h2>
     <p style="margin-bottom:15px; line-height:1.8;">
-      1️⃣ 학교급을 먼저 선택하세요 (고등학교/중학교)<br>
-      2️⃣ 좌측 빌더에서 옵션들을 선택하세요<br>
-      3️⃣ 과목, 학년, 결과물 형태는 필수입니다<br>
-      4️⃣ 웹 PPT나 구글 슬라이드 선택 시 수업 차시와 도입 방식이 나타납니다<br>
-      5️⃣ 우측 프리뷰에서 선택사항을 확인하세요<br>
-      6️⃣ 구체적인 주제를 입력하고 생성 버튼을 누르세요<br>
-      7️⃣ 프롬프트가 자동으로 복사되면 AI에 붙여넣기 하세요
+      1️⃣ 맨 위에 수업 주제를 입력하세요<br>
+      2️⃣ 학교급을 선택하세요<br>
+      3️⃣ 과목, 학년, 난이도를 선택하세요<br>
+      4️⃣ 결과물 형태를 선택하세요<br>
+      5️⃣ 웹 PPT나 구글 슬라이드 선택 시 수업 차시와 도입 방식을 선택하세요<br>
+      6️⃣ 나머지 옵션들을 선택하세요<br>
+      7️⃣ 우측 프리뷰에서 선택사항을 확인한 후 생성 버튼을 누르세요<br>
+      8️⃣ 프롬프트가 자동으로 복사되면 AI에 붙여넣기 하세요
     </p>
 
     <h2 style="margin-top:30px; margin-bottom:15px;">도입 방식 설명</h2>
@@ -405,7 +415,7 @@
       <strong>❓ 질문으로 도입</strong>: 학생들을 생각하게 만드는 개방형 질문으로 시작<br>
       <strong>💡 예시/상황으로 도입</strong>: 일상적인 예시나 흥미로운 상황을 제시<br>
       <strong>📰 실제 사례로 도입</strong>: 실제 뉴스, 사건, 현상을 바탕으로 시작<br>
-      <strong>🎬 영상으로 도입</strong>: 짧은 영상이나 동영상 클립으로 주의 집중<br>
+      <strong>🎬 영상으로 도입</strong>: 짧은 영상이나 동영�� 클립으로 주의 집중<br>
       <strong>🎯 문제 상황으로 도입</strong>: 해결해야 할 구체적인 문제 상황 제시
     </p>
 
@@ -421,7 +431,7 @@
       • 정리(5~10분): 핵심 내용 정리, 차시 예고, 과제 안내
     </p>
 
-    <h2 style="margin-top:25px; margin-bottom:15px;">유튜브 활�� 방식</h2>
+    <h2 style="margin-top:25px; margin-bottom:15px;">유튜브 활용 방식</h2>
     <p style="margin-bottom:15px;">
       <strong>📝 내용 요약</strong>: 영상의 주요 내용을 정리하여 슬라이드에 통합<br>
       <strong>🔗 영상 주소 첨부</strong>: QR코드나 링크로 학생들이 수업 후 시청<br>
@@ -431,7 +441,7 @@
 
     <div class="caution-box">
       <strong>⚠️ 주의사항</strong><br>
-      - 학교급, 과목, 결과물 형태, 주제는 필수입니다<br>
+      - 주제, 학교급, 과목, 결과물 형태는 필수입니다<br>
       - 웹 PPT/구글 슬라이드 선택 시 수업 차시와 도입 방식을 반드시 선택하세요<br>
       - 유튜브 URL은 youtube.com 또는 youtu.be 이어야 합니다<br>
       - 주제는 구체적일수록 좋은 결과를 얻을 수 있습니다
@@ -541,7 +551,7 @@ function updateUI() {
       '영상': '🎬 영상으로 도입',
       '문제': '🎯 문제 상황으로 도입'
     };
-    structureText = `${state.period[0]}\n도입방식: ${introMap[state.intro[0]] || '(미선택)'}\n도입→전개→정리`;
+    structureText = `${state.period[0]}\n도입방식: ${introMap[state.intro[0]] || '(미선택)'}\n도입→전개→정���`;
   }
   document.getElementById('pv-structure').textContent = structureText || '(웹PPT/구글슬라이드 선택 시)';
   
@@ -597,6 +607,7 @@ function updateUI() {
   
   document.querySelectorAll('.step-block').forEach(b => {
     const grps = 
+      b.id === 'block-topic' ? [] :
       b.id === 'block-school' ? ['school'] :
       b.id === 'block-subject' ? ['subject'] :
       b.id === 'block-target' ? ['grade', 'level'] :
@@ -617,8 +628,8 @@ function generateAndCopy() {
   const topic = document.getElementById('topicInput').value.trim();
   const isSlideOutput = state.output[0] === 'web_slide' || state.output[0] === 'google_slide';
   
-  if (!state.school.length || !state.subject.length || !state.output.length || !topic) {
-    alert('❌ 필수: 학교급, 과목, 결과물 형태, 주제');
+  if (!topic || !state.school.length || !state.subject.length || !state.output.length) {
+    alert('❌ 필수: 주제, 학교급, 과목, 결과물 형태');
     return;
   }
   
@@ -645,14 +656,14 @@ function generateAndCopy() {
 
   let prompt = `[INSTRUCTION: 교육 콘텐츠 생성]
 
+█ 주제:
+${topic}
+
 █ 기본 정보:
 대상: ${schoolMap[state.school[0]]} / ${state.grade[0] || 'N/A'} / 난이도: ${state.level[0] || 'N/A'}
 과목: ${state.subject[0]}
 형식: ${state.output[0]} (정확히 ${cnt}장)
 교육과정: ${state.curriculum[0] || '2022'}
-
-█ 주제:
-${topic}
 
 █ 교수법 및 전략:
 ${state.pedagogy.join(', ') || 'Standard'}`;
@@ -674,7 +685,7 @@ ${state.pedagogy.join(', ') || 'Standard'}`;
   }
 
   if (state.visualization.length > 0) {
-    prompt += `\n\n█ 시각화 요소:`;
+    prompt += `\n\n█ 시��화 요소:`;
     state.visualization.forEach(v => {
       const guides = {
         'infographic': '📊 인포그래픽: 통계 데이터를 차트/그래프로 시각화',
