@@ -79,5 +79,350 @@
 
   .topic-area { padding: 1.5rem; background: #000; border-top: 1px solid var(--border); }
   textarea.topic-input { width: 100%; background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 1rem; color: white; outline: none; min-height: 110px; font-size: 1rem; }
-  .gen-btn { width: 100%; margin-top: 1rem; padding: 1.2rem; border-radius: 12px; border: none; background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white; font-weight: 900; font-size: 1.1rem; cursor: pointer; transition: 0.2s; box-shadow: 0 4*
-
+  .gen-btn { width: 100%; margin-top: 1rem; padding: 1.2rem; border-radius: 12px; border: none; background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white; font-weight: 900; font-size: 1.1rem; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 20px rgba(59,130,246,0.3); }
+  .gen-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(59,130,246,0.4); }
+
+  #view-guide { overflow-y: auto; padding: 3rem; background: #f8fafc; color: #1e293b; height: calc(100vh - 72px); }
+  .guide-container { max-w: 800px; margin: 0 auto; }
+  .caution-box { background: #fff5f5; border-left: 5px solid #f87171; padding: 1.5rem; color: #991b1b; }
+  .restricted-box { background: #0f172a; color: white; padding: 2rem; text-align: center; border-radius: 15px; margin-top: 3rem; }
+
+  .toast { position: fixed; bottom: 3rem; left: 50%; transform: translateX(-50%) translateY(150px); background: #3b82f6; border-radius: 50px; padding: 1rem 3rem; color: white; font-weight: 800; z-index: 10000; transition: 0.5s; }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* Custom Scrollbar */
+  .custom-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(59,130,246,0.3) transparent;
+  }
+  .custom-scroll::-webkit-scrollbar { width: 8px; }
+  .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+  .custom-scroll::-webkit-scrollbar-thumb { background: rgba(59,130,246,0.3); border-radius: 4px; }
+  .custom-scroll::-webkit-scrollbar-thumb:hover { background: rgba(59,130,246,0.5); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-wrap">
+    <div class="logo-text italic">CHUNGJU COMM. STUDIO</div>
+    <nav class="nav-tabs">
+      <div class="nav-tab active" onclick="switchTab('builder', this)">마스터 빌더</div>
+      <div class="nav-tab" onclick="switchTab('guide', this)">사용 설명서</div>
+    </nav>
+  </div>
+  <div class="header-right">
+    <div class="dev-info">Developed by<br><strong>충주상업고 교사 임재환</strong></div>
+    <button onclick="location.reload()" style="background:none; border:none; color:#64748b; cursor:pointer; padding:0;"><i class="fas fa-sync-alt fa-lg"></i></button>
+  </div>
+</header>
+
+<div id="view-builder" class="workspace">
+  <section class="builder custom-scroll">
+    
+    <!-- 01 과목 (보통/예체능/전공 전체 유지) -->
+    <div class="step-block" id="block-subject">
+      <div class="step-header"><span class="step-num">01</span><span class="step-title">과목 선택</span></div>
+      <div class="sub-title">보통/예체능/기초</div>
+      <div class="tags">
+        <span class="tag" data-group="subject" data-key="국어">📖 국어</span>
+        <span class="tag" data-group="subject" data-key="수학">📐 수학</span>
+        <span class="tag" data-group="subject" data-key="영어">🔤 영어</span>
+        <span class="tag" data-group="subject" data-key="한국사">📜 한국사</span>
+        <span class="tag" data-group="subject" data-key="사회">🗺️ 사회</span>
+        <span class="tag" data-group="subject" data-key="과학">🧪 과학</span>
+        <span class="tag" data-group="subject" data-key="음악">🎼 음악</span>
+        <span class="tag" data-group="subject" data-key="미술">🎨 미술</span>
+        <span class="tag" data-group="subject" data-key="체육">🏀 체육</span>
+        <span class="tag" data-group="subject" data-key="진로">🛣️ 진로</span>
+      </div>
+      <div class="sub-title">특성화 전공 실무</div>
+      <div class="tags">
+        <span class="tag" data-group="subject" data-key="회계원리">💰 회계원리</span>
+        <span class="tag" data-group="subject" data-key="세무실무">🧾 세무실무</span>
+        <span class="tag" data-group="subject" data-key="기업경영">🏢 기업경영</span>
+        <span class="tag" data-group="subject" data-key="프로그래밍">💻 IT/코딩</span>
+        <span class="tag" data-group="subject" data-key="인공지능">🤖 AI기초</span>
+        <span class="tag" data-group="subject" data-key="한식조리">🍱 한식조리</span>
+        <span class="tag" data-group="subject" data-key="바리스타">☕ 바리스타</span>
+        <span class="tag" data-group="subject" data-key="관광서비스">🏨 관광서비스</span>
+      </div>
+    </div>
+
+    <!-- 02 학년/난이도 유지 -->
+    <div class="step-block" id="block-target">
+      <div class="step-header"><span class="step-num">02</span><span class="step-title">대상 학년 및 난이도</span></div>
+      <div class="sub-title">학년</div>
+      <div class="tags">
+        <span class="tag" data-group="grade" data-key="1학년">1학년</span>
+        <span class="tag" data-group="grade" data-key="2학년">2학년</span>
+        <span class="tag" data-group="grade" data-key="3학년">3학년</span>
+      </div>
+      <div class="sub-title">수준</div>
+      <div class="tags">
+        <span class="tag" data-group="level" data-key="기초보충">🌱 기초보충</span>
+        <span class="tag" data-group="level" data-key="보통">🌿 보통</span>
+        <span class="tag" data-group="level" data-key="심화">🌳 심화</span>
+      </div>
+    </div>
+
+    <!-- 03 교육과정 유지 -->
+    <div class="step-block" id="block-curr">
+      <div class="step-header"><span class="step-num">03</span><span class="step-title">적용 교육과정</span></div>
+      <div class="tags">
+        <span class="tag" data-group="curriculum" data-key="2022 개정">✨ 2022 개정</span>
+        <span class="tag" data-group="curriculum" data-key="2015 개정">📜 2015 개정</span>
+      </div>
+    </div>
+
+    <!-- 04 결과물 형태 (구글 슬라이드 추가) -->
+    <div class="step-block" id="block-output">
+      <div class="step-header"><span class="step-num">04</span><span class="step-title">최종 결과물 형태</span></div>
+      <div class="tags">
+        <span class="tag" data-group="output" data-key="web_slide">🎞️ 웹 제작 (Web PPT)</span>
+        <span class="tag" data-group="output" data-key="google_slide">🟧 구글 슬라이드 기획안</span>
+        <span class="tag" data-group="output" data-key="lesson_plan">📜 수업 지도안</span>
+        <span class="tag" data-group="output" data-key="worksheet">📝 학생용 학습지</span>
+        <span class="tag" data-group="output" data-key="summary">📌 핵심 요약노트</span>
+      </div>
+    </div>
+
+    <!-- 05 슬라이드 분량 (신규: 10~20장 선택) -->
+    <div class="step-block" id="block-slidecount">
+      <div class="step-header"><span class="step-num">05</span><span class="step-title">슬라이드 제작 분량</span></div>
+      <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:10px;">웹 제작 또는 구글 슬라이드 선택 시 적용되는 총 장수입니다.</p>
+      <div class="tags count-tags">
+        <span class="tag tag-cnt" data-group="slidecnt" data-key="10">10장</span>
+        <span class="tag tag-cnt" data-group="slidecnt" data-key="11">11장</span>
+        <span class="tag tag-cnt" data-group="slidecnt" data-key="12">12장</span>
+        <span class="tag tag-cnt" data-group="slidecnt" data-key="13">13장</span>
+        <span class="tag tag-cnt" data-group="slidecnt" data-key="14">14장</span>
+        <span class="tag tag-cnt" data-group="slidecnt" data-key="15">15장</span>
+        <span class="tag tag-cnt" data-group="slidecnt" data-key="16">16장</span>
+        <span class="tag tag-cnt" data-group="slidecnt" data-key="17">17장</span>
+        <span class="tag tag-cnt" data-group="slidecnt" data-key="18">18장</span>
+        <span class="tag tag-cnt" data-group="slidecnt" data-key="19">19장</span>
+        <span class="tag tag-cnt" data-group="slidecnt" data-key="20">20장</span>
+      </div>
+    </div>
+
+    <!-- 06 교수법/전략 유지 -->
+    <div class="step-block" id="block-pedagogy">
+      <div class="step-header"><span class="step-num">06</span><span class="step-title">교수법 및 전략</span></div>
+      <div class="tags">
+        <span class="tag" data-group="pedagogy" data-key="강의식">👨‍🏫 강의식</span>
+        <span class="tag" data-group="pedagogy" data-key="PBL">🏗️ PBL</span>
+        <span class="tag" data-group="pedagogy" data-key="하브루타">💬 하브루타</span>
+        <span class="tag" data-group="pedagogy" data-key="플립러닝">🔄 플립러닝</span>
+      </div>
+    </div>
+
+    <!-- 07 유튜브 복구/유지 -->
+    <div class="step-block" id="block-yt">
+      <div class="step-header"><span class="step-num">07</span><span class="step-title">유튜브 연계 및 분석</span></div>
+      <div class="yt-input-wrap">
+        <input class="yt-input" id="ytUrlInput" placeholder="유튜브 주소 입력">
+        <button class="yt-add-btn" onclick="addYoutube()">추가</button>
+      </div>
+      <div class="yt-list" id="ytList"></div>
+      <div class="sub-title">영상 활용 옵션</div>
+      <div class="tags">
+        <span class="tag" data-group="analysis" data-key="visual_heavy">🖼️ 영상 기반 시각화 강화</span>
+      </div>
+    </div>
+
+    <!-- 08 디자인/어조 유지 -->
+    <div class="step-block" id="block-style">
+      <div class="step-header"><span class="step-num">08</span><span class="step-title">디자인 및 어조</span></div>
+      <div class="tags">
+        <span class="tag" data-group="design" data-key="토스">🔹 토스</span>
+        <span class="tag" data-group="design" data-key="넷플릭스">🎬 넷플릭스</span>
+        <span class="tag" data-group="design" data-key="칠판">🏫 칠판</span>
+        <span class="tag" data-group="tone" data-key="친근한">😊 친근</span>
+        <span class="tag" data-group="tone" data-key="전문적인">🧐 전문</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- RIGHT: PREVIEW -->
+  <section class="editor">
+    <div class="prompt-preview custom-scroll">
+      <div class="prompt-section"><div class="prompt-label">Main Logic</div><div class="prompt-content" id="pv-logic"></div></div>
+      <div class="prompt-section"><div class="prompt-label">Material Config</div><div class="prompt-content" id="pv-config"></div></div>
+      <div class="prompt-section"><div class="prompt-label">User Topic</div><div class="prompt-content" id="pv-topic"></div></div>
+    </div>
+    <div class="topic-area">
+      <textarea class="topic-input" id="topicInput" placeholder="구체적인 주제를 입력해 주세요..."></textarea>
+      <button class="gen-btn" onclick="generateAndCopy()"><i class="fas fa-magic"></i> 프롬프트 생성 & 복사</button>
+    </div>
+  </section>
+</div>
+
+<div id="view-guide" style="display:none;">
+  <div class="guide-container">
+    <h1 style="color:#3b82f6; margin-bottom:20px;">📖 사용 설명서</h1>
+    
+    <h2 style="margin-top:30px; margin-bottom:15px;">시작하기</h2>
+    <p style="margin-bottom:15px; line-height:1.8;">
+      1️⃣ <strong>좌측 빌더</strong>에서 옵션들을 선택하세요<br>
+      2️⃣ <strong>과목, 학년, 결과물 형태</strong>는 필수 선택입니다<br>
+      3️⃣ <strong>우측 프리뷰</strong>에서 선택사항을 확인할 수 있습니다<br>
+      4️⃣ <strong>구체적인 주제</strong>를 입력한 후 생성 버튼을 누르세요<br>
+      5️⃣ 생성된 프롬프트가 자동으로 복사되면 AI에 붙여넣기 하세요
+    </p>
+
+    <h2 style="margin-top:30px; margin-bottom:15px;">각 옵션 설명</h2>
+    <p style="margin-bottom:15px;">
+      <strong>📖 과목 선택:</strong> 보통과목(국어, 수학 등)과 특성화 전공(회계, IT 등) 중 하나를 선택합니다<br>
+      <strong>👥 학년/난이도:</strong> 학년과 난이도를 선택하여 맞춤형 콘텐츠를 생성합니다<br>
+      <strong>📜 교육과정:</strong> 2022개정 또는 2015개정 중 적용할 교육과정을 선택합니다<br>
+      <strong>🎞️ 결과물 형태:</strong> 웹 PPT, 구글 슬라이드, 지도안, 학습지, 요약노트 중 선택<br>
+      <strong>📊 슬라이드 분량:</strong> 10~20장 범위에서 원하는 분량을 선택합니다<br>
+      <strong>👨‍🏫 교수법:</strong> 강의식, PBL, 하브루타, 플립러닝 중 원하는 방식을 선택할 수 있습니다<br>
+      <strong>🎬 유튜브:</strong> 관련 영상 URL을 추가하면 AI가 참고하여 콘텐츠를 생성합니다<br>
+      <strong>🎨 디자인/어조:</strong> 디자인 스타일과 톤을 선택합니다
+    </p>
+
+    <div class="caution-box">
+      <strong>⚠️ 주의사항</strong><br>
+      - 과목, 결과물 형태, 주제는 반드시 입력해야 합니다<br>
+      - 유튜브 URL은 youtube.com 또는 youtu.be 도메인이어야 합니다<br>
+      - 주제는 구체적일수록 더 좋은 결과를 얻을 수 있습니다
+    </div>
+
+    <h2 style="margin-top:30px; margin-bottom:15px;">프롬프트 생성 팁</h2>
+    <p style="margin-bottom:15px;">
+      ✅ 주제는 가능한 한 구체적으로 작성하세요<br>
+      ✅ 예: "분자의 극성과 화학결합" → "분자의 극성이 화학결합에 미치는 영향"<br>
+      ✅ 유튜브 영상을 추가하면 시각적 요소를 강화할 수 있습니다<br>
+      ✅ 교수법을 선택하면 그에 맞는 구조로 콘텐츠가 생성됩니다
+    </p>
+  </div>
+</div>
+
+<div class="toast" id="toast">📋 프롬프트 복사 성공!</div>
+
+<script>
+const state = { subject:[], grade:[], level:[], curriculum:[], output:[], slidecnt:[], pedagogy:[], design:[], tone:[], youtubes:[], analysis:[] };
+const SINGLE_SELECT = new Set(['subject', 'grade', 'level', 'curriculum', 'output', 'slidecnt', 'design', 'tone']);
+
+function switchTab(tab, element) {
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  element.classList.add('active');
+  document.getElementById('view-builder').style.display = tab === 'builder' ? 'grid' : 'none';
+  document.getElementById('view-guide').style.display = tab === 'guide' ? 'block' : 'none';
+}
+
+document.querySelectorAll('.tag').forEach(tag => {
+  tag.addEventListener('click', function() {
+    const { group, key } = this.dataset;
+    if(SINGLE_SELECT.has(group)) {
+      document.querySelectorAll(`.tag[data-group="${group}"]`).forEach(t => t.classList.remove('on'));
+      if(!state[group].includes(key)) { state[group] = [key]; this.classList.add('on'); }
+      else state[group] = [];
+    } else {
+      if(state[group].includes(key)) { state[group] = state[group].filter(v => v !== key); this.classList.remove('on'); }
+      else { state[group].push(key); this.classList.add('on'); }
+    }
+    updateUI();
+  });
+});
+
+function isValidYoutubeUrl(url) {
+  return url.includes('youtube.com') || url.includes('youtu.be');
+}
+
+function addYoutube() {
+  const url = document.getElementById('ytUrlInput').value.trim();
+  if(!url) {
+    alert('유튜브 링크를 입력하세요!');
+    return;
+  }
+  if(!isValidYoutubeUrl(url)) {
+    alert('유효한 유튜브 링크를 입력하세요! (youtube.com 또는 youtu.be)');
+    return;
+  }
+  state.youtubes.push(url);
+  document.getElementById('ytUrlInput').value = '';
+  updateUI();
+}
+
+function removeYoutube(index) {
+  state.youtubes.splice(index, 1);
+  updateUI();
+}
+
+document.getElementById('topicInput').addEventListener('input', updateUI);
+
+function updateUI() {
+  const formatMap = {
+    web_slide: 'Web PPT(코딩)',
+    google_slide: '구글 슬라이드(기획)',
+    lesson_plan: '지도안',
+    worksheet: '학습지',
+    summary: '요약노트'
+  };
+  
+  document.getElementById('pv-logic').textContent = `${state.subject[0] || '(미선택)'} / ${state.curriculum[0] || '(미선택)'} / ${state.grade[0] || '(미선택)'}`;
+  document.getElementById('pv-config').textContent = `${formatMap[state.output[0]] || '(미선택)'} [분량: ${state.slidecnt[0] || '15'}장] / 전략: ${state.pedagogy.join(', ') || '(미선택)'}`;
+  document.getElementById('pv-topic').textContent = document.getElementById('topicInput').value || '(주제 입력 대기 중)';
+  
+  // YouTube 리스트 렌더링
+  const ytListHtml = state.youtubes.map((url, idx) => `
+    <div class="yt-item">
+      <span>${url.substring(0, 40)}${url.length > 40 ? '...' : ''}</span>
+      <button class="yt-remove-btn" onclick="removeYoutube(${idx})">✕</button>
+    </div>
+  `).join('');
+  document.getElementById('ytList').innerHTML = ytListHtml;
+  
+  document.querySelectorAll('.step-block').forEach(b => {
+    const grps = b.id==='block-subject'?['subject']:b.id==='block-target'?['grade','level']:b.id==='block-curr'?['curriculum']:b.id==='block-output'?['output']:b.id==='block-slidecount'?['slidecnt']:b.id==='block-pedagogy'?['pedagogy']:b.id==='block-style'?['design','tone']:[];
+    const hasValue = grps.some(g=>state[g].length > 0) || (b.id==='block-yt' && state.youtubes.length);
+    b.classList.toggle('active', hasValue);
+  });
+}
+
+function generateAndCopy() {
+  const topic = document.getElementById('topicInput').value.trim();
+  if(!state.subject.length || !state.output.length || !topic) {
+    alert('❌ 필수 항목을 확인하세요:\n- 과목 선택 필수\n- 결과물 형태 필수\n- 구체적인 주제 입력 필수');
+    return;
+  }
+
+  const cnt = state.slidecnt[0] || '15';
+  const isWeb = state.output[0] === 'web_slide';
+  
+  const prompt = `[COMMAND: TRIGGER INTERACTIVE PREVIEW]
+- Role: Elite Educational Designer (Master: Jaehwan Lim, CJCH)
+- Target: ${state.grade[0] || 'N/A'} / Difficulty: ${state.level[0] || 'N/A'}
+- Output Format: ${state.output[0]} (TARGET LENGTH: EXACTLY ${cnt} slides/pages)
+
+MISSION: 
+${state.subject[0]} 교과의 "${topic}"에 관한 자료를 정확히 [${cnt}장] 구성으로 작성하십시오.
+절대 중간에 생략하지 말고 모든 페이지를 실습 가능하게 완성하세요.
+
+1. PEDAGOGY: ${state.pedagogy.join(', ') || 'Standard'} / Curriculum: ${state.curriculum[0] || '2022'}
+2. STYLE: ${state.design[0] || 'Modern'} Theme, Tone: ${state.tone[0] || 'Neutral'}
+${isWeb ? '3. Action: Write a complete, single-file HTML/JS/CSS app. Use modern slide transition logic. Include responsive design.' : '3. Action: Write a detailed step-by-step layout for Google Slides with specific contents for each page.'}
+4. REFS: ${state.youtubes.length > 0 ? state.youtubes.join(', ') : 'No external references'} ${state.analysis.includes('visual_heavy') ? '(Analyze these and create diagrams)' : ''}
+
+[FINAL CHECK]
+- Do NOT use placeholders. 
+- Every page must be complete and functional.
+- ChatGPT: OPEN CANVAS. Claude: GENERATE ARTIFACT.
+`;
+
+  navigator.clipboard.writeText(prompt).then(() => {
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }).catch(err => {
+    alert('클립보드 복사 실패: ' + err);
+  });
+}
+
+updateUI();
+</script>
+</body>
+</html>
