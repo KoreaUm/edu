@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>충주상업고등학교 AI Studio — 수업 콘텐츠 생성기 V14.4</title>
+<title>충주상업고등학교 AI Studio — 수업 콘텐츠 생성기 V14.5</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
@@ -125,29 +125,80 @@
     
     <div class="step-block" id="block-subject">
       <div class="step-header"><span class="step-num">01</span><span class="step-title">과목 선택</span></div>
-      <div class="sub-title">보통/예체능/기초</div>
+      
+      <div class="sub-title">📚 공통 교과</div>
       <div class="tags">
         <span class="tag" data-group="subject" data-key="국어">📖 국어</span>
+        <span class="tag" data-group="subject" data-key="문학">📕 문학</span>
+        <span class="tag" data-group="subject" data-key="실용국어">💬 실용국어(실국)</span>
         <span class="tag" data-group="subject" data-key="수학">📐 수학</span>
+        <span class="tag" data-group="subject" data-key="경영수학">📊 경영수학(경수)</span>
         <span class="tag" data-group="subject" data-key="영어">🔤 영어</span>
-        <span class="tag" data-group="subject" data-key="한국사">📜 한국사</span>
+        <span class="tag" data-group="subject" data-key="실용영어">🌐 실용영어(실영)</span>
+        <span class="tag" data-group="subject" data-key="국사">📜 국사</span>
         <span class="tag" data-group="subject" data-key="사회">🗺️ 사회</span>
         <span class="tag" data-group="subject" data-key="과학">🧪 과학</span>
+        <span class="tag" data-group="subject" data-key="생명과학">🧬 생명과학</span>
+      </div>
+
+      <div class="sub-title">🎨 예체능</div>
+      <div class="tags">
+        <span class="tag" data-group="subject" data-key="체육">🏀 체육</span>
+        <span class="tag" data-group="subject" data-key="스포츠">⚽ 스포츠(스포)</span>
         <span class="tag" data-group="subject" data-key="음악">🎼 음악</span>
         <span class="tag" data-group="subject" data-key="미술">🎨 미술</span>
-        <span class="tag" data-group="subject" data-key="체육">🏀 체육</span>
-        <span class="tag" data-group="subject" data-key="진로">🛣️ 진로</span>
       </div>
-      <div class="sub-title">특성화 전공 실무</div>
+
+      <div class="sub-title">🏫 교양 / 기타</div>
       <div class="tags">
-        <span class="tag" data-group="subject" data-key="회계원리">💰 회계원리</span>
-        <span class="tag" data-group="subject" data-key="세무실무">🧾 세무실무</span>
-        <span class="tag" data-group="subject" data-key="기업경영">🏢 기업경영</span>
-        <span class="tag" data-group="subject" data-key="프로그래밍">💻 IT/코딩</span>
-        <span class="tag" data-group="subject" data-key="인공지능">🤖 AI기초</span>
-        <span class="tag" data-group="subject" data-key="한식조리">🍱 한식조리</span>
-        <span class="tag" data-group="subject" data-key="바리스타">☕ 바리스타</span>
-        <span class="tag" data-group="subject" data-key="관광서비스">🏨 관광서비스</span>
+        <span class="tag" data-group="subject" data-key="자율">🎯 자율</span>
+        <span class="tag" data-group="subject" data-key="진로">🛣️ 진로</span>
+        <span class="tag" data-group="subject" data-key="동아">🌍 동아</span>
+        <span class="tag" data-group="subject" data-key="한문">🏮 한문</span>
+      </div>
+
+      <div class="sub-title">💼 상업 / 특성화 계열</div>
+      <div class="tags">
+        <span class="tag" data-group="subject" data-key="회계">💰 회계</span>
+        <span class="tag" data-group="subject" data-key="회계실무">📋 회계실무(회실)</span>
+        <span class="tag" data-group="subject" data-key="금융">💳 금융</span>
+        <span class="tag" data-group="subject" data-key="국제">🌏 국제</span>
+        <span class="tag" data-group="subject" data-key="창구">🏦 창구</span>
+        <span class="tag" data-group="subject" data-key="기업">🏢 기업</span>
+        <span class="tag" data-group="subject" data-key="행정">📄 행정</span>
+        <span class="tag" data-group="subject" data-key="사무">💼 사무</span>
+        <span class="tag" data-group="subject" data-key="상업">🛍️ 상업</span>
+        <span class="tag" data-group="subject" data-key="유통">📦 유통</span>
+        <span class="tag" data-group="subject" data-key="유통관리">🏭 유통관리(유관)</span>
+        <span class="tag" data-group="subject" data-key="비즈니스">💡 비즈니스(비즈)</span>
+        <span class="tag" data-group="subject" data-key="창업">🚀 창업</span>
+      </div>
+
+      <div class="sub-title">💻 IT / 컴퓨터 계열</div>
+      <div class="tags">
+        <span class="tag" data-group="subject" data-key="소프트웨어앱개발">📱 소프트웨어앱개발(스앱)</span>
+        <span class="tag" data-group="subject" data-key="시스템프로그래밍">⚙️ 시스템프로그래밍(시프)</span>
+        <span class="tag" data-group="subject" data-key="데이터베이스">🗄️ 데이터베이스(데베)</span>
+        <span class="tag" data-group="subject" data-key="알고리즘">🔍 알고리즘(알고)</span>
+        <span class="tag" data-group="subject" data-key="컴퓨터일반">🖥️ 컴퓨터일반(컴일)</span>
+        <span class="tag" data-group="subject" data-key="응용프로그래밍">📲 응용프로그래밍(응프)</span>
+        <span class="tag" data-group="subject" data-key="빅데이터">📊 빅데이터(빅데)</span>
+      </div>
+
+      <div class="sub-title">🍳 관광 / 조리 / 서비스 계열</div>
+      <div class="tags">
+        <span class="tag" data-group="subject" data-key="바리스타">☕ 바리스타(바리)</span>
+        <span class="tag" data-group="subject" data-key="객실서비스">🏨 객실서비스(객실)</span>
+        <span class="tag" data-group="subject" data-key="식음료서비스">🍽️ 식음료서비스(식음)</span>
+        <span class="tag" data-group="subject" data-key="관광서비스">🧳 관광서비스(관서)</span>
+        <span class="tag" data-group="subject" data-key="여행">✈️ 여행</span>
+        <span class="tag" data-group="subject" data-key="제과">🎂 제과</span>
+        <span class="tag" data-group="subject" data-key="제빵">🥖 제빵</span>
+        <span class="tag" data-group="subject" data-key="한식">🍱 한식</span>
+        <span class="tag" data-group="subject" data-key="양식">🍝 양식</span>
+        <span class="tag" data-group="subject" data-key="중식">🍜 중식</span>
+        <span class="tag" data-group="subject" data-key="떡제조">🍡 떡제조</span>
+        <span class="tag" data-group="subject" data-key="식품">🥫 식품</span>
       </div>
     </div>
 
@@ -295,7 +346,7 @@
       <div class="sub-title">디자인 스타일</div>
       <div class="tags">
         <span class="tag" data-group="design" data-key="배민">🟢 배민 스타일(따뜻한 미니멀)</span>
-        <span class="tag" data-group="design" data-key="토스">🔵 토스 스타일(스마트 미니멀)</span>
+        <span class="tag" data-group="design" data-key="토스">🔵 토스 스타일(스��트 미니멀)</span>
         <span class="tag" data-group="design" data-key="쿠팡">🟠 쿠팡 스타일(다이나믹)</span>
         <span class="tag" data-group="design" data-key="당근">🟡 당근 스타일(커뮤니티)</span>
         <span class="tag" data-group="design" data-key="넷플릭스">🎬 넷플릭스(극적 임팩트)</span>
@@ -332,11 +383,11 @@
     <h2 style="margin-top:30px; margin-bottom:15px;">시작하기</h2>
     <p style="margin-bottom:15px; line-height:1.8;">
       1️⃣ 좌측 빌더에서 옵션들을 선택하세요<br>
-      2️⃣ 과목, 학년, 결과물 형태는 필수입니다<br>
+      2️⃣ 과목, 학년, 결과물 형태는 필수입니���<br>
       3️⃣ 웹 PPT나 구글 슬라이드 선택 시 수업 차시와 도입 방식이 나타납니다<br>
       4️⃣ 우측 프리뷰에서 선택사항을 확인하세요<br>
       5️⃣ 구체적인 주제를 입력하고 생성 버튼을 누르세요<br>
-      6️⃣ 프롬프트가 자동으로 복사되면 AI에 붙여넣기 하세요
+      6️⃣ 프롬프트가 자동으�� 복사되면 AI에 붙여넣기 하세요
     </p>
 
     <h2 style="margin-top:30px; margin-bottom:15px;">도입 방식 설명</h2>
@@ -365,13 +416,13 @@
       <strong>📝 내용 요약</strong>: 영상의 주요 내용을 정리하여 슬라이드에 통합<br>
       <strong>🔗 영상 주소 첨부</strong>: QR코드나 링크로 학생들이 수업 후 시청<br>
       <strong>🖼️ 시각화 강화</strong>: 영상의 시각 요소를 분석하여 슬라이드에 반영<br>
-      <strong>💬 토론자료화</strong>: 영상의 내용으로 토론 질문과 활동자료 생성
+      <strong>💬 토론자료화</strong>: 영���의 내용으로 토론 질문과 활동자료 생성
     </p>
 
     <div class="caution-box">
       <strong>⚠️ 주의사항</strong><br>
       - 과목, 결과물 형태, 주제는 필수입니다<br>
-      - 웹 PPT/구글 슬라이드 선택 시 수업 차시와 도입 방식을 반드시 선택하세요<br>
+      - 웹 PPT/구글 슬라이드 선택 시 수업 차시와 도입 방식을 반드시 선택���세요<br>
       - 유튜브 URL은 youtube.com 또는 youtu.be 이어야 합니다<br>
       - 주제는 구체적일수록 좋은 결과를 얻을 수 있습니다
     </div>
