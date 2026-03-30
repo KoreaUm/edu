@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>충주상업고등학교 AI Studio — 수업 콘텐츠 생성기 V14.8</title>
+<title>충주상업고등학교 AI Studio — 수업 콘텐츠 생성기 V14.9</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
@@ -141,15 +141,31 @@
       </div>
     </div>
 
+    <div class="step-block" id="block-target">
+      <div class="step-header"><span class="step-num">03</span><span class="step-title">대상 학년 및 난이도</span></div>
+      <div class="sub-title">학년</div>
+      <div class="tags">
+        <span class="tag" data-group="grade" data-key="1학년">1학년</span>
+        <span class="tag" data-group="grade" data-key="2학년">2학년</span>
+        <span class="tag" data-group="grade" data-key="3학년">3학년</span>
+      </div>
+      <div class="sub-title">수준</div>
+      <div class="tags">
+        <span class="tag" data-group="level" data-key="기초보충">🌱 기초보충</span>
+        <span class="tag" data-group="level" data-key="보통">🌿 보통</span>
+        <span class="tag" data-group="level" data-key="심화">🌳 심화</span>
+      </div>
+    </div>
+
     <div class="step-block" id="block-subject">
-      <div class="step-header"><span class="step-num">03</span><span class="step-title">과목 선택</span></div>
+      <div class="step-header"><span class="step-num">04</span><span class="step-title">과목 선택</span></div>
       
       <div class="sub-title">📚 공통 교과</div>
       <div class="tags">
         <span class="tag" data-group="subject" data-key="국어">📖 국어</span>
         <span class="tag" data-group="subject" data-key="문학">📕 문학</span>
         <span class="tag" data-group="subject" data-key="실용국어">💬 실용국어(실국)</span>
-        <span class="tag" data-group="subject" data-key="수학">📐 수학</span>
+        <span class="tag" data-group="subject" data-key="수학">📐 ��학</span>
         <span class="tag" data-group="subject" data-key="경영수학">📊 경영수학(경수)</span>
         <span class="tag" data-group="subject" data-key="영어">🔤 영어</span>
         <span class="tag" data-group="subject" data-key="실용영어">🌐 실용영어(실영)</span>
@@ -200,6 +216,525 @@
         <span class="tag" data-group="subject" data-key="알고리즘">🔍 알고리즘(알고)</span>
         <span class="tag" data-group="subject" data-key="컴퓨터일반">🖥️ 컴퓨터일반(컴일)</span>
         <span class="tag" data-group="subject" data-key="응용프로그래밍">📲 응용프로그래밍(응프)</span>
+        <span class="tag" data-group="subject" data-key="빅데이터">📊 빅데이터(빅데)</span>
+      </div>
+
+      <div class="sub-title">🍳 관광 / 조리 / 서비스 계열</div>
+      <div class="tags">
+        <span class="tag" data-group="subject" data-key="바리스타">☕ 바리스타(바리)</span>
+        <span class="tag" data-group="subject" data-key="객실서비스">🏨 객실서비스(객실)</span>
+        <span class="tag" data-group="subject" data-key="식음료서비스">🍽️ 식음료서비스(식음)</span>
+        <span class="tag" data-group="subject" data-key="관광서비스">🧳 관광서비스(관서)</span>
+        <span class="tag" data-group="subject" data-key="여행">✈️ 여행</span>
+        <span class="tag" data-group="subject" data-key="제과">🎂 제과</span>
+        <span class="tag" data-group="subject" data-key="제빵">🥖 제빵</span>
+        <span class="tag" data-group="subject" data-key="한식">🍱 한식</span>
+        <span class="tag" data-group="subject" data-key="양식">🍝 양식</span>
+        <span class="tag" data-group="subject" data-key="중식">🍜 중식</span>
+        <span class="tag" data-group="subject" data-key="떡제조">🍡 떡제조</span>
+        <span class="tag" data-group="subject" data-key="식품">🥫 식품</span>
+      </div>
+    </div>
+
+    <div class="step-block" id="block-curr">
+      <div class="step-header"><span class="step-num">05</span><span class="step-title">적용 교육과정</span></div>
+      <div class="tags">
+        <span class="tag" data-group="curriculum" data-key="2022 개정">✨ 2022 개정</span>
+        <span class="tag" data-group="curriculum" data-key="2015 개정">📜 2015 개정</span>
+      </div>
+    </div>
+
+    <div class="step-block" id="block-output">
+      <div class="step-header"><span class="step-num">06</span><span class="step-title">최종 결과물 형태</span></div>
+      <div class="tags">
+        <span class="tag" data-group="output" data-key="html">🎞️ 웹 제작 (HTML)</span>
+        <span class="tag" data-group="output" data-key="google_slide">🟧 구글 슬라이드 기획안</span>
+        <span class="tag" data-group="output" data-key="lesson_plan">📜 수업 지도안</span>
+        <span class="tag" data-group="output" data-key="worksheet">📝 학생용 학습지</span>
+        <span class="tag" data-group="output" data-key="summary">📌 핵심 요약노트</span>
+      </div>
+    </div>
+
+    <div class="step-block" id="block-period" style="display:none;">
+      <div class="step-header"><span class="step-num">07</span><span class="step-title">수업 차시 및 구성</span></div>
+      <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:10px;">몇 차시 분량의 수업을 한 번에 준비할지 선택하세요.</p>
+      <div class="tags">
+        <span class="tag" data-group="period" data-key="1차시">🔵 1차시 (45분)</span>
+        <span class="tag" data-group="period" data-key="2차시">🟢 2차시 (90분)</span>
+        <span class="tag" data-group="period" data-key="3차시">🟠 3차시 (135분)</span>
+        <span class="tag" data-group="period" data-key="4차시">🔴 4차시 (180분)</span>
+      </div>
+
+      <div class="sub-title">도입 방식 선택</div>
+      <div class="tags">
+        <span class="tag" data-group="intro" data-key="질문">❓ 질문으로 도입</span>
+        <span class="tag" data-group="intro" data-key="예시">💡 예시/상황으로 도입</span>
+        <span class="tag" data-group="intro" data-key="사례">📰 실제 사례로 도입</span>
+        <span class="tag" data-group="intro" data-key="영상">🎬 영상으로 도입</span>
+        <span class="tag" data-group="intro" data-key="문제">🎯 문제 상황으로 도입</span>
+      </div>
+      <p style="font-size:0.7rem; color:#94a3b8; margin-top:10px;">✓ 도입(5~10분) → 전개(25~30분) → 정리(5~10분)</p>
+    </div>
+
+    <div class="step-block" id="block-slidecount">
+      <div class="step-header"><span class="step-num">08</span><span class="step-title">슬라이드 제작 분량</span></div>
+      <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:10px;">웹 제작 또는 구글 슬라이드 선택 시 적용되는 총 장수입니다.</p>
+      <div class="tags count-tags">
+        <span class="tag tag-cnt" data-group="slidecnt" data-key="10">10장</span>
+        <span class="tag tag-cnt" data-group="slidecnt" data-key="11">11장</span>
+        <span class="tag tag-cnt" data-group="slidecnt" data-key="12">12장</span>
+        <span class="tag tag-cnt" data-group="slidecnt" data-key="13">13장</span>
+        <span class="tag tag-cnt" data-group="slidecnt" data-key="14">14장</span>
+        <span class="tag tag-cnt" data-group="slidecnt" data-key="15">15장</span>
+        <span class="tag tag-cnt" data-group="slidecnt" data-key="16">16장</span>
+        <span class="tag tag-cnt" data-group="slidecnt" data-key="17">17장</span>
+        <span class="tag tag-cnt" data-group="slidecnt" data-key="18">18장</span>
+        <span class="tag tag-cnt" data-group="slidecnt" data-key="19">19장</span>
+        <span class="tag tag-cnt" data-group="slidecnt" data-key="20">20장</span>
+      </div>
+    </div>
+
+    <div class="step-block" id="block-pedagogy">
+      <div class="step-header"><span class="step-num">09</span><span class="step-title">교수법 및 전략</span></div>
+      <div class="sub-title">기본 강의법</div>
+      <div class="tags">
+        <span class="tag" data-group="pedagogy" data-key="강의식">👨‍🏫 강의식(전달)</span>
+        <span class="tag" data-group="pedagogy" data-key="소크라테스식">💭 소크라테스식 질문법</span>
+      </div>
+      <div class="sub-title">학생 중심 학습</div>
+      <div class="tags">
+        <span class="tag" data-group="pedagogy" data-key="협동학습">👥 협동학습</span>
+        <span class="tag" data-group="pedagogy" data-key="소그룹토의">💬 소그룹 토의</span>
+        <span class="tag" data-group="pedagogy" data-key="하브루타">🤝 하브루타(짝 토론)</span>
+        <span class="tag" data-group="pedagogy" data-key="피어러닝">🔄 피어러닝(동료 학습)</span>
+      </div>
+      <div class="sub-title">문제 해결 중심</div>
+      <div class="tags">
+        <span class="tag" data-group="pedagogy" data-key="PBL">🏗️ PBL(프로젝트학습)</span>
+        <span class="tag" data-group="pedagogy" data-key="케이스스터디">📂 케이스 스터디</span>
+        <span class="tag" data-group="pedagogy" data-key="실습중심">🔧 실습 중심 학습</span>
+      </div>
+      <div class="sub-title">능동적 학습</div>
+      <div class="tags">
+        <span class="tag" data-group="pedagogy" data-key="플립러닝">🔄 플립러닝(뒤집힌 수업)</span>
+        <span class="tag" data-group="pedagogy" data-key="게이미피케이션">🎮 게이미피케이션</span>
+        <span class="tag" data-group="pedagogy" data-key="탐구학습">🔬 탐구학습</span>
+      </div>
+      <div class="sub-title">활동 기반</div>
+      <div class="tags">
+        <span class="tag" data-group="pedagogy" data-key="역할극">🎭 역할극/시뮬레이션</span>
+        <span class="tag" data-group="pedagogy" data-key="토론식">🗣️ 토론식 수업</span>
+        <span class="tag" data-group="pedagogy" data-key="발표식">📢 발표 및 피드백</span>
+      </div>
+    </div>
+
+    <div class="step-block conditional-block" id="block-visualization" style="display:none;">
+      <div class="step-header"><span class="step-num">10</span><span class="step-title">시각화 자료 강화</span></div>
+      <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:10px;">슬라이드에 포함될 시각화 요소를 선택하세요.</p>
+      <div class="tags">
+        <span class="tag" data-group="visualization" data-key="infographic">📊 인포그래픽(도표/차트)</span>
+        <span class="tag" data-group="visualization" data-key="diagram">🔗 다이어그램(플로우/맵)</span>
+        <span class="tag" data-group="visualization" data-key="illustration">🎨 일러스트/아이콘</span>
+        <span class="tag" data-group="visualization" data-key="photo">📸 사진/실제 이미지</span>
+        <span class="tag" data-group="visualization" data-key="animation">✨ 애니메이션 효과</span>
+      </div>
+    </div>
+
+    <div class="step-block" id="block-yt">
+      <div class="step-header"><span class="step-num">11</span><span class="step-title">유튜브 연계 및 분석</span></div>
+      <div class="yt-input-wrap">
+        <input class="yt-input" id="ytUrlInput" placeholder="유튜브 주소 입력">
+        <button class="yt-add-btn" onclick="addYoutube()">추가</button>
+      </div>
+      <div class="yt-list" id="ytList"></div>
+      <div id="youtube-options" style="display:none;">
+        <div class="sub-title">영상 활용 방식 (각 영상별 선택 가능)</div>
+        <div style="font-size:0.7rem; color:#94a3b8; margin-bottom:8px;">💡 각 영상마다 다른 방식을 선택할 수 있습니다.</div>
+        <div class="tags">
+          <span class="tag" data-group="analysis" data-key="content_summary">📝 내용 요약</span>
+          <span class="tag" data-group="analysis" data-key="url_attach">🔗 영상 주소 첨부</span>
+          <span class="tag" data-group="analysis" data-key="visual_heavy">🖼️ 시각화 강화</span>
+          <span class="tag" data-group="analysis" data-key="discussion">💬 토론자료화</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-block" id="block-style">
+      <div class="step-header"><span class="step-num">12</span><span class="step-title">디자인 및 어조</span></div>
+      <div class="sub-title">디자인 스타일</div>
+      <div class="tags">
+        <span class="tag" data-group="design" data-key="배민">🟢 배민 스타일</span>
+        <span class="tag" data-group="design" data-key="토스">🔵 토스 스타일</span>
+        <span class="tag" data-group="design" data-key="쿠팡">🟠 쿠팡 스타일</span>
+        <span class="tag" data-group="design" data-key="당근">🟡 당근 스타일</span>
+        <span class="tag" data-group="design" data-key="넷플릭스">🎬 넷플릭스</span>
+        <span class="tag" data-group="design" data-key="애플">⚫ 애플</span>
+        <span class="tag" data-group="design" data-key="칠판">🏫 칠판</span>
+      </div>
+      <div class="sub-title">어조</div>
+      <div class="tags">
+        <span class="tag" data-group="tone" data-key="친근한">😊 친근</span>
+        <span class="tag" data-group="tone" data-key="전문적인">🧐 전문</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="editor">
+    <div class="prompt-preview custom-scroll">
+      <div class="prompt-section"><div class="prompt-label">User Topic</div><div class="prompt-content" id="pv-topic"></div></div>
+      <div class="prompt-section"><div class="prompt-label">Main Logic</div><div class="prompt-content" id="pv-logic"></div></div>
+      <div class="prompt-section"><div class="prompt-label">Class Structure</div><div class="prompt-content" id="pv-structure"></div></div>
+      <div class="prompt-section"><div class="prompt-label">Material Config</div><div class="prompt-content" id="pv-config"></div></div>
+      <div class="prompt-section"><div class="prompt-label">Visual & YouTube</div><div class="prompt-content" id="pv-visual"></div></div>
+    </div>
+    <div class="topic-area" style="border-top: 2px solid var(--accent);">
+      <button class="gen-btn" onclick="generateAndCopy()"><i class="fas fa-magic"></i> 프롬프트 생성 & 복사</button>
+      <p style="font-size: 0.7rem; color: #94a3b8; text-align: center; margin-top: 10px; margin-bottom: 0;">모든 설정을 완료한 후<br>위 버튼을 클릭하세요</p>
+    </div>
+  </section>
+</div>
+
+<div id="view-guide" style="display:none;">
+  <div class="guide-container">
+    <h1 style="color:#3b82f6; margin-bottom:20px;">📖 사용 설명서</h1>
+    
+    <h2 style="margin-top:30px; margin-bottom:15px;">시작하기</h2>
+    <p style="margin-bottom:15px; line-height:1.8;">
+      1️⃣ 맨 위에 수업 주제를 입력하세요<br>
+      2️⃣ 학교급을 선택하세요<br>
+      3️⃣ 대상 학년 및 난이도를 선택하세요<br>
+      4️⃣ 과목을 선택하세요<br>
+      5️⃣ 결과물 형태를 선택하세요<br>
+      6️⃣ 웹 제작이나 구글 슬라이드 선택 시 수업 차시와 도입 방식을 선택하세요<br>
+      7️⃣ 나머지 옵션들을 선택하세요<br>
+      8️⃣ 우측 프리뷰에서 선택사항을 확인한 후 생성 버튼을 누르세요<br>
+      9️⃣ 프롬프트가 자동으로 복사되면 AI에 붙여넣기 하세요
+    </p>
+
+    <h2 style="margin-top:30px; margin-bottom:15px;">도입 방식 설명</h2>
+    <p style="margin-bottom:15px;">
+      <strong>❓ 질문으로 도입</strong>: 학생들을 생각하게 만드는 개방형 질문으로 시작<br>
+      <strong>💡 예시/상황으로 도입</strong>: 일상적인 예시나 흥미로운 상황을 제시<br>
+      <strong>📰 실제 사례로 도입</strong>: 실제 뉴스, 사건, 현상을 바탕으로 시작<br>
+      <strong>🎬 영상으로 도입</strong>: 짧은 영상이나 동영상 클립으로 주의 집중<br>
+      <strong>🎯 문제 상황으로 도입</strong>: 해결해야 할 구체적인 문제 상황 제시
+    </p>
+
+    <h2 style="margin-top:30px; margin-bottom:15px;">수업 차시 및 구성</h2>
+    <p style="margin-bottom:15px;">
+      <strong>🔵 1차시 (45분)</strong>: 도입 → 전개 → 정리<br>
+      <strong>🟢 2차시 (90분)</strong>: 1차시 + 1차시 (복습 후 심화)<br>
+      <strong>🟠 3차시 (135분)</strong>: 1→2→3차시 (단계적 심화)<br>
+      <strong>🔴 4차시 (180분)</strong>: 1~4차시 (전문화 과정)<br><br>
+      수업 흐름:<br>
+      • 도입(5~10분): 선택한 방식으로 동기유발, 이전 차시 복습, 학습목표 제시<br>
+      • 전개(25~30분): 강의, 학습활동, 토론, 실습 (차시별 심화)<br>
+      • 정리(5~10분): 핵심 내용 정리, 차시 예고, 과제 안내
+    </p>
+
+    <h2 style="margin-top:25px; margin-bottom:15px;">유튜브 활용 방식</h2>
+    <p style="margin-bottom:15px;">
+      <strong>📝 내용 요약</strong>: 영상의 주요 내용을 정리하여 슬라이드에 통합<br>
+      <strong>🔗 영상 주소 첨부</strong>: QR코드나 링크로 학생들이 수업 후 시청<br>
+      <strong>🖼️ 시각화 강화</strong>: 영상의 시각 요소를 분석하여 슬라이드에 반영<br>
+      <strong>💬 토론자료화</strong>: 영상의 내용으로 토론 질문과 활동자료 생성
+    </p>
+
+    <div class="caution-box">
+      <strong>⚠️ 주의사항</strong><br>
+      - 주제, 학교급, 과목, 결과물 형태는 필수입니다<br>
+      - 웹 제작/구글 슬라이드 선택 시 수업 차시와 도입 방식을 반드시 선택하세요<br>
+      - 유튜브 URL은 youtube.com 또는 youtu.be 이어야 합니다<br>
+      - 주제는 구체적일수록 좋은 결과를 얻을 수 있습니다
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">📋 프롬프트 복사 성공!</div>
+
+<script>
+const state = { 
+  school: [], subject: [], grade: [], level: [], curriculum: [], output: [], 
+  slidecnt: [], period: [], intro: [], pedagogy: [], design: [], tone: [], 
+  youtubes: [], youtubeOptions: {}, visualization: [] 
+};
+const SINGLE_SELECT = new Set(['school', 'subject', 'grade', 'level', 'curriculum', 'output', 'slidecnt', 'period', 'intro', 'design', 'tone']);
+
+function switchTab(tab, element) {
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  element.classList.add('active');
+  document.getElementById('view-builder').style.display = tab === 'builder' ? 'grid' : 'none';
+  document.getElementById('view-guide').style.display = tab === 'guide' ? 'block' : 'none';
+}
+
+document.querySelectorAll('.tag').forEach(tag => {
+  tag.addEventListener('click', function() {
+    const { group, key } = this.dataset;
+    if (SINGLE_SELECT.has(group)) {
+      document.querySelectorAll(`.tag[data-group="${group}"]`).forEach(t => t.classList.remove('on'));
+      if (!state[group].includes(key)) { 
+        state[group] = [key]; 
+        this.classList.add('on'); 
+      } else { 
+        state[group] = []; 
+      }
+    } else {
+      if (state[group].includes(key)) { 
+        state[group] = state[group].filter(v => v !== key); 
+        this.classList.remove('on'); 
+      } else { 
+        state[group].push(key); 
+        this.classList.add('on'); 
+      }
+    }
+    updateUI();
+  });
+});
+
+function isValidYoutubeUrl(url) {
+  return url.includes('youtube.com') || url.includes('youtu.be');
+}
+
+function addYoutube() {
+  const url = document.getElementById('ytUrlInput').value.trim();
+  if (!url) {
+    alert('유튜브 링크를 입력하세요!');
+    return;
+  }
+  if (!isValidYoutubeUrl(url)) {
+    alert('유효한 유튜브 링크를 입력하세요!');
+    return;
+  }
+  state.youtubes.push(url);
+  state.youtubeOptions[url] = 'content_summary';
+  document.getElementById('ytUrlInput').value = '';
+  updateUI();
+}
+
+function removeYoutube(index) {
+  const url = state.youtubes[index];
+  delete state.youtubeOptions[url];
+  state.youtubes.splice(index, 1);
+  updateUI();
+}
+
+function setYoutubeOption(index, option) {
+  const url = state.youtubes[index];
+  state.youtubeOptions[url] = option;
+  updateUI();
+}
+
+document.getElementById('topicInput').addEventListener('input', updateUI);
+
+function updateUI() {
+  const formatMap = {
+    html: 'HTML (웹 PPT)',
+    google_slide: '구글 슬라이드(기획)',
+    lesson_plan: '지도안',
+    worksheet: '학습지',
+    summary: '요약노트'
+  };
+
+  const schoolMap = {
+    '고등학교': '고등학생',
+    '중학교': '중학생'
+  };
+
+  document.getElementById('pv-logic').textContent = 
+    `${schoolMap[state.school[0]] || '학생'} / ${state.subject[0] || '(미선택)'} / ${state.curriculum[0] || '(미선택)'} / ${state.grade[0] || '(미선택)'}`;
+  
+  let structureText = '';
+  if (state.period[0]) {
+    const introMap = {
+      '질문': '❓ 질문으로 도입',
+      '예시': '💡 예시/상황으로 도입',
+      '사례': '📰 실제 사례로 도입',
+      '영상': '🎬 영상으로 도입',
+      '문제': '🎯 문제 상황으로 도입'
+    };
+    structureText = `${state.period[0]}\n도입방식: ${introMap[state.intro[0]] || '(미선택)'}\n도입→전개→정리`;
+  }
+  document.getElementById('pv-structure').textContent = structureText || '(웹/구글슬라이드 선택 시)';
+  
+  document.getElementById('pv-config').textContent = 
+    `${formatMap[state.output[0]] || '(미선택)'} [분량: ${state.slidecnt[0] || '15'}장] / 전략: ${state.pedagogy.join(', ') || '(미선택)'}`;
+  
+  let visualText = '';
+  if (state.visualization.length > 0) {
+    visualText += `시각화: ${state.visualization.join(', ')}`;
+  }
+  if (state.youtubes.length > 0) {
+    if (visualText) visualText += '\n';
+    visualText += `유튜브: ${state.youtubes.length}개\n`;
+    state.youtubes.forEach((url, idx) => {
+      const option = state.youtubeOptions[url];
+      const optMap = {
+        'content_summary': '📝 내용 요약',
+        'url_attach': '🔗 영상 주소',
+        'visual_heavy': '🖼️ 시각화',
+        'discussion': '💬 토론자료화'
+      };
+      visualText += `${idx + 1}. ${optMap[option] || ''}\n`;
+    });
+  }
+  document.getElementById('pv-visual').textContent = visualText || '(미설정)';
+  
+  document.getElementById('pv-topic').textContent = 
+    document.getElementById('topicInput').value || '(주제 입력 대기 중)';
+  
+  const ytListHtml = state.youtubes.map((url, idx) => {
+    const option = state.youtubeOptions[url];
+    return `
+    <div class="yt-item">
+      <div class="yt-item-info">
+        <div class="yt-item-url">${url.substring(0, 35)}${url.length > 35 ? '...' : ''}</div>
+        <select class="yt-item-option" onchange="setYoutubeOption(${idx}, this.value)" style="background:#0f172a; color:#a78bfa; border:1px solid #334155; padding:4px; border-radius:4px; font-size:0.7rem;">
+          <option value="content_summary">📝 내용 요약</option>
+          <option value="url_attach">🔗 영상 주소 첨부</option>
+          <option value="visual_heavy">🖼️ 시각화 강화</option>
+          <option value="discussion">💬 토론자료화</option>
+        </select>
+      </div>
+      <button class="yt-remove-btn" onclick="removeYoutube(${idx})">✕</button>
+    </div>`;
+  }).join('');
+  document.getElementById('ytList').innerHTML = ytListHtml;
+  
+  document.getElementById('youtube-options').style.display = state.youtubes.length > 0 ? 'block' : 'none';
+  
+  const isSlideOutput = state.output[0] === 'html' || state.output[0] === 'google_slide';
+  document.getElementById('block-period').style.display = isSlideOutput ? 'block' : 'none';
+  document.getElementById('block-visualization').style.display = isSlideOutput ? 'block' : 'none';
+  
+  document.querySelectorAll('.step-block').forEach(b => {
+    const grps = 
+      b.id === 'block-topic' ? [] :
+      b.id === 'block-school' ? ['school'] :
+      b.id === 'block-target' ? ['grade', 'level'] :
+      b.id === 'block-subject' ? ['subject'] :
+      b.id === 'block-curr' ? ['curriculum'] :
+      b.id === 'block-output' ? ['output'] :
+      b.id === 'block-period' ? ['period', 'intro'] :
+      b.id === 'block-slidecount' ? ['slidecnt'] :
+      b.id === 'block-pedagogy' ? ['pedagogy'] :
+      b.id === 'block-style' ? ['design', 'tone'] :
+      b.id === 'block-visualization' ? ['visualization'] : [];
+    
+    const hasValue = grps.some(g => state[g].length > 0) || (b.id === 'block-yt' && state.youtubes.length);
+    b.classList.toggle('active', hasValue);
+  });
+}
+
+function generateAndCopy() {
+  const topic = document.getElementById('topicInput').value.trim();
+  const isSlideOutput = state.output[0] === 'html' || state.output[0] === 'google_slide';
+  
+  if (!topic || !state.school.length || !state.subject.length || !state.output.length) {
+    alert('❌ 필수: 주제, 학교급, 과목, 결과물 형태');
+    return;
+  }
+  
+  if (isSlideOutput && (!state.period.length || !state.intro.length)) {
+    alert('❌ 웹/구글 슬라이드 선택 시 수업 차시와 도입 방식을 반드시 선택해야 합니다!');
+    return;
+  }
+
+  const cnt = state.slidecnt[0] || '15';
+  const isHtml = state.output[0] === 'html';
+  
+  const schoolMap = {
+    '고등학교': '고등학생',
+    '중학교': '중학생'
+  };
+  
+  const introGuide = {
+    '질문': '개방형 질문으로 학생들을 생각하게 만들기',
+    '예시': '일상적인 예시나 흥미로운 상황 제시하기',
+    '사례': '실제 뉴스, 사건, 현상을 바탕으로 시작하기',
+    '영상': '짧은 영상이나 동영상 클립으로 주의 집중시키기',
+    '문제': '해결해야 할 구체적인 문제 상황 제시하기'
+  };
+
+  let prompt = `[INSTRUCTION: 교육 콘텐츠 생성]
+
+█ 주제:
+${topic}
+
+█ 기본 정보:
+대상: ${schoolMap[state.school[0]]} / ${state.grade[0] || 'N/A'} / 난이도: ${state.level[0] || 'N/A'}
+과목: ${state.subject[0]}
+형식: ${state.output[0]} (정확히 ${cnt}장)
+교육과정: ${state.curriculum[0] || '2022'}
+
+█ 교수법 및 전략:
+${state.pedagogy.join(', ') || 'Standard'}`;
+
+  if (state.period[0]) {
+    prompt += `\n\n█ 수업 구성 (${state.period[0]}):
+• 도입(5~10분): ${introGuide[state.intro[0]] || '학습 준비'} + 학습목표 제시
+• 전개(25~30분): 강의/활동/토론 (차시별로 단계적 심화)
+• 정리(5~10분): 핵심내용 정리 + 차시 예고
+✓ 차시 간 연계성 강화: 각 차시가 이전 학습을 바탕으로 심화됨`;
+  }
+
+  prompt += `\n\n█ 디자인 & 톤:`;
+  if (state.design.length > 0) {
+    prompt += `\nStyle: ${state.design[0]}`;
+  }
+  if (state.tone.length > 0) {
+    prompt += `\nTone: ${state.tone[0]}`;
+  }
+
+  if (state.visualization.length > 0) {
+    prompt += `\n\n█ 시각화 요소:`;
+    state.visualization.forEach(v => {
+      const guides = {
+        'infographic': '📊 인포그래픽: 통계 데이터를 차트/그래프로 시각화',
+        'diagram': '🔗 다이어그램: 프로세스 플로우, 조직도, 개념맵 포함',
+        'illustration': '🎨 일러스트: 개념을 표현하는 심플한 아이콘/그림',
+        'photo': '📸 사진: 실제 상황 사진, 현장 이미지 (저작권 프리)',
+        'animation': '✨ 애니메이션: 개념 설명 애니메이션, 인터랙티브 요소'
+      };
+      prompt += `\n${guides[v] || v}`;
+    });
+  }
+
+  if (state.youtubes.length > 0) {
+    prompt += `\n\n█ 참고 영상 (${state.youtubes.length}개):`;
+    state.youtubes.forEach((url, i) => {
+      const option = state.youtubeOptions[url];
+      const guide = {
+        'content_summary': '주요 내용을 슬라이드에 통합',
+        'url_attach': 'QR코드/링크 첨부 (수업 후 시청 유도)',
+        'visual_heavy': '시각 요소를 슬라이드에 반영',
+        'discussion': '토론 질문 및 활동자료로 변환'
+      }[option] || '';
+      prompt += `\n${i + 1}. ${url}\n   → ${guide}`;
+    });
+  }
+
+  prompt += `\n\n█ 필수 조건:
+✓ 모든 내용이 완전하고 실용적이어야 함
+✓ 각 페이지에 학습목표, 핵심개념, 구체적 사례 포함
+✓ 플레이스홀더([내용 입력] 같은 표현) 절대 금지
+✓ ${isHtml ? 'HTML/CSS/JS로 완성된 웹 슬라이드 (반응형 디자인, 부드러운 전환 효과, 완전한 코드)' : '구글 슬라이드 상세 기획서 (스피커노트, 활동 가이드 포함)'}
+✓ 차시 간 연계성: 이전 학습 → 복습 → 새로운 개념 → 심화 순서로 구성
+
+[ChatGPT: OPEN CANVAS 사용 / Claude: GENERATE ARTIFACT 사용]`;
+
+  navigator.clipboard.writeText(prompt).then(() => {
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }).catch(err => {
+    alert('복사 실패: ' + err);
+  });
+}
+
+updateUI();
+</script>
+</body>
+</html>        <span class="tag" data-group="subject" data-key="응용프로그래밍">📲 응용프로그래밍(응프)</span>
         <span class="tag" data-group="subject" data-key="빅데이터">📊 빅데이터(빅데)</span>
       </div>
 
