@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>충주상업고등학교 AI Studio — 수업 콘텐츠 생성기 V14.9</title>
+<title>충주상업고등학교 AI Studio — 수업 콘텐츠 생성기 V15.0</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
@@ -164,8 +164,8 @@
       <div class="tags">
         <span class="tag" data-group="subject" data-key="국어">📖 국어</span>
         <span class="tag" data-group="subject" data-key="문학">📕 문학</span>
-        <span class="tag" data-group="subject" data-key="실용국어">💬 실용국어(실국)</span>
-        <span class="tag" data-group="subject" data-key="수학">📐 ��학</span>
+        <span class="tag" data-group="subject" data-key="실용��어">💬 실용국어(실국)</span>
+        <span class="tag" data-group="subject" data-key="수학">📐 수학</span>
         <span class="tag" data-group="subject" data-key="경영수학">📊 경영수학(경수)</span>
         <span class="tag" data-group="subject" data-key="영어">🔤 영어</span>
         <span class="tag" data-group="subject" data-key="실용영어">🌐 실용영어(실영)</span>
@@ -232,7 +232,7 @@
         <span class="tag" data-group="subject" data-key="양식">🍝 양식</span>
         <span class="tag" data-group="subject" data-key="중식">🍜 중식</span>
         <span class="tag" data-group="subject" data-key="떡제조">🍡 떡제조</span>
-        <span class="tag" data-group="subject" data-key="식품">🥫 식품</span>
+        <span class="tag" data-group="subject" data-key="식품">��� 식품</span>
       </div>
     </div>
 
@@ -460,6 +460,20 @@ const state = {
 };
 const SINGLE_SELECT = new Set(['school', 'subject', 'grade', 'level', 'curriculum', 'output', 'slidecnt', 'period', 'intro', 'design', 'tone']);
 
+const designPrompts = {
+  '배민': 'Playful Korean illustration style with mint green background, bold and quirky Korean typography, simple flat characters with thick outlines, humorous and casual mood, minimal shading, high contrast colors, friendly and lighthearted atmosphere',
+  
+  '토스': 'Ultra minimal and clean design with soft blue gradients, lots of white space, simple rounded UI elements, modern fintech aesthetic, subtle shadows, calm and trustworthy mood, smooth typography',
+  
+  '쿠팡': 'Bright and energetic ecommerce style, bold primary colors (red, blue, yellow), high contrast, promotional layout, clear emphasis on products and speed, clean but attention-grabbing composition, commercial and dynamic feel',
+  
+  '당근': 'Warm and friendly illustration style with soft orange tones, cozy neighborhood feeling, simple flat characters, gentle colors, approachable and human-centered mood, community-focused and relaxed atmosphere',
+  
+  '넷플릭스': 'Dark cinematic style with black and deep red tones, dramatic lighting, high contrast shadows, movie poster composition, intense and immersive mood, sleek modern typography, premium entertainment aesthetic',
+  
+  '애플': 'Extremely minimal and premium design, clean white or black background, soft natural lighting, high-end product-focused composition, perfect symmetry, smooth surfaces, futuristic and elegant mood'
+};
+
 function switchTab(tab, element) {
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   element.classList.add('active');
@@ -679,10 +693,10 @@ ${state.pedagogy.join(', ') || 'Standard'}`;
 
   prompt += `\n\n█ 디자인 & 톤:`;
   if (state.design.length > 0) {
-    prompt += `\nStyle: ${state.design[0]}`;
+    prompt += `\nDesign Style:\n${designPrompts[state.design[0]]}`;
   }
   if (state.tone.length > 0) {
-    prompt += `\nTone: ${state.tone[0]}`;
+    prompt += `\n\nTone: ${state.tone[0]}`;
   }
 
   if (state.visualization.length > 0) {
@@ -717,7 +731,7 @@ ${state.pedagogy.join(', ') || 'Standard'}`;
 ✓ 모든 내용이 완전하고 실용적이어야 함
 ✓ 각 페이지에 학습목표, 핵심개념, 구체적 사례 포함
 ✓ 플레이스홀더([내용 입력] 같은 표현) 절대 금지
-✓ ${isHtml ? 'HTML/CSS/JS로 완성된 웹 슬라이드 (반응형 디자인, 부드러운 전환 효과, 완전한 코드)' : '구글 슬라이드 상세 기획서 (스피커노트, 활동 가이드 포함)'}
+✓ ${isHtml ? 'HTML/CSS/JS로 완성된 웹 슬라이드 (반응형 디자인, 부드���운 전환 효과, 완전한 코드)' : '구글 슬라이드 상세 기획서 (스피커노트, 활동 가이드 포함)'}
 ✓ 차시 간 연계성: 이전 학습 → 복습 → 새로운 개념 → 심화 순서로 구성
 
 [ChatGPT: OPEN CANVAS 사용 / Claude: GENERATE ARTIFACT 사용]`;
