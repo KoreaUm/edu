@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>충주상업고등학교 AI Studio — 수업 콘텐츠 생성기 V15.0</title>
+<title>충주상업고등학교 AI Studio — 수업 콘텐츠 생성기 V15.2</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
   :root {
-    --bg: #020617;
-    --surface: #0f172a;
-    --surface-light: #1e293b;
-    --border: rgba(255,255,255,0.1);
+    --bg: #f8f9fa;
+    --surface: #ffffff;
+    --surface-light: #f0f3f7;
+    --border: #e0e4e9;
     --accent: #3b82f6;
     --accent-hover: #2563eb;
-    --text: #f1f5f9;
-    --text-muted: #94a3b8;
-    --preview-hi: #60a5fa;
+    --text: #1a202c;
+    --text-muted: #64748b;
+    --preview-hi: #1e40af;
     --radius: 12px;
   }
 
@@ -25,8 +25,8 @@
 
   header {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 0 2rem; height: 72px; background: rgba(15, 23, 42, 0.95);
-    border-bottom: 1px solid var(--border); backdrop-filter: blur(10px); z-index: 200; flex-shrink: 0;
+    padding: 0 2rem; height: 72px; background: var(--surface);
+    border-bottom: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.05); z-index: 200; flex-shrink: 0;
   }
   .logo-wrap { display: flex; align-items: center; gap: 1rem; }
   .logo-text { font-size: 1.1rem; font-weight: 900; color: var(--accent); letter-spacing: -0.02em; line-height: 1.3; }
@@ -42,68 +42,70 @@
 
   .workspace { display: grid; grid-template-columns: 1fr 480px; flex: 1; height: calc(100vh - 72px); overflow: hidden; }
   .builder { overflow-y: auto; padding: 2rem; background: var(--bg); }
-  .editor { border-left: 1px solid var(--border); background: #000; display: flex; flex-direction: column; }
+  .editor { border-left: 1px solid var(--border); background: var(--surface); display: flex; flex-direction: column; }
 
-  .step-block { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1.2rem; }
+  .step-block { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1.2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
   .step-block.active { border-color: var(--accent); border-left: 5px solid var(--accent); }
   .step-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem; }
   .step-num { font-family: 'DM Mono'; font-size: 0.7rem; background: var(--accent); color: white; padding: 2px 8px; border-radius: 4px; }
   .step-title { font-size: 1rem; font-weight: 800; color: var(--preview-hi); }
-  .sub-title { font-size: 0.65rem; color: #64748b; font-weight: 800; text-transform: uppercase; margin: 15px 0 8px 5px; border-left: 2px solid #334155; padding-left: 8px; }
+  .sub-title { font-size: 0.65rem; color: var(--text-muted); font-weight: 800; text-transform: uppercase; margin: 15px 0 8px 5px; border-left: 2px solid var(--accent); padding-left: 8px; }
 
   .tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .tag {
     cursor: pointer; font-size: 0.75rem; font-weight: 600; padding: 8px 12px;
     border-radius: 8px; border: 1px solid var(--border);
-    background: var(--surface-light); color: var(--text-muted); transition: 0.15s;
+    background: var(--surface-light); color: var(--text); transition: 0.15s;
   }
-  .tag:hover { border-color: var(--accent); color: white; transform: translateY(-1px); }
+  .tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
   .tag.on { background: var(--accent) !important; color: white !important; border-color: var(--accent); }
 
   .count-tags { display: grid; grid-template-columns: repeat(11, 1fr); gap: 4px; }
   .tag-cnt { padding: 8px 0; text-align: center; font-family: 'DM Mono'; font-size: 0.8rem; }
 
   .yt-input-wrap { display: flex; gap: 0.5rem; margin: 1rem 0; }
-  .yt-input { flex: 1; padding: 12px; background: #000; border: 1px solid var(--border); border-radius: 8px; color: white; outline: none; font-size: 0.85rem; }
-  .yt-add-btn { padding: 0 20px; background: #ef4444; color: white; border: none; border-radius: 8px; font-weight: 800; cursor: pointer; transition: 0.2s; }
-  .yt-add-btn:hover { background: #dc2626; }
+  .yt-input { flex: 1; padding: 12px; background: var(--surface-light); border: 1px solid var(--border); border-radius: 8px; color: var(--text); outline: none; font-size: 0.85rem; }
+  .yt-input:focus { border-color: var(--accent); }
+  .yt-add-btn { padding: 0 20px; background: var(--accent); color: white; border: none; border-radius: 8px; font-weight: 800; cursor: pointer; transition: 0.2s; }
+  .yt-add-btn:hover { background: var(--accent-hover); }
   .yt-list { margin-bottom: 1rem; }
-  .yt-item { display: flex; align-items: flex-start; justify-content: space-between; padding: 10px; background: #1e1b4b; border-radius: 6px; margin-top: 0.5rem; font-size: 0.7rem; word-break: break-all; gap: 8px; }
+  .yt-item { display: flex; align-items: flex-start; justify-content: space-between; padding: 10px; background: var(--surface-light); border-radius: 6px; margin-top: 0.5rem; font-size: 0.7rem; word-break: break-all; gap: 8px; border: 1px solid var(--border); }
   .yt-item-info { flex: 1; display: flex; flex-direction: column; gap: 4px; }
-  .yt-item-url { color: #a78bfa; }
-  .yt-item-option { color: #60a5fa; font-size: 0.7rem; }
-  .yt-remove-btn { background: none; border: none; color: #f87171; cursor: pointer; font-weight: bold; padding: 0 8px; transition: 0.2s; flex-shrink: 0; }
+  .yt-item-url { color: var(--preview-hi); }
+  .yt-item-option { color: var(--accent); font-size: 0.7rem; }
+  .yt-remove-btn { background: none; border: none; color: #ef4444; cursor: pointer; font-weight: bold; padding: 0 8px; transition: 0.2s; flex-shrink: 0; }
   .yt-remove-btn:hover { color: #dc2626; }
 
   .prompt-preview { flex: 1; overflow-y: auto; padding: 1.5rem; }
-  .prompt-section { margin-bottom: 0.8rem; border: 1px solid #1e293b; border-radius: 8px; background: rgba(15,23,42,0.5); }
-  .prompt-label { font-family: 'DM Mono'; font-size: 0.6rem; padding: 6px 12px; color: #475569; border-bottom: 1px solid #1e293b; text-transform: uppercase; }
-  .prompt-content { padding: 12px; font-family: 'DM Mono'; font-size: 0.85rem; color: var(--preview-hi); white-space: pre-wrap; line-height: 1.6; }
+  .prompt-section { margin-bottom: 0.8rem; border: 1px solid var(--border); border-radius: 8px; background: var(--surface-light); }
+  .prompt-label { font-family: 'DM Mono'; font-size: 0.6rem; padding: 6px 12px; color: var(--text-muted); border-bottom: 1px solid var(--border); text-transform: uppercase; font-weight: 700; }
+  .prompt-content { padding: 12px; font-family: 'DM Mono'; font-size: 0.8rem; color: var(--text); white-space: pre-wrap; line-height: 1.6; word-break: break-word; }
 
-  .topic-area { padding: 1.5rem; background: #000; border-top: 1px solid var(--border); }
-  textarea.topic-input { width: 100%; background: #0f172a; border: 1px solid #334155; border-radius: 12px; padding: 1rem; color: white; outline: none; min-height: 110px; font-size: 1rem; }
-  .gen-btn { width: 100%; margin-top: 1rem; padding: 1.2rem; border-radius: 12px; border: none; background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white; font-weight: 900; font-size: 1.1rem; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 20px rgba(59,130,246,0.3); }
-  .gen-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(59,130,246,0.4); }
+  .topic-area { padding: 1.5rem; background: var(--surface); border-top: 1px solid var(--border); }
+  textarea.topic-input { width: 100%; background: var(--surface-light); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; color: var(--text); outline: none; min-height: 110px; font-size: 1rem; font-family: 'Noto Sans KR'; }
+  textarea.topic-input:focus { border-color: var(--accent); }
+  .gen-btn { width: 100%; margin-top: 1rem; padding: 1.2rem; border-radius: 12px; border: none; background: linear-gradient(135deg, var(--accent), #8b5cf6); color: white; font-weight: 900; font-size: 1.1rem; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 15px rgba(59,130,246,0.2); }
+  .gen-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(59,130,246,0.3); }
 
-  #view-guide { overflow-y: auto; padding: 3rem; background: #f8fafc; color: #1e293b; height: calc(100vh - 72px); }
+  #view-guide { overflow-y: auto; padding: 3rem; background: var(--bg); color: var(--text); height: calc(100vh - 72px); }
   .guide-container { max-width: 800px; margin: 0 auto; }
-  .caution-box { background: #fff5f5; border-left: 5px solid #f87171; padding: 1.5rem; color: #991b1b; margin: 20px 0; }
+  .caution-box { background: #fef2f2; border-left: 5px solid #ef4444; padding: 1.5rem; color: #7f1d1d; margin: 20px 0; border-radius: 8px; }
 
-  .toast { position: fixed; bottom: 3rem; left: 50%; transform: translateX(-50%) translateY(150px); background: #3b82f6; border-radius: 50px; padding: 1rem 3rem; color: white; font-weight: 800; z-index: 10000; transition: 0.5s; }
+  .toast { position: fixed; bottom: 3rem; left: 50%; transform: translateX(-50%) translateY(150px); background: var(--accent); border-radius: 50px; padding: 1rem 3rem; color: white; font-weight: 800; z-index: 10000; transition: 0.5s; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
   .toast.show { transform: translateX(-50%) translateY(0); }
 
   .custom-scroll {
     scrollbar-width: thin;
-    scrollbar-color: rgba(59,130,246,0.3) transparent;
+    scrollbar-color: var(--accent) transparent;
   }
   .custom-scroll::-webkit-scrollbar { width: 8px; }
   .custom-scroll::-webkit-scrollbar-track { background: transparent; }
-  .custom-scroll::-webkit-scrollbar-thumb { background: rgba(59,130,246,0.3); border-radius: 4px; }
-  .custom-scroll::-webkit-scrollbar-thumb:hover { background: rgba(59,130,246,0.5); }
+  .custom-scroll::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+  .custom-scroll::-webkit-scrollbar-thumb:hover { background: var(--accent-hover); }
 
   .conditional-block { margin-top: 1rem; }
 
-  .topic-highlight { background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(139,92,246,0.2)); }
+  .topic-highlight { background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(139,92,246,0.1)); border: 1px solid rgba(59,130,246,0.3); }
 </style>
 </head>
 <body>
@@ -118,7 +120,7 @@
   </div>
   <div class="header-right">
     <div class="dev-info">AI Powered by<br><strong>교육자 커뮤니티</strong></div>
-    <button onclick="location.reload()" style="background:none; border:none; color:#64748b; cursor:pointer; padding:0;"><i class="fas fa-sync-alt fa-lg"></i></button>
+    <button onclick="location.reload()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; padding:0;"><i class="fas fa-sync-alt fa-lg"></i></button>
   </div>
 </header>
 
@@ -129,7 +131,7 @@
       <div class="step-header"><span class="step-num">01</span><span class="step-title">수업 주제 입력</span></div>
       <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:10px;">구체적이고 자세한 주제를 입력할수록 더 좋은 결과를 얻을 수 있습니다.</p>
       <textarea class="topic-input" id="topicInput" placeholder="예) 분자의 극성과 화학결합의 관계 분석"></textarea>
-      <p style="font-size:0.7rem; color:#94a3b8; margin-top:10px;">💡 팁: 과목명, 단원명, 구체적인 학습 내용을 포함하면 좋습니다.</p>
+      <p style="font-size:0.7rem; color:var(--text-muted); margin-top:10px;">💡 팁: 과목명, 단원명, 구체적인 학습 내용을 포함하면 좋습니다.</p>
     </div>
 
     <div class="step-block" id="block-school">
@@ -164,7 +166,7 @@
       <div class="tags">
         <span class="tag" data-group="subject" data-key="국어">📖 국어</span>
         <span class="tag" data-group="subject" data-key="문학">📕 문학</span>
-        <span class="tag" data-group="subject" data-key="실용��어">💬 실용국어(실국)</span>
+        <span class="tag" data-group="subject" data-key="실용국어">💬 실용국어(실국)</span>
         <span class="tag" data-group="subject" data-key="수학">📐 수학</span>
         <span class="tag" data-group="subject" data-key="경영수학">📊 경영수학(경수)</span>
         <span class="tag" data-group="subject" data-key="영어">🔤 영어</span>
@@ -232,7 +234,7 @@
         <span class="tag" data-group="subject" data-key="양식">🍝 양식</span>
         <span class="tag" data-group="subject" data-key="중식">🍜 중식</span>
         <span class="tag" data-group="subject" data-key="떡제조">🍡 떡제조</span>
-        <span class="tag" data-group="subject" data-key="식품">��� 식품</span>
+        <span class="tag" data-group="subject" data-key="식품">🥫 식품</span>
       </div>
     </div>
 
@@ -273,7 +275,7 @@
         <span class="tag" data-group="intro" data-key="영상">🎬 영상으로 도입</span>
         <span class="tag" data-group="intro" data-key="문제">🎯 문제 상황으로 도입</span>
       </div>
-      <p style="font-size:0.7rem; color:#94a3b8; margin-top:10px;">✓ 도입(5~10분) → 전개(25~30분) → 정리(5~10분)</p>
+      <p style="font-size:0.7rem; color:var(--text-muted); margin-top:10px;">✓ 도입(5~10분) → 전개(25~30분) → 정리(5~10분)</p>
     </div>
 
     <div class="step-block" id="block-slidecount">
@@ -349,7 +351,7 @@
       <div class="yt-list" id="ytList"></div>
       <div id="youtube-options" style="display:none;">
         <div class="sub-title">영상 활용 방식 (각 영상별 선택 가능)</div>
-        <div style="font-size:0.7rem; color:#94a3b8; margin-bottom:8px;">💡 각 영상마다 다른 방식을 선택할 수 있습니다.</div>
+        <div style="font-size:0.7rem; color:var(--text-muted); margin-bottom:8px;">💡 각 영상마다 다른 방식을 선택할 수 있습니다.</div>
         <div class="tags">
           <span class="tag" data-group="analysis" data-key="content_summary">📝 내용 요약</span>
           <span class="tag" data-group="analysis" data-key="url_attach">🔗 영상 주소 첨부</span>
@@ -363,13 +365,12 @@
       <div class="step-header"><span class="step-num">12</span><span class="step-title">디자인 및 어조</span></div>
       <div class="sub-title">디자인 스타일</div>
       <div class="tags">
-        <span class="tag" data-group="design" data-key="배민">🟢 배민 스타일</span>
-        <span class="tag" data-group="design" data-key="토스">🔵 토스 스타일</span>
-        <span class="tag" data-group="design" data-key="쿠팡">🟠 쿠팡 스타일</span>
-        <span class="tag" data-group="design" data-key="당근">🟡 당근 스타일</span>
-        <span class="tag" data-group="design" data-key="넷플릭스">🎬 넷플릭스</span>
-        <span class="tag" data-group="design" data-key="애플">⚫ 애플</span>
-        <span class="tag" data-group="design" data-key="칠판">🏫 칠판</span>
+        <span class="tag" data-group="design" data-key="배민">🟢 배민</span>
+        <span class="tag" data-group="design" data-key="토스">🔵 토스</span>
+        <span class="tag" data-group="design" data-key="쿠팡">🟠 쿠팡</span>
+        <span class="tag" data-group="design" data-key="당근">🟡 당근</span>
+        <span class="tag" data-group="design" data-key="네이버">🟩 네이버</span>
+        <span class="tag" data-group="design" data-key="클래식">🏫 클래식</span>
       </div>
       <div class="sub-title">어조</div>
       <div class="tags">
@@ -389,14 +390,14 @@
     </div>
     <div class="topic-area" style="border-top: 2px solid var(--accent);">
       <button class="gen-btn" onclick="generateAndCopy()"><i class="fas fa-magic"></i> 프롬프트 생성 & 복사</button>
-      <p style="font-size: 0.7rem; color: #94a3b8; text-align: center; margin-top: 10px; margin-bottom: 0;">모든 설정을 완료한 후<br>위 버튼을 클릭하세요</p>
+      <p style="font-size: 0.7rem; color: var(--text-muted); text-align: center; margin-top: 10px; margin-bottom: 0;">모든 설정을 완료한 후<br>위 버튼을 클릭하세요</p>
     </div>
   </section>
 </div>
 
 <div id="view-guide" style="display:none;">
   <div class="guide-container">
-    <h1 style="color:#3b82f6; margin-bottom:20px;">📖 사용 설명서</h1>
+    <h1 style="color:var(--accent); margin-bottom:20px;">📖 사용 설명서</h1>
     
     <h2 style="margin-top:30px; margin-bottom:15px;">시작하기</h2>
     <p style="margin-bottom:15px; line-height:1.8;">
@@ -411,6 +412,16 @@
       9️⃣ 프롬프트가 자동으로 복사되면 AI에 붙여넣기 하세요
     </p>
 
+    <h2 style="margin-top:30px; margin-bottom:15px;">디자인 스타일 가이드</h2>
+    <p style="margin-bottom:15px;">
+      <strong>🟢 배민</strong>: 따뜻한 한국식 감성, 밝은 그린 톤, 친근하고 귀여운 캐릭터<br>
+      <strong>🔵 토스</strong>: 미니멀하고 세련된 디자인, 부드러운 블루 톤, 현대적이고 깔끔함<br>
+      <strong>🟠 쿠팡</strong>: 밝고 활기찬 느낌, 강한 붉은 톤, 빠르고 역동적<br>
+      <strong>🟡 당근</strong>: 따뜻한 오렌지 톤, 이웃 같은 친근함, 커뮤니티 중심<br>
+      <strong>🟩 네이버</strong>: 신뢰감 있는 초록색, 안정적이고 전문적, 명확한 정보 전달<br>
+      <strong>🏫 클래식</strong>: 전통적인 교실 분위기, 검은색과 흰색, 격식 있고 깔끔
+    </p>
+
     <h2 style="margin-top:30px; margin-bottom:15px;">도입 방식 설명</h2>
     <p style="margin-bottom:15px;">
       <strong>❓ 질문으로 도입</strong>: 학생들을 생각하게 만드는 개방형 질문으로 시작<br>
@@ -418,26 +429,6 @@
       <strong>📰 실제 사례로 도입</strong>: 실제 뉴스, 사건, 현상을 바탕으로 시작<br>
       <strong>🎬 영상으로 도입</strong>: 짧은 영상이나 동영상 클립으로 주의 집중<br>
       <strong>🎯 문제 상황으로 도입</strong>: 해결해야 할 구체적인 문제 상황 제시
-    </p>
-
-    <h2 style="margin-top:30px; margin-bottom:15px;">수업 차시 및 구성</h2>
-    <p style="margin-bottom:15px;">
-      <strong>🔵 1차시 (45분)</strong>: 도입 → 전개 → 정리<br>
-      <strong>🟢 2차시 (90분)</strong>: 1차시 + 1차시 (복습 후 심화)<br>
-      <strong>🟠 3차시 (135분)</strong>: 1→2→3차시 (단계적 심화)<br>
-      <strong>🔴 4차시 (180분)</strong>: 1~4차시 (전문화 과정)<br><br>
-      수업 흐름:<br>
-      • 도입(5~10분): 선택한 방식으로 동기유발, 이전 차시 복습, 학습목표 제시<br>
-      • 전개(25~30분): 강의, 학습활동, 토론, 실습 (차시별 심화)<br>
-      • 정리(5~10분): 핵심 내용 정리, 차시 예고, 과제 안내
-    </p>
-
-    <h2 style="margin-top:25px; margin-bottom:15px;">유튜브 활용 방식</h2>
-    <p style="margin-bottom:15px;">
-      <strong>📝 내용 요약</strong>: 영상의 주요 내용을 정리하여 슬라이드에 통합<br>
-      <strong>🔗 영상 주소 첨부</strong>: QR코드나 링크로 학생들이 수업 후 시청<br>
-      <strong>🖼️ 시각화 강화</strong>: 영상의 시각 요소를 분석하여 슬라이드에 반영<br>
-      <strong>💬 토론자료화</strong>: 영상의 내용으로 토론 질문과 활동자료 생성
     </p>
 
     <div class="caution-box">
@@ -461,17 +452,47 @@ const state = {
 const SINGLE_SELECT = new Set(['school', 'subject', 'grade', 'level', 'curriculum', 'output', 'slidecnt', 'period', 'intro', 'design', 'tone']);
 
 const designPrompts = {
-  '배민': 'Playful Korean illustration style with mint green background, bold and quirky Korean typography, simple flat characters with thick outlines, humorous and casual mood, minimal shading, high contrast colors, friendly and lighthearted atmosphere',
-  
-  '토스': 'Ultra minimal and clean design with soft blue gradients, lots of white space, simple rounded UI elements, modern fintech aesthetic, subtle shadows, calm and trustworthy mood, smooth typography',
-  
-  '쿠팡': 'Bright and energetic ecommerce style, bold primary colors (red, blue, yellow), high contrast, promotional layout, clear emphasis on products and speed, clean but attention-grabbing composition, commercial and dynamic feel',
-  
-  '당근': 'Warm and friendly illustration style with soft orange tones, cozy neighborhood feeling, simple flat characters, gentle colors, approachable and human-centered mood, community-focused and relaxed atmosphere',
-  
-  '넷플릭스': 'Dark cinematic style with black and deep red tones, dramatic lighting, high contrast shadows, movie poster composition, intense and immersive mood, sleek modern typography, premium entertainment aesthetic',
-  
-  '애플': 'Extremely minimal and premium design, clean white or black background, soft natural lighting, high-end product-focused composition, perfect symmetry, smooth surfaces, futuristic and elegant mood'
+  '배민': `Design Style: Bamin (배민)
+Color Palette: Mint green (#2AB26D), warm beige, light cream
+Typography: Bold and playful Korean fonts, rounded characters
+Visual Elements: Cute flat characters with thick outlines, Korean illustration style, hand-drawn feeling
+Mood: Warm, friendly, casual, approachable, humorous
+Design Approach: Simple flat design with minimal shading, high contrast colors, playful and lighthearted atmosphere`,
+
+  '토스': `Design Style: Toss (토스)
+Color Palette: Soft blue (#0052FF), white, light gray
+Typography: Modern, clean sans-serif with smooth curves
+Visual Elements: Minimal UI elements, rounded corners, subtle shadows, lots of white space
+Mood: Trustworthy, calm, professional yet approachable, modern fintech aesthetic
+Design Approach: Ultra minimal and clean design with soft blue gradients, subtle shadows, smooth typography`,
+
+  '쿠팡': `Design Style: Coupang (쿠팡)
+Color Palette: Bright red (#FF6B35), bold blue, yellow accents
+Typography: Bold, energetic sans-serif fonts, clear hierarchy
+Visual Elements: High contrast, promotional layout, product-focused, dynamic icons
+Mood: Energetic, fast-paced, commercial, attention-grabbing, dynamic
+Design Approach: Bright and energetic ecommerce style with primary colors, high contrast, promotional layout`,
+
+  '당근': `Design Style: Danggeun Market (당근)
+Color Palette: Warm orange (#FF9933), soft yellows, cream backgrounds
+Typography: Friendly, approachable sans-serif with rounded edges
+Visual Elements: Simple flat characters, gentle colors, community-focused illustrations
+Mood: Warm, neighborhood feeling, cozy, approachable, human-centered
+Design Approach: Warm and friendly illustration style with soft orange tones, simple flat characters, community-focused`,
+
+  '네이버': `Design Style: Naver (네이버)
+Color Palette: Naver green (#00C73C), white, dark gray, light blue accents
+Typography: Clear, professional sans-serif, excellent readability
+Visual Elements: Structured grid layout, clean icons, organized information hierarchy
+Mood: Trustworthy, professional, stable, clear, informative
+Design Approach: Corporate professional design with emphasis on clarity and reliability, well-organized layout`,
+
+  '클래식': `Design Style: Classic Classroom (클래식)
+Color Palette: Black chalkboard, white chalk, wood brown, gold accents
+Typography: Traditional serif fonts, elegant and formal
+Visual Elements: Chalkboard aesthetic, chalk writing effects, traditional educational feel
+Mood: Formal, educational, traditional, authoritative, classic
+Design Approach: Traditional classroom chalkboard style with formal structure and educational authority`
 };
 
 function switchTab(tab, element) {
@@ -591,6 +612,10 @@ function updateUI() {
       visualText += `${idx + 1}. ${optMap[option] || ''}\n`;
     });
   }
+  if (state.design.length > 0) {
+    if (visualText) visualText += '\n';
+    visualText += `디자인: ${state.design[0]}`;
+  }
   document.getElementById('pv-visual').textContent = visualText || '(미설정)';
   
   document.getElementById('pv-topic').textContent = 
@@ -602,7 +627,7 @@ function updateUI() {
     <div class="yt-item">
       <div class="yt-item-info">
         <div class="yt-item-url">${url.substring(0, 35)}${url.length > 35 ? '...' : ''}</div>
-        <select class="yt-item-option" onchange="setYoutubeOption(${idx}, this.value)" style="background:#0f172a; color:#a78bfa; border:1px solid #334155; padding:4px; border-radius:4px; font-size:0.7rem;">
+        <select class="yt-item-option" onchange="setYoutubeOption(${idx}, this.value)" style="background:var(--surface-light); color:var(--text); border:1px solid var(--border); padding:4px; border-radius:4px; font-size:0.7rem;">
           <option value="content_summary">📝 내용 요약</option>
           <option value="url_attach">🔗 영상 주소 첨부</option>
           <option value="visual_heavy">🖼️ 시각화 강화</option>
@@ -691,12 +716,12 @@ ${state.pedagogy.join(', ') || 'Standard'}`;
 ✓ 차시 간 연계성 강화: 각 차시가 이전 학습을 바탕으로 심화됨`;
   }
 
-  prompt += `\n\n█ 디자인 & 톤:`;
   if (state.design.length > 0) {
-    prompt += `\nDesign Style:\n${designPrompts[state.design[0]]}`;
+    prompt += `\n\n█ 디자인 가이드:\n${designPrompts[state.design[0]]}`;
   }
+  
   if (state.tone.length > 0) {
-    prompt += `\n\nTone: ${state.tone[0]}`;
+    prompt += `\n\n█ 어조: ${state.tone[0]}`;
   }
 
   if (state.visualization.length > 0) {
@@ -731,7 +756,7 @@ ${state.pedagogy.join(', ') || 'Standard'}`;
 ✓ 모든 내용이 완전하고 실용적이어야 함
 ✓ 각 페이지에 학습목표, 핵심개념, 구체적 사례 포함
 ✓ 플레이스홀더([내용 입력] 같은 표현) 절대 금지
-✓ ${isHtml ? 'HTML/CSS/JS로 완성된 웹 슬라이드 (반응형 디자인, 부드���운 전환 효과, 완전한 코드)' : '구글 슬라이드 상세 기획서 (스피커노트, 활동 가이드 포함)'}
+✓ ${isHtml ? 'HTML/CSS/JS로 완성된 웹 슬라이드 (반응형 디자인, 부드러운 전환 효과, 완전한 코드)' : '구글 슬라이드 상세 기획서 (스피커노트, 활동 가이드 포함)'}
 ✓ 차시 간 연계성: 이전 학습 → 복습 → 새로운 개념 → 심화 순서로 구성
 
 [ChatGPT: OPEN CANVAS 사용 / Claude: GENERATE ARTIFACT 사용]`;
