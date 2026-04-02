@@ -1,119 +1,510 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>충주상업고등학교 AI Studio — 수업 콘텐츠 생성기 V16.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --bg: #f6f7fb;
+    --surface: #ffffff;
+    --surface-light: #eef3f8;
+    --border: #d9e2ec;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --text: #16202a;
+    --text-muted: #64748b;
+    --preview-hi: #1d4ed8;
+    --radius: 14px;
+  }
 
-        <span class="tag" data-group="period" data-key="4차시">🔴 4차시 (180분)</span>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background:
+      radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 28%),
+      radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.08), transparent 24%),
+      var(--bg);
+    color: var(--text);
+    font-family: "Pretendard", "Noto Sans KR", sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 72px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(217, 226, 236, 0.85);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+    z-index: 200;
+    flex-shrink: 0;
+  }
+
+  .logo-wrap { display: flex; align-items: center; gap: 1rem; }
+  .logo-text {
+    font-size: 1.08rem;
+    font-weight: 900;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+    line-height: 1.25;
+  }
+
+  .nav-tabs { display: flex; gap: 0.5rem; margin-left: 2rem; }
+  .nav-tab {
+    padding: 0.55rem 1.2rem;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: 0.2s;
+    color: var(--text-muted);
+  }
+  .nav-tab.active {
+    background: linear-gradient(135deg, var(--accent), #4f46e5);
+    color: white;
+    box-shadow: 0 10px 22px rgba(37, 99, 235, 0.22);
+  }
+
+  .header-right { display: flex; align-items: center; gap: 1rem; }
+  .dev-info {
+    font-size: 0.75rem;
+    text-align: right;
+    color: var(--text-muted);
+    border-right: 1px solid var(--border);
+    padding-right: 1rem;
+    line-height: 1.4;
+  }
+  .dev-info strong { color: var(--accent); }
+
+  .workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 500px;
+    flex: 1;
+    height: calc(100vh - 72px);
+    overflow: hidden;
+  }
+
+  .builder { overflow-y: auto; padding: 2rem; }
+  .editor {
+    border-left: 1px solid rgba(217, 226, 236, 0.85);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(16px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .step-block {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(217, 226, 236, 0.95);
+    border-radius: var(--radius);
+    padding: 1.45rem;
+    margin-bottom: 1.15rem;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+  }
+  .step-block.active {
+    border-color: rgba(37, 99, 235, 0.5);
+    border-left: 5px solid var(--accent);
+    box-shadow: 0 16px 30px rgba(37, 99, 235, 0.08);
+  }
+
+  .step-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem; }
+  .step-num {
+    font-family: "DM Mono", monospace;
+    font-size: 0.7rem;
+    background: linear-gradient(135deg, var(--accent), #4f46e5);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 5px;
+  }
+  .step-title { font-size: 1rem; font-weight: 800; color: var(--preview-hi); }
+  .sub-title {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    font-weight: 800;
+    text-transform: uppercase;
+    margin: 15px 0 8px 5px;
+    border-left: 2px solid var(--accent);
+    padding-left: 8px;
+    letter-spacing: 0.08em;
+  }
+
+  .helper-line {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag {
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 9px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: linear-gradient(180deg, #ffffff, var(--surface-light));
+    color: var(--text);
+    transition: 0.15s ease;
+  }
+  .tag:hover {
+    border-color: rgba(37, 99, 235, 0.55);
+    color: var(--accent);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 18px rgba(37, 99, 235, 0.08);
+  }
+  .tag.on {
+    background: linear-gradient(135deg, var(--accent), #4f46e5) !important;
+    color: white !important;
+    border-color: transparent;
+  }
+
+  .count-tags { display: grid; grid-template-columns: repeat(11, 1fr); gap: 4px; }
+  .tag-cnt { padding: 8px 0; text-align: center; font-family: "DM Mono", monospace; font-size: 0.8rem; }
+
+  .yt-input-wrap { display: flex; gap: 0.5rem; margin: 1rem 0; }
+  .yt-input {
+    flex: 1;
+    padding: 12px;
+    background: var(--surface-light);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    outline: none;
+    font-size: 0.85rem;
+  }
+  .yt-input:focus { border-color: var(--accent); }
+  .yt-add-btn {
+    padding: 0 20px;
+    background: linear-gradient(135deg, var(--accent), #4f46e5);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  .yt-add-btn:hover { transform: translateY(-1px); }
+  .yt-list { margin-bottom: 1rem; }
+  .yt-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 10px;
+    background: var(--surface-light);
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    font-size: 0.72rem;
+    word-break: break-all;
+    gap: 8px;
+    border: 1px solid var(--border);
+  }
+  .yt-item-info { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+  .yt-item-url { color: var(--preview-hi); }
+  .yt-item-option { color: var(--accent); font-size: 0.7rem; }
+  .yt-remove-btn {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 0 8px;
+    flex-shrink: 0;
+  }
+
+  .prompt-preview { flex: 1; overflow-y: auto; padding: 1.5rem; }
+  .prompt-section {
+    margin-bottom: 0.8rem;
+    border: 1px solid rgba(217, 226, 236, 0.9);
+    border-radius: 10px;
+    background: rgba(238, 243, 248, 0.85);
+    overflow: hidden;
+  }
+  .prompt-label {
+    font-family: "DM Mono", monospace;
+    font-size: 0.62rem;
+    padding: 7px 12px;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+  .prompt-content {
+    padding: 12px;
+    font-family: "DM Mono", monospace;
+    font-size: 0.79rem;
+    color: var(--text);
+    white-space: pre-wrap;
+    line-height: 1.6;
+    word-break: break-word;
+  }
+
+  .topic-area {
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.96);
+    border-top: 1px solid rgba(217, 226, 236, 0.9);
+  }
+  textarea.topic-input {
+    width: 100%;
+    background: var(--surface-light);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem;
+    color: var(--text);
+    outline: none;
+    min-height: 110px;
+    font-size: 1rem;
+    font-family: "Noto Sans KR", sans-serif;
+  }
+  textarea.topic-input:focus { border-color: var(--accent); }
+
+  .gen-btn {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1.2rem;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, var(--accent), #7c3aed);
+    color: white;
+    font-weight: 900;
+    font-size: 1.08rem;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 10px 24px rgba(59, 130, 246, 0.24);
+  }
+  .gen-btn:hover { transform: translateY(-2px); }
+
+  #view-guide {
+    overflow-y: auto;
+    padding: 3rem;
+    color: var(--text);
+    height: calc(100vh - 72px);
+  }
+  .guide-container { max-width: 840px; margin: 0 auto; }
+  .caution-box {
+    background: #fef2f2;
+    border-left: 5px solid #ef4444;
+    padding: 1.5rem;
+    color: #7f1d1d;
+    margin: 20px 0;
+    border-radius: 8px;
+  }
+
+  .toast {
+    position: fixed;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(150px);
+    background: linear-gradient(135deg, var(--accent), #4f46e5);
+    border-radius: 50px;
+    padding: 1rem 3rem;
+    color: white;
+    font-weight: 800;
+    z-index: 10000;
+    transition: 0.5s;
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.18);
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  .topic-highlight {
+    background:
+      linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(99, 102, 241, 0.08)),
+      rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(37, 99, 235, 0.22);
+  }
+
+  .output-note {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: rgba(37, 99, 235, 0.07);
+    border: 1px solid rgba(37, 99, 235, 0.14);
+    font-size: 0.73rem;
+    color: #31527f;
+    line-height: 1.6;
+  }
+
+  .custom-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) transparent;
+  }
+  .custom-scroll::-webkit-scrollbar { width: 8px; }
+  .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+  .custom-scroll::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+  .custom-scroll::-webkit-scrollbar-thumb:hover { background: var(--accent-hover); }
+
+  @media (max-width: 1180px) {
+    .workspace { grid-template-columns: 1fr; }
+    .editor { border-left: none; border-top: 1px solid rgba(217, 226, 236, 0.85); min-height: 42vh; }
+    .count-tags { grid-template-columns: repeat(6, 1fr); }
+  }
+
+  @media (max-width: 760px) {
+    body { height: auto; min-height: 100vh; overflow: auto; }
+    header {
+      height: auto;
+      padding: 1rem;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .nav-tabs { margin-left: 0; flex-wrap: wrap; }
+    .workspace { height: auto; }
+    .builder, .prompt-preview, #view-guide { padding: 1rem; }
+    .topic-area { padding: 1rem; }
+    .count-tags { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-wrap">
+    <div class="logo-text">충주상업고 수업자료 제작<br>AI STUDIO</div>
+    <nav class="nav-tabs">
+      <div class="nav-tab active" onclick="switchTab('builder', this)">마스터 빌더</div>
+      <div class="nav-tab" onclick="switchTab('guide', this)">사용 설명서</div>
+    </nav>
+  </div>
+  <div class="header-right">
+    <div class="dev-info">AI Powered by<br><strong>교육자 커뮤니티</strong></div>
+    <button onclick="location.reload()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; padding:0;"><i class="fas fa-sync-alt fa-lg"></i></button>
+  </div>
+</header>
+
+<div id="view-builder" class="workspace">
+  <section class="builder custom-scroll">
+
+    <div class="step-block topic-highlight" id="block-topic">
+      <div class="step-header"><span class="step-num">01</span><span class="step-title">수업 주제 입력</span></div>
+      <p class="helper-line">구체적이고 자세한 주제를 입력할수록 결과 품질이 좋아집니다.</p>
+      <textarea class="topic-input" id="topicInput" placeholder="예) 분자의 극성과 화학결합의 관계 분석"></textarea>
+      <p class="helper-line" style="margin-top:10px; margin-bottom:0;">팁: 과목명, 단원명, 실제 수업에서 다룰 핵심 개념을 함께 적어주세요.</p>
+    </div>
+
+    <div class="step-block" id="block-school">
+      <div class="step-header"><span class="step-num">02</span><span class="step-title">학교급 선택</span></div>
+      <div class="sub-title">학교급</div>
+      <div class="tags">
+        <span class="tag" data-group="school" data-key="고등학교">🏫 고등학교</span>
+        <span class="tag" data-group="school" data-key="중학교">📚 중학교</span>
+      </div>
+    </div>
+
+    <div class="step-block" id="block-target">
+      <div class="step-header"><span class="step-num">03</span><span class="step-title">대상 학년 및 난이도</span></div>
+      <div class="sub-title">학년</div>
+      <div class="tags">
+        <span class="tag" data-group="grade" data-key="1학년">1학년</span>
+        <span class="tag" data-group="grade" data-key="2학년">2학년</span>
+        <span class="tag" data-group="grade" data-key="3학년">3학년</span>
+      </div>
+      <div class="sub-title">수준</div>
+      <div class="tags">
+        <span class="tag" data-group="level" data-key="기초보충">🌱 기초보충</span>
+        <span class="tag" data-group="level" data-key="보통">🌿 보통</span>
+        <span class="tag" data-group="level" data-key="심화">🌳 심화</span>
+      </div>
+    </div>
+
+    <div class="step-block" id="block-subject">
+      <div class="step-header"><span class="step-num">04</span><span class="step-title">과목 선택</span></div>
+
+      <div class="sub-title">📚 공통 교과</div>
+      <div class="tags">
+        <span class="tag" data-group="subject" data-key="국어">📖 국어</span>
+        <span class="tag" data-group="subject" data-key="문학">📕 문학</span>
+        <span class="tag" data-group="subject" data-key="실용국어">💬 실용국어(실국)</span>
+        <span class="tag" data-group="subject" data-key="수학">📐 수학</span>
+        <span class="tag" data-group="subject" data-key="경영수학">📊 경영수학(경수)</span>
+        <span class="tag" data-group="subject" data-key="영어">🔤 영어</span>
+        <span class="tag" data-group="subject" data-key="실용영어">🌐 실용영어(실영)</span>
+        <span class="tag" data-group="subject" data-key="국사">📜 국사</span>
+        <span class="tag" data-group="subject" data-key="사회">🗺️ 사회</span>
+        <span class="tag" data-group="subject" data-key="과학">🧪 과학</span>
+        <span class="tag" data-group="subject" data-key="생명과학">🧬 생명과학</span>
       </div>
 
-      <div class="sub-title">도입 방식 선택</div>
-      <div class="sub-title">도입 방식 선택 (선택)</div>
+      <div class="sub-title">🎨 예체능</div>
       <div class="tags">
-        <span class="tag" data-group="intro" data-key="질문">❓ 질문으로 도입</span>
-        <span class="tag" data-group="intro" data-key="예시">💡 예시/상황으로 도입</span>
-      1️⃣ 맨 위에 수업 주제를 입력하세요.<br>
-      2️⃣ 학교급, 학년, 난이도, 과목을 선택하세요.<br>
-      3️⃣ 결과물 형태를 고르면 필요한 옵션만 자동으로 열립니다.<br>
-      4️⃣ 슬라이드형 결과물은 장수/시각화 옵션이 추가로 보입니다.<br>
-      5️⃣ 지도안은 차시 구성 중심으로, 학습지는 활동 설계 중심으로 프롬프트가 생성됩니다.<br>
-      4️⃣ 구글 슬라이드 기획안을 선택한 경우에만 슬라이드 장수 옵션이 나타납니다.<br>
-      5️⃣ 지도안, 학습지, 요약노트는 Word/HWP로 옮기기 쉬운 문서형 결과물로 생성됩니다.<br>
-      6️⃣ 오른쪽 프리뷰를 확인한 뒤 생성 버튼을 누르세요.
-    </p>
+        <span class="tag" data-group="subject" data-key="체육">🏀 체육</span>
+        <span class="tag" data-group="subject" data-key="스포츠">⚽ 스포츠(스포)</span>
+        <span class="tag" data-group="subject" data-key="음악">🎼 음악</span>
+        <span class="tag" data-group="subject" data-key="미술">🎨 미술</span>
+      </div>
 
-    <div class="caution-box">
-      <strong>⚠️ 꼭 확인하세요</strong><br>
-      - 필수: 주제, 학교급, 과목, 결과물 형태<br>
-      - 슬라이드형 결과물(웹/구글 슬라이드)은 차시와 도입 방식을 반드시 선택해야 합니다<br>
-      - 지도안은 슬라이드 장수 선택이 필요하지 않습니다<br>
-      - 구글 슬라이드 기획안에서만 슬라이드 장수 선택이 필요합니다<br>
-      - 도입 방식은 선택 사항이며, 고르면 프롬프트에 반영됩니다<br>
-      - 유튜브 URL은 youtube.com 또는 youtu.be 형식만 허용됩니다
+      <div class="sub-title">🏫 교양 / 기타</div>
+      <div class="tags">
+        <span class="tag" data-group="subject" data-key="자율">🎯 자율</span>
+        <span class="tag" data-group="subject" data-key="진로">🛣️ 진로</span>
+        <span class="tag" data-group="subject" data-key="동아">🌍 동아</span>
+        <span class="tag" data-group="subject" data-key="한문">🏮 한문</span>
+      </div>
+
+      <div class="sub-title">💼 상업 / 특성화 계열</div>
+      <div class="tags">
+        <span class="tag" data-group="subject" data-key="회계">💰 회계</span>
+        <span class="tag" data-group="subject" data-key="회계실무">📋 회계실무(회실)</span>
+        <span class="tag" data-group="subject" data-key="금융">💳 금융</span>
+        <span class="tag" data-group="subject" data-key="국제">🌏 국제</span>
+        <span class="tag" data-group="subject" data-key="창구">🏦 창구</span>
+        <span class="tag" data-group="subject" data-key="기업">🏢 기업</span>
+        <span class="tag" data-group="subject" data-key="행정">📄 행정</span>
+        <span class="tag" data-group="subject" data-key="사무">💼 사무</span>
+        <span class="tag" data-group="subject" data-key="상업">🛍️ 상업</span>
+        <span class="tag" data-group="subject" data-key="유통">📦 유통</span>
+        <span class="tag" data-group="subject" data-key="유통관리">🏭 유통관리(유관)</span>
+        <span class="tag" data-group="subject" data-key="비즈니스">💡 비즈니스(비즈)</span>
+        <span class="tag" data-group="subject" data-key="창업">🚀 창업</span>
+      </div>
+
+      <div class="sub-title">💻 IT / 컴퓨터 계열</div>
+      <div class="tags">
+        <span class="tag" data-group="subject" data-key="소프트웨어앱개발">📱 소프트웨어앱개발(스앱)</span>
+        <span class="tag" data-group="subject" data-key="시스템프로그래밍">⚙️ 시스템프로그래밍(시프)</span>
+        <span class="tag" data-group="subject" data-key="데이터베이스">🗄️ 데이터베이스(데베)</span>
+        <span class="tag" data-group="subject" data-key="알고리즘">🔍 알고리즘(알고)</span>
+        <span class="tag" data-group="subject" data-key="컴퓨터일반">🖥️ 컴퓨터일반(컴일)</span>
+        <span class="tag" data-group="subject" data-key="응용프로그래밍">📲 응용프로그래밍(응프)</span>
+        <span class="tag" data-group="subject" data-key="빅데이터">📊 빅데이터(빅데)</span>
+      </div>
+
+      <div class="sub-title">🍳 관광 / 조리 / 서비스 계열</div>
+      <div class="tags">
+        <span class="tag" data-group="subject" data-key="바리스타">☕ 바리스타(바리)</span>
+        <span class="tag" data-group="subject" data-key="객실서비스">🏨 객실서비스(객실)</span>
+        <span class="tag" data-group="subject" data-key="식음료서비스">🍽️ 식음료서비스(식음)</span>
+        <span class="tag" data-group="subject" data-key="관광서비스">🧳 관광서비스(관서)</span>
+        <span class="tag" data-group="subject" data-key="여행">✈️ 여행</span>
+        <span class="tag" data-group="subject" data-key="제과">🎂 제과</span>
+        <span class="tag" data-group="subject" data-key="제빵">🥖 제빵</span>
+        <span class="tag" data-group="subject" data-key="한식">🍱 한식</span>
+        <span class="tag" data-group="subject" data-key="양식">🍝 양식</span>
+        <span class="tag" data-group="subject" data-key="중식">🍜 중식</span>
+        <span class="tag" data-group="subject" data-key="떡제조">🍡 떡제조</span>
+        <span class="tag" data-group="subject" data-key="식품">🥫 식품</span>
+      </div>
     </div>
-  </div>
-    countLabel: "슬라이드",
-    defaultCount: "15",
-    needsPeriod: true,
-    needsSlideCount: true,
-    needsSlideCount: false,
-    supportsVisualization: true,
-    outputHint: "웹 슬라이드형 결과물입니다. 차시, 도입 방식, 슬라이드 장수를 함께 설정하면 자연스럽습니다."
-    outputHint: "웹 수업자료입니다. 차시 흐름과 시각 자료는 반영되지만 슬라이드 장수는 따로 묻지 않습니다."
-  },
-  google_slide: {
-    label: "구글 슬라이드 기획안",
-    needsPeriod: false,
-    needsSlideCount: false,
-    supportsVisualization: false,
-    outputHint: "학습지는 문제, 활동, 작성 공간, 피드백 요소 중심으로 생성됩니다."
-    outputHint: "학습지는 Word/HWP로 옮기기 쉬운 문서형 활동지로 생성됩니다."
-  },
-  summary: {
-    label: "핵심 요약노트",
-    needsPeriod: false,
-    needsSlideCount: false,
-    supportsVisualization: false,
-    outputHint: "요약노트는 핵심 개념을 압축 정리하는 문서형 결과물입니다."
-    outputHint: "요약노트는 Word/HWP로 옮기기 쉬운 문서형 정리 자료로 생성됩니다."
-  }
-};
 
-  document.getElementById("periodTitle").textContent = state.output[0] === "lesson_plan" ? "차시 및 수업 흐름" : "수업 차시 및 구성";
-  document.getElementById("periodHelper").textContent =
-    state.output[0] === "lesson_plan"
-      ? "지도안에 반영할 실제 수업 차시와 도입 흐름을 선택하세요."
-      : "몇 차시 분량의 수업을 한 번에 준비할지 선택하세요.";
-      ? "지도안에 반영할 실제 수업 차시를 선택하세요. 도입 방식은 필요할 때만 선택하면 됩니다."
-      : "몇 차시 분량의 수업을 한 번에 준비할지 선택하세요. 도입 방식은 선택 사항입니다.";
-}
+    <div class="step-block" id="block-curr">
+      <div class="step-header"><span class="step-num">05</span><span class="step-title">적용 교육과정</span></div>
+      <div class="tags">
+        <span class="tag" data-group="curriculum" data-key="2022 개정">✨ 2022 개정</span>
+        <span class="tag" data-group="curriculum" data-key="2015 개정">📜 2015 개정</span>
+      </div>
+    </div>
 
-function updatePreview() {
-
-  let structureText = "(형식 선택 시 표시)";
-  if (state.period[0]) {
-    structureText = `${state.period[0]}\n도입방식: ${introMap[state.intro[0]] || "(미선택)"}\n흐름: 도입 → 전개 → 정리`;
-    structureText = `${state.period[0]}${state.intro[0] ? `\n도입방식: ${introMap[state.intro[0]]}` : ""}\n흐름: 도입 → 전개 → 정리`;
-  } else if (state.output[0] === "worksheet") {
-    structureText = "학습지형 결과물\n활동지 중심 구성";
-  } else if (state.output[0] === "summary") {
-      b.id === "block-subject" ? ["subject"] :
-      b.id === "block-curr" ? ["curriculum"] :
-      b.id === "block-output" ? ["output"] :
-      b.id === "block-period" ? ["period", "intro"] :
-      b.id === "block-period" ? ["period"] :
-      b.id === "block-slidecount" ? ["slidecnt"] :
-      b.id === "block-pedagogy" ? ["pedagogy"] :
-      b.id === "block-style" ? ["design", "tone"] :
-
-function buildOutputInstruction(outputKey, count) {
-  if (outputKey === "html") {
-    return `형식: HTML/CSS/JS 기반 웹 수업자료\n분량: 정확히 ${count}장의 슬라이드 구조`;
-    return "형식: HTML/CSS/JS 기반 웹 수업자료\n분량: 웹 화면 흐름에 맞춘 완성형 수업자료";
-  }
-  if (outputKey === "google_slide") {
-    return `형식: 구글 슬라이드용 상세 기획안\n분량: 정확히 ${count}장의 슬라이드 구조`;
-    return "형식: Word/HWP로 옮기기 쉬운 수업 지도안\n분량: 표제, 학습목표, 성취기준, 교수학습 과정안, 평가 계획까지 포함한 완성형 문서";
-  }
-  if (outputKey === "worksheet") {
-    return "형식: 학생용 학습지\n분량: 활동 안내, 문제, 작성 공간, 정리 문항이 포함된 문서형 결과물";
-    return "형식: Word/HWP로 옮기기 쉬운 학생용 학습지\n분량: 활동 안내, 문제, 작성 공간, 정리 문항이 포함된 문서형 결과물";
-  }
-  return "형식: 핵심 요약노트\n분량: 핵심 개념, 예시, 암기 포인트가 정리된 문서형 결과물";
-  return "형식: Word/HWP로 옮기기 쉬운 핵심 요약노트\n분량: 핵심 개념, 예시, 암기 포인트가 정리된 문서형 결과물";
-}
-
-function buildRequiredRules(outputKey) {
-    return;
-  }
-
-  if (cfg.needsPeriod && (!state.period.length || !state.intro.length)) {
-    alert("❌ 이 결과물은 차시와 도입 방식 선택이 필요합니다.");
-  if (cfg.needsPeriod && !state.period.length) {
-    alert("❌ 이 결과물은 차시 선택이 필요합니다.");
-    return;
-  }
-
-
-  if (state.period[0]) {
-    prompt += `\n\n█ 수업 구성 (${state.period[0]}):
-도입: ${introGuide[state.intro[0]] || "학습 준비"} + 학습목표 제시
-도입: ${state.intro[0] ? `${introGuide[state.intro[0]]} + 학습목표 제시` : "주제에 맞는 자연스러운 도입과 학습목표 제시"}
-전개: 개념 설명, 활동, 사례, 적용, 피드백이 단계적으로 이어지도록 구성
-정리: 핵심 내용 정리, 형성평가 또는 회고, 다음 학습과의 연결
-차시 흐름: 이전 학습 복습 → 새 개념 제시 → 적용/활동 → 정리`;
+    <div class="step-block" id="block-output">
+      <div class="step-header"><span class="step-num">06</span><span class="step-title">최종 결과물 형태</span></div>
+      <div class="tags">
+        <span class="tag" data-group="output" data-key="html">🎞️ 웹 제작 (HTML)</span>
+        <span class="tag" data-group="output" data-key="
